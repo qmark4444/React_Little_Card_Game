@@ -1,0 +1,79 @@
+.deckGroup {
+  flex-direction: "row";
+  align-items: "stretch";
+  padding: 10;
+  margin-bottom: 5;
+}
+.deckButton { 
+  background-color: pink;
+  padding: 10; 
+  margin: 0;
+  flex: 1; 
+}
+.editButton {
+  width: 60;
+  background-color: #d35d90;/*pink2*/
+  justify-content: "center";
+  align-items: "center";
+  align-self: "center";
+  padding: 0;
+  padding-top: 10;
+  padding-bottom: 10;
+  margin: 0;
+  flex: 0;
+}
+.header {
+  flex-direction: "row";
+  align-items: "center";
+  justify-content: "center";
+  padding: 5;
+}
+.logo { 
+  margin-right: 8; 
+  height: 40; 
+  width: 40; 
+}
+.createButton { 
+  background-color: green; 
+}
+.secondaryButton { 
+  background-color: blue; 
+}
+.buttonRow { 
+  flex-direction: "row"; 
+}
+.container { 
+  background-color: blue; 
+  flex: 1; 
+  padding-top: 24; 
+}
+.fontNormal { 
+  font-size: 24; 
+}
+.fontAlternate { 
+  font-size: 50; 
+  color: "#FFFFFF";
+}
+.fontBig { 
+  font-size: 32; 
+  align-self: "center"; 
+}
+.createDeck { 
+  background-color: green; 
+}
+.nameField { 
+  background-color: tan;
+  height: 60; 
+}
+.wideButton { 
+  justify-content: "center"; 
+  padding: 10; 
+  margin: 10; 
+}
+button.wideButton {
+  justify-content: "center";
+  padding: 10;
+  margin: 10;
+  align-items: "center";  
+  background-color: pink;
+}
