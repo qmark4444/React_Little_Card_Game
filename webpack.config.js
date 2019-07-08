@@ -19,11 +19,6 @@ module.exports = {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
                 loader: ['babel-loader'],
-                // query:
-                // options:
-                // {
-                //     presets:['react']
-                // }//Error: options/query cannot be used with loaders (use options for each array item)
             }
         ]
     },
