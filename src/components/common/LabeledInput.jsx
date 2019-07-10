@@ -12,11 +12,7 @@ class LabeledInput extends Component {
         </NormalText>
         <Input
           type="text"
-          name={this.props.label}
-          onEntry={this.props.onEntry}
-          onChange={this.props.onChange}
-          clearOnSubmit={this.props.clearOnSubmit}
-          style={this.props.inputStyle}
+          {...this.props}
         />
       </div>
     );

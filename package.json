@@ -8,7 +8,7 @@
     "start": "concurrently \"npm run build\" \"http-server -c-1 -p 8000\" "
     , "explain": "http-server single quotation marks not work. and 8080 is webpack-dev-server default port"
   },
-  "author": "Bonnie Eisenman, Q Mark Long",
+  "author": "Bonnie Eisenman, Quan Long",
   "license": "ISC",
   "babel": {
     "plugins": [
@@ -40,8 +40,7 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "style-loader": "^0.23.1",
-    "webpack": "^2.7.0",
-    "webpack-dev-server": "^3.7.2"
+    "webpack": "^2.7.0"
   },
   "dependencies": {
     "express": "^4.17.1",

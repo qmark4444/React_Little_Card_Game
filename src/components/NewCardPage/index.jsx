@@ -4,29 +4,29 @@ import { connect } from "react-redux";
 import Button from "../common/Button";
 import LabeledInput from "../common/LabeledInput";
 import NormalText from "../common/NormalText";
+import Input from "../common/Input";
 
 class NewCard extends Component {
-  static initialState = { front: "", back: "" };
 
   constructor(props) {
     super(props);
-    this.state = this.initialState;
+    this.state = { front: "", back: "" };
   }
 
   _deckID = () => {
     return this.props.match.params.deckID;
   };
 
-  _handleFront = text => {
-    this.setState({ front: text });
+  _handleFront = event => {
+    this.setState({ front: event.target.value });
   };
 
-  _handleBack = text => {
-    this.setState({ back: text });
+  _handleBack = event => {
+    console.log('handle back event ', event.target);
+    this.setState({ back: event.target.value });
   };
 
   _createCard = () => {
-    //console.log('create card, front: ', this.state.front, ' back: ', this.state.back )
     this.props.createCard(this.state.front, this.state.back, this._deckID());
     this.props.history.push(`/createCard/${this._deckID()}`);
   };
@@ -44,23 +44,27 @@ class NewCard extends Component {
     return (
       <div>
         <h1>New Card Page</h1>
-        {/* <form id="newCardCreate"> */}
+        <form id="createCard">
           <LabeledInput
             label="Front"
-            clearOnSubmit={false}
-            onEntry={this._handleFront}
+            clearOnSubmit={false} 
             onChange={this._handleFront}
+            value={this.state.front}
+            className="nameField wideButton fontNormal"
           />
           <LabeledInput
             label="Back"
             clearOnSubmit={false}
-            onEntry={this._handleBack}
             onChange={this._handleBack}
+            value={this.state.back}
+            className="nameField wideButton fontNormal"
           />
-          <Button style={{ backgroundColor: 'green' }} onClick={this._createCard}>
-            <NormalText>Create Card</NormalText>
-          </Button>
-        {/* </form> */}
+
+          <Input type="button" 
+            onClick={this._createCard}
+            value="Create Card"
+          />
+        </form>
 
         <div style={{ flexDirection: "row" }}>
           <Button style={{ backgroundColor: 'blue' }} onClick={this._doneCreating}>

@@ -15,7 +15,13 @@ class DecksScreen extends Component {
   };
 
   _addCards = deckID => {
-    this.props.history.push(`/createCard/${deckID}`);
+    this.props.history.push({
+      pathname: `/createCard/${deckID}`,
+      state: {
+        isModal: false,
+        returnto: this.props.location.pathname
+      }
+    });
   };
 
   _review = deckID => {

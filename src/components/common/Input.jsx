@@ -9,8 +9,9 @@ class Input extends Component {
   _onSubmit = ev => {
     let keyCode = ev.keyCode || ev.which;
     if(keyCode == 13){
-      //console.log('input ref value: ', this.refs.newDeckInput.value);
-      this.props.onEntry(ev.target.value);
+      if(this.props.onEntry && typeof this.props.onEntry === 'function'){
+        this.props.onEntry(ev.target.value);
+      }
     }
     if (this.props.clearOnSubmit) {
       this.setState({ text: "" });
@@ -30,18 +31,22 @@ class Input extends Component {
         <input
           type={this.props.type}
           name={this.props.name}
-          className="nameField wideButton fontNormal"
+          className={this.props.className}
           style={this.props.style}
-          ref="newDeckInput"
+          ref="inputRef" //use ref if not capture state change
           onChange={this._onChange}
           onKeyUp={this._onSubmit}
+          onClick={this.props.onClick}
+          value={this.props.value}
+          //clearOnSubmit={this.props.clearOnSubmit} //custom attribute
+          //warning: html DOM not recognize this custom attribute
         />
       </div>
     );
   }
 }
 
-// Default props are used if not otherwise specified
+// Default props for custom attributes
 Input.defaultProps = { clearOnSubmit: true };
 
 export default Input;

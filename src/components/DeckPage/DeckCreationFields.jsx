@@ -24,14 +24,17 @@ class EnterDeck extends Component {
     this.props.create(this.state.deckName);
   };
 
+  _onChange = deckName => {
+    this.setState({ deckName });
+  }
+
   render() {
     return (
       <div>
         <Input
           onEntry={this.props.create}
-          onChange={deckName => {
-            this.setState({ deckName });
-          }}
+          onChange={this._onChange}
+          className="nameField fontNormal"
         />
         <CreateDeckButton 
           onClick={this._create} 

@@ -16,9 +16,10 @@ class Button extends Component {
 
     return (
       <button
-        className="wideButon"
+        className="wideButton"
         onClick={this._onClick}
         style={concatStyles}
+        disabled={this.props.disabled}
       >
         {this.props.children}
       </button>
