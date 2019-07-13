@@ -57,7 +57,7 @@ class Logo extends Component {
               strokeWidth:0.25593761
             }} />
           <rect
-            id="QH"
+            id="QV"
             width="20.410706"
             height="130"
             x="150.43452"
