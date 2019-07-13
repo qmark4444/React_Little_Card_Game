@@ -17,14 +17,12 @@ const ReviewPage = require('./components/ReviewPage/index.jsx');
 
 module.exports = (
     <BrowserRouter>
-        <div>
-            <Layout>
-                <Switch>
-                    <Route path="/" exact component={(props) => <DeckPage {...props}/>} />
-                    <Route path='/createCard/:deckID' component={(props) => <NewCardPage {...props}/>} />
-                    <Route path='/review' component={(props) => <ReviewPage {...props}/>} />
-                </Switch>
-            </Layout>
-        </div>
+        <Layout>
+            <Switch>
+                <Route path="/" exact component={(props) => <DeckPage {...props}/>} />
+                <Route path='/createCard/:deckID' component={(props) => <NewCardPage {...props}/>} />
+                <Route path='/review' component={(props) => <ReviewPage {...props}/>} />
+            </Switch>
+        </Layout>
     </BrowserRouter>
 )

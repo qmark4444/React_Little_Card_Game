@@ -77,3 +77,56 @@ button.wideButton {
   align-items: "center";  
   background-color: pink;
 }
+/*navbar*/
+body{
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+}
+.navbar{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 80px;
+  /*padding: 0 0 0 100px;*/
+  padding:0;
+  box-sizing: border-box;
+  transition: 0.5s;
+  background: rgba(0,0,0,0.5);
+}
+.navbar.hide{
+  transform: translateY(-100%);
+}
+.navbar #svgLogo {
+  float:left;/*flex?*/
+}
+.navbar .channel{
+  position: relative;/*relative to normal*/           
+}
+.navbar ul{/*make li on one line*/
+  margin:0;
+  padding:0;
+  display: flex;
+  float: right;
+}
+.navbar ul li{
+  list-style: none;
+  line-height: 80px;
+  text-align: center;
+}
+.navbar ul li a{
+  display: block;
+  padding: 0 30px;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+}
+.navbar ul li a:hover,
+.navbar ul li a.active
+{
+  background: #fd2928;
+  color: #fff;
+}

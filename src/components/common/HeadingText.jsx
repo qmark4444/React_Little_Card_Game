@@ -10,9 +10,7 @@ class HeadingText extends Component {
 
     return (
       <div>
-        <span className="fontBig" 
-          style={concatStyles}
-        >
+        <span style={concatStyles}>
           {this.props.children}
         </span>
       </div>

@@ -1,4 +1,7 @@
-export const scalingFactors = { normal: 15, big: 10 };
+export const scalingFactors = { 
+    normal: 45, 
+    big: 30 
+};
 
 export const colors = {
     pink: "#FDA6CD",
@@ -14,3 +17,9 @@ export const fonts = {
     alternate: { fontSize: 50, color: "#FFFFFF" },
     big: { fontSize: 32, alignSelf: "center" }
 };
+
+export const headerStyle = {
+    position: 'relative',
+    top: 80,
+    margin: 0,
+}
