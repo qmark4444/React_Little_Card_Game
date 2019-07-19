@@ -30,7 +30,6 @@ class ReviewScreen extends Component {
   };
 
   _contents() {
-    console.log('reviews length: ', this.props.reviews.length);
     if (!this.props.reviews || this.props.reviews.length === 0) {
       return null;
     }
@@ -53,7 +52,6 @@ class ReviewScreen extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <h1>Review Page</h1>
         {this._contents()}
       </div>
     );

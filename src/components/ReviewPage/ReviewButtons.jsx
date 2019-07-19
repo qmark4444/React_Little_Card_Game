@@ -10,7 +10,7 @@ class ContinueButton extends Component {
       ? "Correct! Next card?"
       : "Oops, not quite. Next card?";
     return (
-      <Button onClick={this.props.onClick} style={{ backgroundColor: colors.tan }}>
+      <Button onClick={this.props.onClick} style={{ backgroundColor: colors.blue }}>
         <NormalText>{text}</NormalText>
       </Button>
     );
@@ -27,8 +27,8 @@ function mkContinueQuitButtons(
     return <ContinueButton onClick={continueFunc} wasCorrect={wasCorrect} />;
   } else {
     return (
-      <Button onClick={quitFunc} style={{ backgroundColor: colors.tan }}>
-        <NormalText>Stop Reviewing</NormalText>
+      <Button onClick={quitFunc} style={{ backgroundColor: colors.pink }}>
+        <NormalText>Stop Quiz</NormalText>
       </Button>
     );
   }
@@ -43,7 +43,7 @@ function mkAnswerButtons(
 ) {
   if (!answers) return null;
 
-  return answers.map(a => {
+  return answers.map((a, aIndex) => {
     let isCorrectAnswer = a === correctAnswer;
     let buttonStyle = styles.options;
     
@@ -56,7 +56,7 @@ function mkAnswerButtons(
     }
 
     return (
-      <div key={a}>
+      <div key={a} className="answerOptions">
         <Button
           disabled={wasReviewed}
           style={buttonStyle}
@@ -65,7 +65,7 @@ function mkAnswerButtons(
           }}
         >
           <NormalText>
-            {a}
+            {aIndex+1}. {a}
           </NormalText>
         </Button>
       </div>

@@ -28,10 +28,11 @@ class QuizView extends Component {
   render() {
     return (
       <div>
-        <h1>View Cards</h1>
-        <HeadingText>
-          {this.props.prompt}
-        </HeadingText>
+        <div className="quizView"> 
+          <HeadingText>
+            Question: {this.props.prompt}
+          </HeadingText>
+        </div>
         {mkAnswerButtons(
           this.props.answers,
           this.props.correctAnswer,
