@@ -1,7 +1,9 @@
 import {
     ADD_DECK,
     ADD_CARD,
+    STUDY_DECK,
     REVIEW_DECK,
+    DELETE_DECK,
     STOP_REVIEW,
     NEXT_REVIEW,
     LOAD_DATA
@@ -18,8 +20,16 @@ import {
     return { type: ADD_CARD, data: new Card(front, back, deckID) };
   };
   
+  export const studyDeck = deckID => {
+    return { type: STUDY_DECK, data: { deckID: deckID } };
+  };
+
   export const reviewDeck = deckID => {
     return { type: REVIEW_DECK, data: { deckID: deckID } };
+  };
+
+  export const deleteDeck = deckID => {
+    return { type: DELETE_DECK, data: { deckID: deckID } };
   };
   
   export const stopReview = () => {

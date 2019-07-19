@@ -1,4 +1,4 @@
-import { ADD_DECK, ADD_CARD, LOAD_DATA } from "../actions/types";
+import { ADD_DECK, ADD_CARD, LOAD_DATA, DELETE_DECK } from "../actions/types";
 import { writeDecks } from "./../storage/decks";
 
 function decksWithNewCard(oldDecks, card) {
@@ -19,7 +19,7 @@ function saveDecks(state) {
   return state;
 }
 
-const reducer = (state = [], action) => {
+const reducer = (state = [], action) => { 
   switch (action.type) {
     case LOAD_DATA:
       return action.data;
@@ -27,6 +27,12 @@ const reducer = (state = [], action) => {
       let newState = state.concat(action.data);
       saveDecks(newState);
       return newState;
+    case DELETE_DECK:
+      {
+        let newState = state.filter(deck => deck.id !== action.data.deckID);
+        saveDecks(newState);
+        return newState;
+      }
     case ADD_CARD:
       return decksWithNewCard(state, action.data);
 
