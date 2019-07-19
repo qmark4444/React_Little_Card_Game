@@ -53,7 +53,9 @@ class Layout extends Component {
         <Navbar>
           <Logo />
           <ul>
-              <li><a href="/">Home</a></li>
+            {/* TODO: <a> should be replaced by <Link> later
+            all ul, li should be replaced by React components later */}
+              <li><a href="#">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Games</a></li>
               <li><a href="#">Portfolio</a></li>
@@ -65,7 +67,16 @@ class Layout extends Component {
           {this.props.children}          
         </section>
 
-        <footer>
+        <footer style={{display:'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
+          <div style={{color: 'white', fontSize: '36px'}}>&copy; 
+            <script>
+              document.write("2019 - "+new Date().getFullYear());
+            </script> 
+            <a href="javascript:void();" target="_blank" style={{textDecoration:'none', color: 'white'}} className="top_tooltip">
+                Quan (Tran) Long
+            </a>
+          </div>
+
           <h1>
             Footer Grid
           </h1>

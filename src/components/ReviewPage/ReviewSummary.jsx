@@ -23,7 +23,7 @@ function mkReviewSummary(percentCorrect, quitFunc) {
 
 const styles = ({
   alternate: { color: "#FFFFFF" },
-  done: { alignItems: "center" },
+  done: { display:'flex', flexDirection:'column', alignItems: "center" },
   doneButton: { backgroundColor: colors.tan }
 });
 

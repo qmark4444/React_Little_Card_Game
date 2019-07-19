@@ -7,7 +7,7 @@ class QuizView extends Component {
   static displayName = "QuizView";
 
   _getInitialState() {
-    return { wasReviewed: false, wasCorrect: false };
+    return { wasReviewed: false, wasCorrect: false, id: null };
   }
 
   constructor(props) {
@@ -20,9 +20,9 @@ class QuizView extends Component {
     this.props.continue();
   };
 
-  _selectAnswer = correct => {
+  _selectAnswer = (correct, id) => {
     this.props.onReview(correct);
-    this.setState({ wasReviewed: true, wasCorrect: correct });
+    this.setState({ wasReviewed: true, wasCorrect: correct, wasClicked: id });
   };
 
   render() {
@@ -38,7 +38,8 @@ class QuizView extends Component {
           this.props.correctAnswer,
           this.state.wasReviewed,
           this.state.wasCorrect,
-          this._selectAnswer
+          this._selectAnswer,
+          this.state.wasClicked
         )}
         {mkContinueQuitButtons(
           this.state.wasReviewed,

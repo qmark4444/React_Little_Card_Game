@@ -13,7 +13,7 @@ class ReviewScreen extends Component {
     this.state = { numReviewed: 0, numCorrect: 0 };
   }
 
-  onReview = correct => {
+  _onReview = correct => {
     if (correct) {
       this.setState({ numCorrect: this.state.numCorrect + 1 });
     }
@@ -37,7 +37,7 @@ class ReviewScreen extends Component {
     if (this.props.currentReview < this.props.reviews.length) {
       return (
         <QuizView
-          onReview={this.onReview}
+          onReview={this._onReview}
           continue={this._nextReview}
           quit={this._quitReviewing}
           {...this.props.reviews[this.props.currentReview]}

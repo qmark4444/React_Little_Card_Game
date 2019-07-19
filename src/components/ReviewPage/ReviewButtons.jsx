@@ -4,13 +4,15 @@ import Button from "./../common/Button";
 import NormalText from "./../common/NormalText";
 import {colors} from "./../../../css/styles";
 
+import md5 from "md5";
+
 class ContinueButton extends Component { 
   render() {
     let text = this.props.wasCorrect
       ? "Correct! Next card?"
       : "Oops, not quite. Next card?";
     return (
-      <Button onClick={this.props.onClick} style={{ backgroundColor: colors.blue }}>
+      <Button onClick={this.props.onClick} style={{ backgroundColor: colors.pink }}>
         <NormalText>{text}</NormalText>
       </Button>
     );
@@ -27,7 +29,7 @@ function mkContinueQuitButtons(
     return <ContinueButton onClick={continueFunc} wasCorrect={wasCorrect} />;
   } else {
     return (
-      <Button onClick={quitFunc} style={{ backgroundColor: colors.pink }}>
+      <Button onClick={quitFunc} style={{ backgroundColor: colors.yellow }}>
         <NormalText>Stop Quiz</NormalText>
       </Button>
     );
@@ -39,7 +41,8 @@ function mkAnswerButtons(
   correctAnswer,
   wasReviewed,
   wasCorrect,
-  selectAnswerFunc
+  selectAnswerFunc,
+  wasClicked
 ) {
   if (!answers) return null;
 
@@ -47,11 +50,12 @@ function mkAnswerButtons(
     let isCorrectAnswer = a === correctAnswer;
     let buttonStyle = styles.options;
     
-    if (wasReviewed) {
+    let myID = '_' + md5(a);
+    if(wasReviewed && wasClicked === myID) { 
       if (wasCorrect) {
-        Object.assign(buttonStyle, styles.rightAnswer);
+        buttonStyle = Object.assign({}, buttonStyle, styles.rightAnswer);
       } else {
-        Object.assign(buttonStyle, styles.wrongAnswer);
+        buttonStyle = Object.assign({}, buttonStyle, styles.wrongAnswer);
       }
     }
 
@@ -60,8 +64,9 @@ function mkAnswerButtons(
         <Button
           disabled={wasReviewed}
           style={buttonStyle}
-          onClick={() => {
-            selectAnswerFunc(isCorrectAnswer);
+          id={myID} 
+          onClick={(thisID) => {
+            selectAnswerFunc(isCorrectAnswer, thisID);
           }}
         >
           <NormalText>
