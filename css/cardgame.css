@@ -1,6 +1,100 @@
+#deckPage {
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(20px, 50px) 1fr;
+  grid-gap: 10px;
+}
+#deckPage > button { /*direct child of deckPage*/
+  width: 33%;
+}
+
+/* media queries */
+@media only screen and (max-width: 600px){
+  #deckPage > button {
+    width: 100%;
+  }
+}
+.playTable {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: center;
+  grid-gap: 1rem;
+}
+#studyPage {
+  margin:0;
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(100px, 400px) 1fr;
+  grid-gap: 10px;
+}
+#cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  background-color: green;
+}
+#cards > figure {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 0;
+  margin: 0;
+  background-color: lightgreen;
+}
+
+/* card flip animation */
+.flip-animation {
+  animation-duration:0.2s;
+  animation-name:flip;
+}
+@keyframes flip {
+0% {
+    transform: rotateY(0deg);
+  }
+50% {
+    transform: rotateY(90deg);
+  }
+100% {
+    transform: rotateY(180deg);
+  }
+}
+
+/* Deck Creation */
+#deckCreation {
+  display: flex;
+  flex-direction: row;
+}
+
+.deckContainer {
+  margin:0;
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(100px, 200px) 1fr;
+  grid-gap: 0;
+}
+.deckContainer figure{
+  width: 150;
+  height: 150;
+  margin: 0;
+  position: relative;/*absolute;*/
+  background-color: lightgreen;
+}
+.deckContainer figure figcaption{
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  color: white;
+  text-align: center;
+  width: 100%;
+}
 .deckGroup {
-  flex-direction: "row";
-  align-items: "stretch";
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   padding: 10;
   margin-bottom: 5;
 }
@@ -22,16 +116,28 @@
   margin: 0;
   flex: 0;
 }
-.header {
-  flex-direction: "row";
-  align-items: "center";
-  justify-content: "center";
-  padding: 5;
+.layout {
+  display: grid;
+  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr); 
+  grid-gap: 10px 0;
+  margin: 0;
 }
-.logo { 
-  margin-right: 8; 
-  height: 40; 
-  width: 40; 
+.layout>#bodySection {
+  display: grid;
+  grid-template-rows: 80px minmax(100px, 1fr);
+  grid-gap:0;
+  position: relative;
+}
+.layout>section{
+  position: relative; 
+  top: 80px;
+  /* 80px is navbar height */
+} 
+footer {
+  background: rgba(0,0,0,0.5);
+  top: 80px;
+  /* 80px is navbar height */
+  position: relative; 
 }
 .createButton { 
   background-color: green; 
@@ -62,7 +168,6 @@
   background-color: green; 
 }
 .nameField { 
-  background-color: tan;
   height: 60; 
 }
 .wideButton { 
@@ -87,6 +192,7 @@ body{
   position: fixed;
   top:0;
   left:0;
+  margin: 0;
   width: 100%;
   height: 80px;
   /*padding: 0 0 0 100px;*/
@@ -94,15 +200,13 @@ body{
   box-sizing: border-box;
   transition: 0.5s;
   background: rgba(0,0,0,0.5);
+  /* opacity: 0.5; */
 }
 .navbar.hide{
   transform: translateY(-100%);
 }
-.navbar #svgLogo {
-  float:left;/*flex?*/
-}
 .navbar .channel{
-  position: relative;/*relative to normal*/           
+  position: relative;           
 }
 .navbar ul{/*make li on one line*/
   margin:0;
@@ -124,9 +228,20 @@ body{
   font-weight: bold;
   font-size: 16px;
 }
+/* .navbar ul li a:active, */
 .navbar ul li a:hover,
 .navbar ul li a.active
 {
   background: #fd2928;
   color: #fff;
+}
+
+.answerOptions {
+  padding-left: 50px;
+}
+
+.quizView {
+  padding: 5px;
+  border-radius: 20px;
+  background: yellow;
 }
