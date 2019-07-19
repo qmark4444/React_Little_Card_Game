@@ -9,11 +9,11 @@ class HeadingText extends Component {
     let concatStyles = Object.assign({}, this.props.style, { fontSize: width / scalingFactors.big });
 
     return (
-      <div>
-        <span style={concatStyles}>
-          {this.props.children}
-        </span>
-      </div>
+      <span 
+        style={concatStyles}
+      >
+        {this.props.children}
+      </span>
     );
   }
 }

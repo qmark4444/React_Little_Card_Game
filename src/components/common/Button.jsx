@@ -4,9 +4,8 @@ class Button extends Component {
   static displayName = "Button";
 
   _onClick = (e) => {
-    console.log('button clicked: ', e.target.innerHTML);
     e.preventDefault();
-    e.persist();
+    //e.persist();//will remove the synthetic event from the pool and retake the reference to the event
     this.props.onClick();
   };
 

@@ -5,9 +5,16 @@ import NormalText from "./NormalText";
 
 class LabeledInput extends Component {
   render() {
+    let localStyle ={
+      container: {
+        display:'flex', 
+        flexDirection:'row'
+      },
+    };
+    
     return (
-      <div style={{ padding: 5 }}>
-        <NormalText style={{ paddingLeft: 10 }}>
+      <div style={localStyle.container}>
+        <NormalText>
           {this.props.label}:
         </NormalText>
         <Input
