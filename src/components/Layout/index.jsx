@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HeadingText from "../common/HeadingText";
 import Logo from "./Logo";
-import { headerStyle } from "./../../../css/styles";
+//import { headerStyle } from "./../../../css/styles";
 
 class Navbar extends Component {
   constructor(props){
@@ -13,6 +13,7 @@ class Navbar extends Component {
   }
 
   componentDidMount(){
+    //scroll event on window
     window.addEventListener('scroll', this._handleScroll);
   }
 
@@ -21,13 +22,16 @@ class Navbar extends Component {
   }
 
   _handleScroll = evt => {
-    let currentScrollY = window.pageYOffset;
-    if(currentScrollY > this.prevScrollY){ //compare current scroll position with previous (differ by 1)
+    //console.log('window.scrollTop ', window.pageYOffset);
+    let currentScrollY = window.pageYOffset;//get scroll top position
+    //compare current scroll position with previous (differ by 1)
+    if(currentScrollY > this.prevScrollY){ 
       this.setState({navbarClass: "hide"});
     }
     else{
       this.setState({navbarClass: "navbar"});
     }
+
     this.prevScrollY = currentScrollY;
   }
   
@@ -40,27 +44,35 @@ class Navbar extends Component {
   }
 }
 
-class Header extends Component {
-  static displayName = "Header";
+class Layout extends Component {
+  static displayName = "Layout";
 
   render() {
     return (
-      <div className="header">
+      <div className="layout">
         <Navbar>
           <Logo />
           <ul>
-              <li><a href="#">Home</a></li>
+              <li><a href="/">Home</a></li>
               <li><a href="#">About</a></li>
               <li><a href="#">Games</a></li>
               <li><a href="#">Portfolio</a></li>
               <li><a href="#">Contact</a></li>
           </ul> 
         </Navbar>
-        <HeadingText style={headerStyle}>Card Game</HeadingText>
-        {this.props.children}
+
+        <section>
+          {this.props.children}          
+        </section>
+
+        <footer>
+          <h1>
+            Footer Grid
+          </h1>
+        </footer>
       </div>
     );
   }
 }
 
-module.exports = Header;
+module.exports = Layout;

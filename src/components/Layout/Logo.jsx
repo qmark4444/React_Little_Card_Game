@@ -85,7 +85,7 @@ class Logo extends Component {
           />
         </g>
       </svg>
-    );
+    )
   }
 }
 
