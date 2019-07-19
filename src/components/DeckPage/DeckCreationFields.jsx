@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Button from "../common/Button";
 import NormalText from "./../common/NormalText";
-import Input from "../common/Input";
+import LabeledInput from "../common/LabeledInput";
 
 class CreateDeckButton extends Component { 
   render() {
@@ -30,14 +30,16 @@ class EnterDeck extends Component {
 
   render() {
     return (
-      <div>
-        <Input
+      <div id="deckCreation">
+        <LabeledInput 
           onEntry={this.props.create}
           onChange={this._onChange}
           className="nameField fontNormal"
+          label='Deck Name'
+          placeholder=' New Deck Name '
         />
         <CreateDeckButton 
-          onClick={this._create} 
+          onClick={this._create}
         />
       </div>
     );
