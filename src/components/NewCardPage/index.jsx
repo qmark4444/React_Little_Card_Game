@@ -5,6 +5,7 @@ import Button from "../common/Button";
 import LabeledInput from "../common/LabeledInput";
 import NormalText from "../common/NormalText";
 import Input from "../common/Input";
+import {inputButtonStyle} from '../../../css/styles';
 
 class NewCard extends Component {
 
@@ -17,18 +18,23 @@ class NewCard extends Component {
     return this.props.match.params.deckID;
   };
 
-  _handleFront = event => {
-    this.setState({ front: event.target.value });
+  _handleFront = value => {
+    this.setState({ front: value });
   };
 
-  _handleBack = event => {
-    console.log('handle back event ', event.target);
-    this.setState({ back: event.target.value });
+  _handleBack = value => {
+    this.setState({ back: value });
   };
 
   _createCard = () => {
     this.props.createCard(this.state.front, this.state.back, this._deckID());
-    this.props.history.push(`/createCard/${this._deckID()}`);
+
+    //clear front back input fields after add card 
+    this.setState({front: '', back: ''});
+
+    if(!this.props.history.location.pathname === `/createCard/${this._deckID()}` ){
+      this.props.history.push(`/createCard/${this._deckID()}`);
+    }
   };
 
   _reviewDeck = () => {
@@ -47,31 +53,31 @@ class NewCard extends Component {
         <form id="createCard">
           <LabeledInput
             label="Front"
-            clearOnSubmit={false} 
             onChange={this._handleFront}
             value={this.state.front}
             className="nameField wideButton fontNormal"
           />
           <LabeledInput
-            label="Back"
-            clearOnSubmit={false}
+            label="Back" 
             onChange={this._handleBack}
             value={this.state.back}
             className="nameField wideButton fontNormal"
           />
 
           <Input type="button" 
+            style={inputButtonStyle}//in-line style to override bootstrap.css
             onClick={this._createCard}
             value="Create Card"
-          />
+            readOnly={true} //button value
+          /> 
         </form>
 
         <div style={{ flexDirection: "row" }}>
-          <Button style={{ backgroundColor: 'blue' }} onClick={this._doneCreating}>
+          <Button onClick={this._doneCreating}>
             <NormalText>Done</NormalText>
           </Button>
 
-          <Button style={{ backgroundColor: 'blue' }} onClick={this._reviewDeck}>
+          <Button onClick={this._reviewDeck}>
             <NormalText>Review Deck</NormalText>
           </Button>
         </div>
