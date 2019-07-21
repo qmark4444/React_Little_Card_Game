@@ -7,6 +7,8 @@ const routes = require('./routes.jsx');
 
 let store = createStore(reducers);
 
+require('../css/cardgame.scss');
+
 ReactDOM.render(
     (
         <Provider store={store}>
