@@ -6,12 +6,13 @@ import LabeledInput from "../common/LabeledInput";
 import NormalText from "../common/NormalText";
 import Input from "../common/Input";
 import {inputButtonStyle} from '../../../css/styles';
+import Snackbar from "../common/Snackbar";
 
 class NewCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { front: "", back: "" };
+    this.state = { front: "", back: "", cardExist: false, showMsg: false };
   }
 
   _deckID = () => {
@@ -27,15 +28,25 @@ class NewCard extends Component {
   };
 
   _createCard = () => {
-    this.props.createCard(this.state.front, this.state.back, this._deckID());
+    //if card exists, throw exception and catch it
+    try {
+      this.props.createCard(this.state.front, this.state.back, this._deckID());
+      
+      //clear front back input fields after adding card 
+      this.setState({front: '', back: '', cardExist: false, showMsg: false });
 
-    //clear front back input fields after add card 
-    this.setState({front: '', back: ''});
-
-    if(!this.props.history.location.pathname === `/createCard/${this._deckID()}` ){
-      this.props.history.push(`/createCard/${this._deckID()}`);
+      if(!this.props.history.location.pathname === `/createCard/${this._deckID()}` ){
+        this.props.history.push(`/createCard/${this._deckID()}`);
+      }
     }
+    catch(e){
+      this.setState({cardExist: true, showMsg: true})
+    }    
   };
+
+  _closeMsg = () => {
+    this.setState({showMsg: false});
+  }
 
   _reviewDeck = () => {
     this.props.reviewDeck(this._deckID());
@@ -48,7 +59,7 @@ class NewCard extends Component {
 
   render() {
     return (
-      <div>
+      <div id="newCardPage">
         <h1>New Card Page</h1>
         <form id="createCard">
           <LabeledInput
@@ -70,6 +81,14 @@ class NewCard extends Component {
             value="Create Card"
             readOnly={true} //button value
           /> 
+
+          {
+            (this.state.cardExist)?
+            <Snackbar display={this.state.cardExist && this.state.showMsg} handleClick={this._closeMsg} dwellTime={1000}>card already exists</Snackbar>
+            :
+            null
+          }
+
         </form>
 
         <div style={{ flexDirection: "row" }}>

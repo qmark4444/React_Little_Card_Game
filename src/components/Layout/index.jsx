@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import HeadingText from "../common/HeadingText";
 import Logo from "./Logo";
-//import { headerStyle } from "./../../../css/styles";
 
 class Navbar extends Component {
   constructor(props){
@@ -44,6 +42,33 @@ class Navbar extends Component {
   }
 }
 
+class Footer extends Component {
+  _displayCopyRight = () => {
+    return (
+      <span style={{display: 'inline-block', paddingRight: '5px'}}>
+        {"2019 - "+new Date().getFullYear()}
+      </span>
+    )
+  }
+
+  render(){
+    return (
+      <footer style={{display:'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
+        <div style={{color: 'white', fontSize: '20px'}}>
+          &copy; {this._displayCopyRight()}
+          <a href="javascript:void();" target="_blank" style={{textDecoration:'none', color: 'white'}} className="top_tooltip">
+              Q.M. Long
+          </a>
+        </div>
+
+        <h1>
+          Footer Grid
+        </h1>
+      </footer>
+    )
+  }
+}
+
 class Layout extends Component {
   static displayName = "Layout";
 
@@ -64,23 +89,10 @@ class Layout extends Component {
         </Navbar>
 
         <section>
-          {this.props.children}          
+          {this.props.children}  
         </section>
 
-        <footer style={{display:'grid', gridTemplateColumns: 'repeat(2, 1fr)'}}>
-          <div style={{color: 'white', fontSize: '36px'}}>&copy; 
-            <script>
-              document.write("2019 - "+new Date().getFullYear());
-            </script> 
-            <a href="javascript:void();" target="_blank" style={{textDecoration:'none', color: 'white'}} className="top_tooltip">
-                Quan (Tran) Long
-            </a>
-          </div>
-
-          <h1>
-            Footer Grid
-          </h1>
-        </footer>
+        <Footer></Footer>
       </div>
     );
   }

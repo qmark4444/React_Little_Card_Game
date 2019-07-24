@@ -4,21 +4,37 @@ import { connect } from "react-redux";
 import { addDeck, studyDeck, reviewDeck, deleteDeck } from "./../../actions/creators";
 import Deck from "./Deck";
 import DeckCreation from "./DeckCreation";
+import Snackbar from "../common/Snackbar";
 
 class DecksScreen extends Component {
   static displayName = "DecksScreen";
 
+  constructor(props){
+    super(props);
+    this.state = {deckExist: false, showMsg: false};
+  }
+
   _createDeck = name => { 
-    let createDeckAction = addDeck(name);
-    this.props.createDeck(createDeckAction);
-    this.props.history.push(`/createCard/${createDeckAction.data.id}`);
+    try{
+      let createDeckAction = addDeck(name);
+      this.props.createDeck(createDeckAction);
+      this.setState({deckExist: false, showMsg: false});
+      this.props.history.push(`/createCard/${createDeckAction.data.id}`);
+    }
+    catch(e){
+      console.log(e);
+      this.setState({deckExist: true, showMsg: true});
+    }
   };
+
+  _closeMsg = () => {
+    this.setState({showMsg: false})
+  }
 
   _addCards = deckID => {
     this.props.history.push({
       pathname: `/createCard/${deckID}`,
       state: {
-        //isModal: false,//change to modal later?
         returnto: this.props.location.pathname
       }
     });
@@ -83,7 +99,7 @@ class DecksScreen extends Component {
   render() {
     return (
       <div id="deckPage">
-        <DeckCreation create={this._createDeck} />
+        <DeckCreation create={this._createDeck} deckExist={this.state.deckExist} showMsg={this.state.showMsg} closeMsg={this._closeMsg} />
         {this._mkDeckViews()}
       </div>
     );

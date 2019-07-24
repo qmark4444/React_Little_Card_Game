@@ -4,8 +4,14 @@ import { writeDecks } from "./../storage/decks";
 function decksWithNewCard(oldDecks, card) {
   let newState = oldDecks.map(deck => { 
     if (deck.id === card.deckID) {
-      deck.addCard(card);
-      return deck;
+      try{
+        deck.addCard(card);
+        return deck;
+      }
+      catch(e){
+        console.log(e);
+        throw e;
+      }
     } else {
       return deck;
     }
@@ -19,11 +25,20 @@ function saveDecks(state) {
   return state;
 }
 
+function findDeck(decks, id) { //also used in reducer/reviews.js and cards.js
+  return decks.find(d => {
+    return d.id === id;
+  });
+}
+
 const reducer = (state = [], action) => { 
   switch (action.type) {
     case LOAD_DATA:
       return action.data;
     case ADD_DECK:
+      if(findDeck(state, action.data.id)){
+        throw "deck already exists";
+      }
       let newState = state.concat(action.data);
       saveDecks(newState);
       return newState;

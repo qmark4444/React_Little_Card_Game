@@ -19,7 +19,14 @@ class Deck {
     return d;
   }
 
+  findCard(cardID) {
+    return this.cards.find(card => card.id === cardID);
+  }
+
   addCard(card) {
+    if(this.findCard(card.id)){
+      throw "card already exists";
+    }
     this.cards = this.cards.concat(card);
   }
 }

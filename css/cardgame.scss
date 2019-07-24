@@ -1,7 +1,9 @@
 /* layout */
-$navbarHeight: 80px;
+$navbar-height: 80px;
+$react-black: #20232a;
 
-* {
+// *, :before, :after {
+* ::before ::after {
   box-sizing: border-box;
 }
 html,
@@ -13,32 +15,35 @@ body {
 .layout {
   min-height: 100vh;/*keep app occupy whole window*/  
   display: grid;
-  grid-template-rows: $navbarHeight minmax(100px) minmax(100px, 1fr); 
+  grid-template-rows: $navbar-height minmax(100px) minmax(100px, 1fr); 
   grid-gap: 10px 0;
   margin: 0;
 }
 .layout>section{
   position: relative; 
-  top: $navbarHeight;
+  top: $navbar-height;
 } 
 .layout>footer {
-  background: rgba(0,0,0,0.5);
-  top: $navbarHeight;
+  // background: rgba(0,0,0,0.5); /* apply only to itself */
+  background: $react-black;/* apply to itself and all decendants*/
+  top: $navbar-height;
   position: relative; 
 }
+/* end of layout */
 
-/*navbar*/
+/* navbar */
 .navbar{
   position: fixed;
   top:0;
   left:0;
   margin: 0;
   width: 100%;
-  height: $navbarHeight;
+  height: $navbar-height;
   padding:0;
   box-sizing: border-box;
   transition: 0.5s;
-  background: rgba(0,0,0,0.5);
+  // background: rgba(0,0,0,0.5);
+  background: $react-black;
 }
 .navbar.hide{
   transform: translateY(-100%);
@@ -54,7 +59,7 @@ body {
 }
 .navbar ul li{
   list-style: none;
-  line-height: $navbarHeight;
+  line-height: $navbar-height;
   text-align: center;
 }
 .navbar ul li a{
@@ -72,6 +77,46 @@ body {
   background: #fd2928;
   color: #fff;
 }
+/* end of navbar */
+
+/* snackbar */
+[id^='snackbar'] {
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333;
+  color: #fff; 
+  text-align: center; 
+  border-radius: 2px; 
+  padding: 16px; 
+  position: fixed; /* Sit on top of the screen */
+  z-index: 10000; 
+  left: 50%; /* Center the snackbar */
+  bottom: 30px; 
+  font-size: 17px;
+}
+
+[id^='snackbar'].animate {
+  // visibility: visible;  
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;/* delay the fade out process for 2.5 seconds */
+}
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;} 
+  to {bottom: 30px; opacity: 1;}
+}
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;} 
+  to {bottom: 0; opacity: 0;}
+}
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+/* end of snackbar */
 
 #deckPage {
   padding: 0;

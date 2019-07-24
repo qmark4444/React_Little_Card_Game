@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { CreateDeckButton, EnterDeck } from "./DeckCreationFields";
 
+import Snackbar from "../common/Snackbar";
+
 class DeckCreation extends Component {
   constructor(props) {
     super(props);
@@ -9,8 +11,8 @@ class DeckCreation extends Component {
   }
 
   _newDeck = name => {
-    this.setState({ startCreating: false });
     this.props.create(name);
+    this.setState({ startCreating: false });
   };
 
   _startCreating = () => {
@@ -18,7 +20,16 @@ class DeckCreation extends Component {
   };
 
   render() {
-    let contents = this.state.startCreating
+    let contents = this.props.deckExist
+      ? (
+        <div>
+          <EnterDeck create={this._newDeck} />
+          <Snackbar display={this.props.deckExist && this.props.showMsg} handleClick={this.props.closeMsg} dwellTime={1000}>
+            deck creation: deck already exists
+          </Snackbar>
+        </div>
+      )
+      : this.state.startCreating
       ? <EnterDeck create={this._newDeck} />
       : <CreateDeckButton onClick={this._startCreating} />;
     return contents;
