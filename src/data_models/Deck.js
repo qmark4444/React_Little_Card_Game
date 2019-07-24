@@ -27,11 +27,15 @@ class Deck {
     if(this.findCard(card.id)){
       throw "card already exists";
     }
-    let emptyStringPattern = /^\s*$/; // has zero or more space and has only space
-    if( emptyStringPattern.test(card.front) || emptyStringPattern.test(card.back) ){
+    if(card.isOneSideEmpty()){
       throw "one side of the card is empty";
     }
     this.cards = this.cards.concat(card);
+  }
+
+  isDeckNameEmpty(){
+    let emptyStringPattern = /^\s*$/; // has zero or more space and has only space
+    return emptyStringPattern.test(this.name);
   }
 }
 

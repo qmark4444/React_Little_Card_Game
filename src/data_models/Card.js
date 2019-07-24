@@ -15,10 +15,15 @@ class Card {
     this.id = ob.id;
   }
 
-  static createInstance(ob) {
+  static createInstance(ob) { //to save lines of code when creating a new card
     let c = new Card(ob.front, ob.back, ob.deckID);
     c.setFromObject(ob);
     return c;
+  }
+
+  isOneSideEmpty(){
+    let emptyStringPattern = /^\s*$/; // has zero or more space and has only space
+    return emptyStringPattern.test(this.front) || emptyStringPattern.test(this.back);
   }
 }
 

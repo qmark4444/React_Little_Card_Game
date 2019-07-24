@@ -20,17 +20,17 @@ class DeckCreation extends Component {
   };
 
   render() {
-    let contents = this.props.deckExist
-      ? (
+    let contents = this.props.error? 
+      (
         <div>
           <EnterDeck create={this._newDeck} />
-          <Snackbar display={this.props.deckExist && this.props.showMsg} handleClick={this.props.closeMsg} dwellTime={1000}>
-            deck creation: deck already exists
+          <Snackbar display={this.props.error && this.props.showMsg} handleClick={this.props.closeMsg} dwellTime={1000}>
+            {this.props.error}
           </Snackbar>
         </div>
       )
-      : this.state.startCreating
-      ? <EnterDeck create={this._newDeck} />
+      : this.state.startCreating? 
+      <EnterDeck create={this._newDeck} />
       : <CreateDeckButton onClick={this._startCreating} />;
     return contents;
   }

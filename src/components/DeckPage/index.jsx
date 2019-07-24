@@ -4,26 +4,24 @@ import { connect } from "react-redux";
 import { addDeck, studyDeck, reviewDeck, deleteDeck } from "./../../actions/creators";
 import Deck from "./Deck";
 import DeckCreation from "./DeckCreation";
-import Snackbar from "../common/Snackbar";
 
 class DecksScreen extends Component {
   static displayName = "DecksScreen";
 
   constructor(props){
     super(props);
-    this.state = {deckExist: false, showMsg: false};
+    this.state = {error: null, showMsg: false};
   }
 
   _createDeck = name => { 
     try{
       let createDeckAction = addDeck(name);
       this.props.createDeck(createDeckAction);
-      this.setState({deckExist: false, showMsg: false});
+      this.setState({error: null, showMsg: false});
       this.props.history.push(`/createCard/${createDeckAction.data.id}`);
     }
     catch(e){
-      console.log(e);
-      this.setState({deckExist: true, showMsg: true});
+      this.setState({error: e, showMsg: true});
     }
   };
 
@@ -99,7 +97,7 @@ class DecksScreen extends Component {
   render() {
     return (
       <div id="deckPage">
-        <DeckCreation create={this._createDeck} deckExist={this.state.deckExist} showMsg={this.state.showMsg} closeMsg={this._closeMsg} />
+        <DeckCreation create={this._createDeck} error={this.state.error} showMsg={this.state.showMsg} closeMsg={this._closeMsg} />
         {this._mkDeckViews()}
       </div>
     );

@@ -9,7 +9,6 @@ function decksWithNewCard(oldDecks, card) {
         return deck;
       }
       catch(e){
-        console.log(e);
         throw e;
       }
     } else {
@@ -38,6 +37,9 @@ const reducer = (state = [], action) => {
     case ADD_DECK:
       if(findDeck(state, action.data.id)){
         throw "deck already exists";
+      }
+      if(action.data.isDeckNameEmpty()){
+        throw "deck name is empty";
       }
       let newState = state.concat(action.data);
       saveDecks(newState);

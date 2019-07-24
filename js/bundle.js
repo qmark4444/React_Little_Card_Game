@@ -1413,11 +1413,16 @@ var Deck = function () {
       if (this.findCard(card.id)) {
         throw "card already exists";
       }
-      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
-      if (emptyStringPattern.test(card.front) || emptyStringPattern.test(card.back)) {
+      if (card.isOneSideEmpty()) {
         throw "one side of the card is empty";
       }
       this.cards = this.cards.concat(card);
+    }
+  }, {
+    key: "isDeckNameEmpty",
+    value: function isDeckNameEmpty() {
+      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
+      return emptyStringPattern.test(this.name);
     }
   }], [{
     key: "createInstance",
@@ -3089,9 +3094,16 @@ var Card = function () {
       this.deckID = ob.deckID;
       this.id = ob.id;
     }
+  }, {
+    key: "isOneSideEmpty",
+    value: function isOneSideEmpty() {
+      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
+      return emptyStringPattern.test(this.front) || emptyStringPattern.test(this.back);
+    }
   }], [{
     key: "createInstance",
     value: function createInstance(ob) {
+      //to save lines of code when creating a new card
       var c = new Card(ob.front, ob.back, ob.deckID);
       c.setFromObject(ob);
       return c;
@@ -5019,14 +5031,14 @@ var DeckCreation = function (_Component) {
   _createClass(DeckCreation, [{
     key: "render",
     value: function render() {
-      var contents = this.props.deckExist ? _react2.default.createElement(
+      var contents = this.props.error ? _react2.default.createElement(
         "div",
         null,
         _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }),
         _react2.default.createElement(
           _Snackbar2.default,
-          { display: this.props.deckExist && this.props.showMsg, handleClick: this.props.closeMsg, dwellTime: 1000 },
-          "deck creation: deck already exists"
+          { display: this.props.error && this.props.showMsg, handleClick: this.props.closeMsg, dwellTime: 1000 },
+          this.props.error
         )
       ) : this.state.startCreating ? _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }) : _react2.default.createElement(_DeckCreationFields.CreateDeckButton, { onClick: this._startCreating });
       return contents;
@@ -5174,10 +5186,6 @@ var _DeckCreation = __webpack_require__(67);
 
 var _DeckCreation2 = _interopRequireDefault(_DeckCreation);
 
-var _Snackbar = __webpack_require__(23);
-
-var _Snackbar2 = _interopRequireDefault(_Snackbar);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5198,11 +5206,10 @@ var DecksScreen = function (_Component) {
       try {
         var createDeckAction = (0, _creators.addDeck)(name);
         _this.props.createDeck(createDeckAction);
-        _this.setState({ deckExist: false, showMsg: false });
+        _this.setState({ error: null, showMsg: false });
         _this.props.history.push("/createCard/" + createDeckAction.data.id);
       } catch (e) {
-        console.log(e);
-        _this.setState({ deckExist: true, showMsg: true });
+        _this.setState({ error: e, showMsg: true });
       }
     };
 
@@ -5238,7 +5245,7 @@ var DecksScreen = function (_Component) {
       _this.props.deleteDeck(deckID);
     };
 
-    _this.state = { deckExist: false, showMsg: false };
+    _this.state = { error: null, showMsg: false };
     return _this;
   }
 
@@ -5282,7 +5289,7 @@ var DecksScreen = function (_Component) {
       return _react2.default.createElement(
         "div",
         { id: "deckPage" },
-        _react2.default.createElement(_DeckCreation2.default, { create: this._createDeck, deckExist: this.state.deckExist, showMsg: this.state.showMsg, closeMsg: this._closeMsg }),
+        _react2.default.createElement(_DeckCreation2.default, { create: this._createDeck, error: this.state.error, showMsg: this.state.showMsg, closeMsg: this._closeMsg }),
         this._mkDeckViews()
       );
     }
@@ -6560,7 +6567,6 @@ function decksWithNewCard(oldDecks, card) {
         deck.addCard(card);
         return deck;
       } catch (e) {
-        console.log(e);
         throw e;
       }
     } else {
@@ -6593,6 +6599,9 @@ var reducer = function reducer() {
     case _types.ADD_DECK:
       if (findDeck(state, action.data.id)) {
         throw "deck already exists";
+      }
+      if (action.data.isDeckNameEmpty()) {
+        throw "deck name is empty";
       }
       var newState = state.concat(action.data);
       saveDecks(newState);
