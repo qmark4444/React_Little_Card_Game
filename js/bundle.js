@@ -1413,6 +1413,10 @@ var Deck = function () {
       if (this.findCard(card.id)) {
         throw "card already exists";
       }
+      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
+      if (emptyStringPattern.test(card.front) || emptyStringPattern.test(card.back)) {
+        throw "one side of the card is empty";
+      }
       this.cards = this.cards.concat(card);
     }
   }], [{
@@ -5739,13 +5743,13 @@ var NewCard = function (_Component) {
         _this.props.createCard(_this.state.front, _this.state.back, _this._deckID());
 
         //clear front back input fields after adding card 
-        _this.setState({ front: '', back: '', cardExist: false, showMsg: false });
+        _this.setState({ front: '', back: '', error: null, showMsg: false });
 
         if (!_this.props.history.location.pathname === "/createCard/" + _this._deckID()) {
           _this.props.history.push("/createCard/" + _this._deckID());
         }
       } catch (e) {
-        _this.setState({ cardExist: true, showMsg: true });
+        _this.setState({ error: e, showMsg: true });
       }
     };
 
@@ -5762,7 +5766,7 @@ var NewCard = function (_Component) {
       _this.props.history.push('/');
     };
 
-    _this.state = { front: "", back: "", cardExist: false, showMsg: false };
+    _this.state = { front: "", back: "", error: null, showMsg: false };
     return _this;
   }
 
@@ -5798,10 +5802,10 @@ var NewCard = function (_Component) {
             value: "Create Card",
             readOnly: true //button value
           }),
-          this.state.cardExist ? _react2.default.createElement(
+          this.state.error ? _react2.default.createElement(
             _Snackbar2.default,
-            { display: this.state.cardExist && this.state.showMsg, handleClick: this._closeMsg, dwellTime: 1000 },
-            "card already exists"
+            { display: this.state.error && this.state.showMsg, handleClick: this._closeMsg, dwellTime: 1000 },
+            this.state.error
           ) : null
         ),
         _react2.default.createElement(

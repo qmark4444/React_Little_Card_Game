@@ -12,7 +12,7 @@ class NewCard extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { front: "", back: "", cardExist: false, showMsg: false };
+    this.state = { front: "", back: "", error: null, showMsg: false };
   }
 
   _deckID = () => {
@@ -33,14 +33,14 @@ class NewCard extends Component {
       this.props.createCard(this.state.front, this.state.back, this._deckID());
       
       //clear front back input fields after adding card 
-      this.setState({front: '', back: '', cardExist: false, showMsg: false });
+      this.setState({front: '', back: '', error: null, showMsg: false });
 
       if(!this.props.history.location.pathname === `/createCard/${this._deckID()}` ){
         this.props.history.push(`/createCard/${this._deckID()}`);
       }
     }
     catch(e){
-      this.setState({cardExist: true, showMsg: true})
+      this.setState({error: e, showMsg: true})
     }    
   };
 
@@ -82,9 +82,11 @@ class NewCard extends Component {
             readOnly={true} //button value
           /> 
 
-          {
-            (this.state.cardExist)?
-            <Snackbar display={this.state.cardExist && this.state.showMsg} handleClick={this._closeMsg} dwellTime={1000}>card already exists</Snackbar>
+          { 
+            (this.state.error)?
+            <Snackbar display={this.state.error && this.state.showMsg} handleClick={this._closeMsg} dwellTime={1000}>
+              {this.state.error}
+            </Snackbar>
             :
             null
           }
