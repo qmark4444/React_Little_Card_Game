@@ -3,7 +3,8 @@ import switchRoutes from './switchRoutes';
 import Navbar from './components/Navbar';
 import NoMatch from './components/NoMatch';
 
-const Layout = withRouter(require('./components/Layout/index.jsx'));
+//const Layout = withRouter(require('../components/Layout/index.jsx'));
+const Layout = withRouter(require('../components/Layout'));
 
 const {
     withRouter 

@@ -1,4 +1,4 @@
-import routes from './routes';
+import allRoutes from './allRoutes';
 import { Provider } from 'react-redux';
 
 // const reduxRoutes = (store, Router, pathname, context) => {
@@ -11,13 +11,13 @@ import { Provider } from 'react-redux';
 //     </Provider>
 // }
 
-const reduxRoutes = (store, Router) => {
+const withRoutes = (store, Router) => {
     class extends React.Component {
         render() {
             return (
                 <Provider store={store}>
                     <Router {...this.props}>
-                        {routes}
+                        {allRoutes}
                     </Router>
                 </Provider>
             )
@@ -25,4 +25,4 @@ const reduxRoutes = (store, Router) => {
     }
 }
 
-module.exports = reduxRoutes;
+module.exports = withRoutes;

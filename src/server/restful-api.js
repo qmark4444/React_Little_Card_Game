@@ -1,16 +1,12 @@
 require('babel-register')({
     presets: [ 'react' ]
 });
-
-import { matchPath } from "react-router-dom";
-
+import React from 'react';
 import switchRoutes from "../shared/routes/switchRoutes";
-
 import entryHTML from './entryHTML.js';
 import withRoutes from "../shared/routes";
-import { StaticRouter } from 'react-router-dom';
-import serialize from "serialize-javascript";
-import React from 'react';
+import { StaticRouter, matchPath } from 'react-router-dom';
+//import serialize from "serialize-javascript";
 import { renderToString } from 'react-dom/server';
 
 module.exports = function (app, passport) {
@@ -28,19 +24,14 @@ module.exports = function (app, passport) {
         .then((data) => {
             const context = { data };
 
-            const initialData = `window.__INITIAL_DATA__ = ${serialize(data)}`;
-
-            // const markup = renderToString(
-            //     <StaticRouter location={req.url} context={context}>
-            //     <App />
-            //     </StaticRouter>
-            // )
+            //const initialData = `window.INITIAL_DATA = ${serialize(data)}`;
+            const initialData = `window.INITIAL_DATA = ${JSON.stringify(data)}`;
 
             const content = renderToString(
                 <ServerRoutes location={req.url} context={context}/>
             );
 
-            res.send( entryHTML(content, initialData))
+            res.send( entryHTML(content, initialData)); //send() or render()
         })
         .catch(next);
     });
