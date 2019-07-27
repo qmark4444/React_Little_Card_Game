@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {cardStyle} from "../../../css/styles.js";
+import {cardStyle} from "../../../../public/css/styles.js";
 
 class Card extends Component {
   static displayName = "Card";

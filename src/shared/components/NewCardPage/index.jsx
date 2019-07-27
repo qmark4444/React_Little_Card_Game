@@ -5,7 +5,7 @@ import Button from "../common/Button";
 import LabeledInput from "../common/LabeledInput";
 import NormalText from "../common/NormalText";
 import Input from "../common/Input";
-import {inputButtonStyle} from '../../../css/styles';
+import {inputButtonStyle} from '../../../../public/css/styles';
 import Snackbar from "../common/Snackbar";
 
 class NewCard extends Component {

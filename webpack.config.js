@@ -1,8 +1,14 @@
-module.exports = {
-    entry: "./src/index.jsx",
+var path = require('path');
+var webpack = require('webpack');
+
+var browserConfig = {
+    entry: "./src/browser/index.jsx",
     output: {
-        path: __dirname + '/js',
-        filename: 'bundle.js'
+        // path: __dirname + '/public/js',
+        // filename: 'bundle.js'
+        path: path.resolve(__dirname, 'public/js'),//file path
+        filename: 'bundle.js',
+        publicPath: '/' //not file path
     },
     devtool: '#sourcemap',
     stats: {
@@ -32,6 +38,45 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx', '.scss']
-    }
-}
+        extensions: ['*', '.js', '.jsx', '.scss'] //webpack 2. can remove '' or '*'
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            isBrowser: "true"
+        })
+    ]
+};
+
+const webpackNodeExternals = require('webpack-node-externals');
+var serverConfig = {
+    entry: './src/server/index.js',
+    target: 'node',//compile for usage in a “Node.js like environment” and also helps externals know what to ignore (built in node modules like path, fs, etc)
+    externals: [webpackNodeExternals()],//so the servers node_modules aren’t bundled with it
+    output: {
+        path: __dirname,
+        filename: 'server.js',
+        publicPath: '/' 
+    },
+    module: {
+        // rules: [
+        //     { test: /\.(js)$/, use: 'babel-loader' }
+        // ]
+        loaders: [
+            {
+                test: /\.jsx?$/,
+                exclude: /(node_modules)/,
+                loader: 'babel-loader'
+            }
+        ]
+    },
+    resolve: { //must have this, otherwise webpack can't find the module without extension (.jsx implicitly)
+        extensions: ['*', '.js', '.jsx'] //webpack 2. can remove '' or '*'
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            isBrowser: "false"
+        })
+    ]
+};
+
+module.exports = [browserConfig, serverConfig];

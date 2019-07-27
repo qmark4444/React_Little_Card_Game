@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Button from "./../common/Button";
 import NormalText from "./../common/NormalText";
-import {colors} from "./../../../css/styles";
+import {colors} from "../../../../public/css/styles";
 
 import md5 from "md5";
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { scalingFactors } from "./../../../css/styles";
+import { scalingFactors } from "../../../../public/css/styles";
 
 class HeadingText extends Component {
   static displayName = "HeadingText";

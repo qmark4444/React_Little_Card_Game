@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import HeadingText from "./../common/HeadingText";
 import NormalText from "../common/NormalText";
 import Button from "../common/Button";
-import {colors} from "./../../../css/styles";
+import {colors} from "../../../../public/css/styles";
 
 function mkReviewSummary(percentCorrect, quitFunc) {
   return (

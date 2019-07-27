@@ -1,55 +1,61 @@
-import { renderToString } from "react-dom/server";
-import { matchPath } from "react-router-dom";
+// import { renderToString } from "react-dom/server";
+// import { matchPath } from "react-router-dom";
 
 // require('babel-register')({
 //     presets: [ 'react' ]
 // })
 
-const express = require('express')
-    , app = express() 
-    , port = process.env.PORT || 8000
-    //, mongoose = require('mongoose')
-    //, passport = require('passport')
-    //, flash = require('connect-flash')
-    , logger = require('morgan')
-    , cookieParser = require('cookie-parser')
-    , bodyParser = require('body-parser')
-    //, session = require('express-session')
-    //, sticky = require('sticky-session')
-    //, server = require('http').Server(app)
-    validator = require('express-validator'),
-    errorHandler = require('errorhandler'),
-    compression = require('compression'),
-    mongoDBurl = 'mongodb://localhost:27017/.....',
-    ReactDOMServer = require('react-dom/server'),
-    React = require('react')
-    ;
+const express = require('express'), 
+    app = express(), 
+    port = process.env.PORT || 3000, 
+    // mongoose = require('mongoose'), 
+    // passport = require('passport'), 
+    // flash = require('connect-flash'), 
+    // logger = require('morgan'), 
+    // cookieParser = require('cookie-parser'), 
+    bodyParser = require('body-parser'), 
+    // session = require('express-session'), 
+    // sticky = require('sticky-session'), 
+    // server = require('http').Server(app),
+    // validator = require('express-validator'),
+    // errorHandler = require('errorhandler'),
+    // compression = require('compression'),
+    // mongoDBurl = 'mongodb://localhost:27017/.....',
+    // ReactDOMServer = require('react-dom/server'),
+    // React = require('react'),
+    dummy = 'dumb';
+
+// require('babel-register')({
+//     presets: ['react']
+// });
 
 //set the title for this application
 app.set('title', 'React Card Game');
 
 // set up our express application
-//app.use(express.static('public'));  
+//app.use(express.static('../../public')); 
+app.use(express.static('public'));  
 
-app.use(logger('dev')); // log every request to the console
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(compression());
-app.use(errorHandler());
-app.use(validator());
+// app.use(logger('dev')); // log every request to the console
+// app.use(cookieParser()); // read cookies (needed for auth)
+// app.use(compression());
+// app.use(errorHandler());
+// app.use(validator());
 
 //A new body object containing the parsed data is populated on the request object after the middleware (i.e. req.body). This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).
 app.use(bodyParser.urlencoded({ extended: true }));//---- parse application/x-www-form-urlencoded. 
 //extended: true? false?
 //The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded. For more information, please see the qs library.
 //If {extended:false}, you can not post nested objects!
+
 app.use(bodyParser.json());
 
 //app.set('view engine', 'ejs'); 
 
 //methodOverride is for simulating DELETE and PUT. Otherwise they are treated the same as <input ...method='GET'>.
 //in HTML <input... name='method' value='PUT'> --> app.put() in Node.js
-var methodOverride = require('method-override');
-app.use(methodOverride());
+// var methodOverride = require('method-override');
+// app.use(methodOverride());
 
 // config connection to client database for this session
 // var clientDbURL = 'mongodb://localhost:27017/clientDB';
@@ -113,7 +119,7 @@ app.use(methodOverride());
 //split the file
 //require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-require('./restful-api.js')(app, passport);
+require('./restful-api.js')(app);
 
 app.listen(port, () => {
     console.log('Frontend Server is listening on port: ' + port);
