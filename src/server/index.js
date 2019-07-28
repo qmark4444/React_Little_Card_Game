@@ -162,7 +162,8 @@ app.get('*', (req, res, next) => {
 
     console.log('activaeRoute ', activeRoute);
 
-    const ServerRoutes = withAllRoutes(StaticRouter, store);
+    // const ServerRoutes = withAllRoutes(StaticRouter, store);
+    const ServerRoutes = withAllRoutes(false, store);
 
     // TypeError: Cannot read property 'parsePath' of undefined -- history/PathUtil
     // const content = renderToString(  

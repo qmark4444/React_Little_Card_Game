@@ -12,7 +12,8 @@ const reducers = require('../shared/reducers');
 let store = createStore(reducers);
 
 // const BrowserRoutes = withRoutes(BrowserRouter, store);
-const BrowserRoutes = withAllRoutes(BrowserRouter, store);
+// const BrowserRoutes = withAllRoutes(BrowserRouter, store);
+const BrowserRoutes = withAllRoutes(true, store);
 
 //require('../../public/css/cardgame.scss'); 
 import '../../public/css/cardgame.scss';

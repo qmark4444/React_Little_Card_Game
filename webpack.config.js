@@ -43,7 +43,7 @@ var browserConfig = {
     },
     // plugins: [
     //     new webpack.DefinePlugin({
-    //         isBrowser: "true"
+    //         isBrowser: "true" //added to global namespace, can be called in any React component
     //     }),
     //     new HtmlWebpackPlugin({
     //         template: 'home.html'
