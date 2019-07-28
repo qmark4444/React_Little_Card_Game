@@ -25,21 +25,34 @@ const {
     Switch
 } = require('react-router-dom');
 
-const withRoutes = (Router, store) => {
-    // class extends Component {
-    return class extends Component { // don't forget return
+// const withRoutes = (DynamicRouter, store) => {
+//     // class extends Component {
+//     return class extends Component { // don't forget return
+//         render() {
+//             return (
+//                 <Provider store={store}>
+//                     <DynamicRouter {...this.props}>
+//                         {allRoutes}
+//                         {/* <Layout>
+//                             <Switch>
+//                                 <Route path='/' exact component={(props) => (<DeckPage {...props} />)} />  
+//                             </Switch>
+//                         </Layout> */}
+//                     </DynamicRouter>
+//                 </Provider>
+//             )
+//         }
+//     }
+// }
+
+const withRoutes = () => {
+    // class extends Component { // don't forget return
+    return class extends Component { 
         render() {
             return (
-                <Provider store={store}>
-                    <Router {...this.props}>
-                        {allRoutes}
-                        {/* <Layout>
-                            <Switch>
-                                <Route path='/' exact component={(props) => (<DeckPage {...props} />)} />  
-                            </Switch>
-                        </Layout> */}
-                    </Router>
-                </Provider>
+                <div {...this.props}>
+                    {allRoutes}
+                </div>
             )
         }
     }

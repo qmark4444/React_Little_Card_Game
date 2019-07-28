@@ -19,6 +19,7 @@ const Layout = withRouter(require('../components/Layout'));
 const DeckPage = require('../components/DeckPage/index.jsx');//test
 
 const routes = (
+  //Invariant Violation: You should not use <Route> or withRouter() outside a <Router>
   <Layout>
     <Switch>
       {switchRoutes.map(

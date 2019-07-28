@@ -33,18 +33,35 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -62,3291 +79,552 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/server/index.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./public/css/styles.js":
+/*!******************************!*\
+  !*** ./public/css/styles.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\nvar cardStyle = exports.cardStyle = {\n    position: \"absolute\",\n    border: \"2px solid yellow\",\n    height: 100,\n    width: 70,\n    padding: 10,\n    borderRadius: 10,\n    cursor: 'pointer',\n    textAlign: 'center'\n};\n\nvar scalingFactors = exports.scalingFactors = {\n    normal: 45,\n    big: 30\n};\n\nvar colors = exports.colors = {\n    pink: \"#FDA6CD\",\n    pink2: \"#d35d90\",\n    green: \"#65ed99\",\n    tan: \"#FFEFE8\",\n    blue: \"#5DA9E9\",\n    gray1: \"#888888\",\n    red: \"#ff0000\",\n    white: \"#ffffff\"\n};\n\nvar fonts = exports.fonts = {\n    normal: { fontSize: 24 },\n    alternate: { fontSize: 50, color: \"#FFFFFF\" },\n    big: { fontSize: 32, alignSelf: \"center\" }\n};\n\nvar headerStyle = exports.headerStyle = {\n    position: 'relative',\n    top: 80,\n    margin: 0\n};\n\nvar inputButtonStyle = exports.inputButtonStyle = {\n    justifyContent: \"center\",\n    padding: 10,\n    margin: 10,\n    fontSize: 24,\n    alignItems: \"center\",\n    backgroundColor: 'green',\n    color: 'white'\n};\n\n//# sourceURL=webpack:///./public/css/styles.js?");
+
+/***/ }),
+
+/***/ "./src/server/entryHTML.js":
+/*!*********************************!*\
+  !*** ./src/server/entryHTML.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nmodule.exports = function (content, initialData) {\n    return \"<!DOCTYPE html>\\n            <html>\\n                <head>\\n                    <link href=\\\"css/bootstrap.css\\\" type=\\\"text/css\\\" rel=\\\"stylesheet\\\"> \\n                    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1\\\">\\n                </head>\\n                <body>\\n                    <div class=\\\"container-fluid\\\" id=\\\"content\\\">\" + content + \"</div>\\n                    <script>\" + initialData + \"</script>\\n                    <script src=\\\"js/bundle.js\\\"></script>\\n                </body>\\n            </html>\\n        \";\n};\n\n//# sourceURL=webpack:///./src/server/entryHTML.js?");
+
+/***/ }),
+
+/***/ "./src/server/index.js":
+/*!*****************************!*\
+  !*** ./src/server/index.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _switchRoutes = __webpack_require__(/*! ../shared/routes/switchRoutes */ \"./src/shared/routes/switchRoutes.js\");\n\nvar _switchRoutes2 = _interopRequireDefault(_switchRoutes);\n\nvar _entryHTML = __webpack_require__(/*! ./entryHTML.js */ \"./src/server/entryHTML.js\");\n\nvar _entryHTML2 = _interopRequireDefault(_entryHTML);\n\nvar _reactRouterDom = __webpack_require__(/*! react-router-dom */ \"react-router-dom\");\n\nvar _reactRouterConfig = __webpack_require__(/*! react-router-config */ \"react-router-config\");\n\nvar _server = __webpack_require__(/*! react-dom/server */ \"react-dom/server\");\n\nvar _Layout = __webpack_require__(/*! ../shared/components/Layout */ \"./src/shared/components/Layout/index.jsx\");\n\nvar _Layout2 = _interopRequireDefault(_Layout);\n\nvar _index = __webpack_require__(/*! ../shared/components/DeckPage/index.jsx */ \"./src/shared/components/DeckPage/index.jsx\");\n\nvar _index2 = _interopRequireDefault(_index);\n\nvar _index3 = __webpack_require__(/*! ../shared/components/NewCardPage/index.jsx */ \"./src/shared/components/NewCardPage/index.jsx\");\n\nvar _index4 = _interopRequireDefault(_index3);\n\nvar _index5 = __webpack_require__(/*! ../shared/components/StudyPage/index.jsx */ \"./src/shared/components/StudyPage/index.jsx\");\n\nvar _index6 = _interopRequireDefault(_index5);\n\nvar _index7 = __webpack_require__(/*! ../shared/components/ReviewPage/index.jsx */ \"./src/shared/components/ReviewPage/index.jsx\");\n\nvar _index8 = _interopRequireDefault(_index7);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n// import withRoutes from \"../shared/routes\";\n// import allRoutes from \"../shared/routes/allRoutes\";\nvar withAllRoutes = __webpack_require__(/*! ../shared/routes/withAllRoutes */ \"./src/shared/routes/withAllRoutes.js\"); // import { renderToString } from \"react-dom/server\";\n// import { matchPath } from \"react-router-dom\";\n\n// require('babel-register')({\n//     presets: [ 'react' ]\n// })\n\n// import { StaticRouter, matchPath } from 'react-router';\n\n//import serialize from \"serialize-javascript\";\n// import ReactDOMServer, { renderToString } from 'react-dom/server';//ReactDOMServer\n\n//server-side store\nvar _require = __webpack_require__(/*! redux */ \"redux\"),\n    createStore = _require.createStore;\n\nvar reducers = __webpack_require__(/*! ../shared/reducers */ \"./src/shared/reducers/index.js\");\nvar store = createStore(reducers);\n\n//Use Babel to transform required files from JSX to JS\n// require('babel-register')({\n//     presets: [ 'react' ]\n// });\n\nvar express = __webpack_require__(/*! express */ \"express\"),\n    app = express(),\n    port = process.env.PORT || 3000,\n\n// mongoose = require('mongoose'), \n// passport = require('passport'), \n// flash = require('connect-flash'), \n// logger = require('morgan'), \n// cookieParser = require('cookie-parser'), \nbodyParser = __webpack_require__(/*! body-parser */ \"body-parser\"),\n\n// session = require('express-session'), \n// sticky = require('sticky-session'), \n// server = require('http').Server(app),\n// validator = require('express-validator'),\n// errorHandler = require('errorhandler'),\n// compression = require('compression'),\n// mongoDBurl = 'mongodb://localhost:27017/.....',\n// ReactDOMServer = require('react-dom/server'),\n// React = require('react'),\ndummy = 'dumb';\n\n// require('babel-register')({\n//     presets: ['react']\n// });\n\n//set the title for this application\napp.set('title', 'React Card Game');\n\n// app.set('view engine', 'hbs');//'handlerbars' template engine\n\n// set up our express application\n//app.use(express.static('../../public')); \napp.use(express.static('public'));\n\n// app.use(logger('dev')); // log every request to the console\n// app.use(cookieParser()); // read cookies (needed for auth)\n// app.use(compression());\n// app.use(errorHandler());\n// app.use(validator());\n\n//A new body object containing the parsed data is populated on the request object after the middleware (i.e. req.body). This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).\napp.use(bodyParser.urlencoded({ extended: true })); //---- parse application/x-www-form-urlencoded. \n//extended: true? false?\n//The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). The \"extended\" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded. For more information, please see the qs library.\n//If {extended:false}, you can not post nested objects!\n\napp.use(bodyParser.json());\n\n//methodOverride is for simulating DELETE and PUT. Otherwise they are treated the same as <input ...method='GET'>.\n//in HTML <input... name='method' value='PUT'> --> app.put() in Node.js\n// var methodOverride = require('method-override');\n// app.use(methodOverride());\n\n// config connection to client database for this session\n// var clientDbURL = 'mongodb://localhost:27017/clientDB';\n// mongoose.connect(clientDbURL);\n\n// //set up a session store ==========================\n// //const MongoStore = require('connect-mongo')(session);// replaced by 'connect-mongodb-session' in Express 4\n// //'connect-mongo' automatically store session in a collection called 'sessions', but need to define which database\n// var MongoDBStore = require('connect-mongodb-session')(session);  //MongoDB session store for connect/express built by MongoDB. Pass in an instance of the express-session module the MongoDBStore class will enable you to store your Express sessions in MongoDB. \n// //'connect-mongodb-session' is a MongoDB-backed session storage for connect and Express. Meant to be a well-maintained and fully-featured replacement for modules like connect-mongo\n\n// // declare a session store instance\n// var store = new MongoDBStore({\n//   //uri: 'mongodb://localhost:27017/connect_mongodb_session',//WRONG: must use client credential database for login seesion\n//   uri: clientDbURL, // uri: a MongoDB connection string (an existing mongoose connection)\n//   collection: 'clientSessions' //collection: the MongoDB collection to store sessions in. By default it's 'sessions'\n// });\n\n// // Catch errors \n// store.on('error', function(error) {\n//   assert.ifError(error);\n//   assert.ok(false);\n// });\n\n// app.use(session({\n//   secret: 'TL-twApp',// seed for encryption\n//   name: 'TrendifyLive_Twitter_App_Session',\n//   //The name of the session ID cookie to set in the response. The default value is 'connect.sid', but this is problematic when running multiple apps on the same host name (e.g. localhost --not counting ports)\n//   cookie: { \n//     maxAge: 1000 * 60 * 60 * 24, // 1 day.\n//     //expires: new Date(0) //year 1969 // comment this out as it prohibits toggling passport isAuthenticated().\n//     //The expiration is reset to the original maxAge. By default, no maximum age is set.\n\n//     //httpOnly: true, // don't let browser javascript access cookie ever\n//     //secure: true, // only use cookie over https\n//   },\n//   store: store,\n//   resave: true, //Forces the session to be saved back to the session store, even if the session was never modified during the request. Need 'resave: true' when session.touch() not implemented\n//   saveUninitialized: true\n// }));\n\n// mongodb.MongoClient.connect(mongoDBurl, (err, db) => {\n//     if (err) {\n//       console.error(err);\n//       process.exit(1);\n//     }\n//     app.use((req, res, next) => {\n//         req.clientDB = db.collection('clientDB');\n//         return next();\n//     })\n// });\n\n// require('./config/passport-strategies.js')(passport); // pass passport for configuration\n// //Passport has the request to connect to database\n// //this must be before require('./app/routes.js')(app, passport)\n// // the passport.use to config passport. Then passport then can return a 'user'/client from mongodb and after that it can be used in route!\n// app.use(passport.initialize());\n// app.use(passport.session()); // persistent login sessions\n// app.use(flash()); // use connect-flash for flash messages stored in session\n\n//split the file\n//require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport\n\n//require('./restful-api.js')(app);\nconsole.log('------------- called restful-api.js --------------------');\napp.get('*', function (req, res, next) {\n    //console.log('restful-api req.url: ', req.url);//no\n\n    console.log('switch rotes ', _switchRoutes2.default);\n\n    var activeRoute = _switchRoutes2.default.find(function (route) {\n        console.log('route ', route);\n        return (0, _reactRouterDom.matchPath)(req.url, route);\n    }) || {};\n\n    console.log('activaeRoute ', activeRoute);\n\n    var ServerRoutes = withAllRoutes(_reactRouterDom.StaticRouter, store);\n\n    // TypeError: Cannot read property 'parsePath' of undefined -- history/PathUtil\n    // const content = renderToString(  \n    //     <Provider store={store}>\n    //         <StaticRouter location={req.url} context={{}}>\n    //             <Layout>\n    //             </Layout>\n    //         </StaticRouter>\n    //     </Provider>\n\n    //     // <div>\n    //     // <Provider store={store}>\n    //     //     <StaticRouter location={req.url} context={{}}>\n    //     //         <Layout>\n    //     //         </Layout>\n    //     //     </StaticRouter>\n    //     // </Provider>\n    //     // </div>\n\n    //     // <Provider store={store}>\n    //     //     <BrowserRouter location={req.url} context={{}}>\n    //     //         <Layout>\n    //     //         </Layout>\n    //     //     </BrowserRouter>\n    //     // </Provider>\n    // );\n\n    // const content = renderToString(  // no error\n    //     <h1>SHITTTTT</h1>\n    // );\n\n    // res.send( entryHTML(content, `window.INITIAL_DATA = 0`));\n    res.send(\n    // `<!DOCTYPE html>\n    // <html>\n    //     <head>\n    //         <link href=\"/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\"> \n    //         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    //     </head>\n    //     <body>\n    //         <div class=\"container-fluid\" id=\"content\">${content}</div>\n    //         <script src=\"/js/bundle.js\"></script>\n    //     </body>\n    // </html>\n    // `\n\n    // `<!DOCTYPE html>\n    // <html>\n    //     <head>\n    //         <link href=\"/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\"> \n    //         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    //     </head>\n    //     <body>\n    //         <div class=\"container-fluid\" id=\"content\">This Works!!!</div>\n    //         <script src=\"/js/bundle.js\"></script>\n    //     </body>\n    // </html>\n    // `\n\n    // `<!DOCTYPE html>\n    // <html>\n    //     <head>\n    //         <link href=\"/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\"> \n    //         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    //     </head>\n    //     <body>\n    //         <div class=\"container-fluid\" id=\"content\">\n    //         ${\n    //             renderToString(\n    //                 // <Provider store={store}>\n    //                 //     <StaticRouter location={req.url} context={{}}>\n    //                         {/* <div>{renderRoutes([\n    //                                 {\n    //                                     component: DeckPage,\n    //                                     path: '/',\n    //                                     exact: true\n    //                                 },\n    //                                 {\n    //                                     component: NewCardPage,\n    //                                     path: '/createCard/:deckID'\n    //                                 }\n    //                             ])}\n    //                         </div> */}\n\n    //                         {/* <Layout>\n    //                             <Switch>\n    //                                 <Route path=\"/\" exact component={(props) => <DeckPage {...props}/>} /> */}\n    //                                 {/* <Route path='/createCard/:deckID' component={(props) => <NewCardPage {...props}/>} />\n    //                                 <Route path='/study' component={(props) => <StudyPage {...props}/>} />\n    //                                 <Route path='/review' component={(props) => <ReviewPage {...props}/>} /> */}\n    //                             {/* </Switch> */}\n    //                             {/* <Route path=\"/\" exact component={(props) => <DeckPage {...props}/>} /> */}\n    //                         {/* </Layout> */}\n\n    //                         {/* {withRoutes()} */}\n    //                         {/* {allRoutes} */}\n    //                 //     </StaticRouter>\n    //                 // </Provider>\n    //             )\n    //         }\n    //         </div>\n    //         <script src=\"/js/bundle.js\"></script>\n    //     </body>\n    // </html>\n    // `\n\n    '<!DOCTYPE html>\\n        <html>\\n            <head>\\n                <link href=\"/css/bootstrap.css\" type=\"text/css\" rel=\"stylesheet\"> \\n                <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\\n            </head>\\n            <body>\\n                <div class=\"container-fluid\" id=\"content\">\\n                ' + (0, _server.renderToString)(_react2.default.createElement(ServerRoutes, { location: req.url, context: {} })) + '\\n                </div>\\n                <script src=\"/js/bundle.js\"></script>\\n            </body>\\n        </html>\\n        ');\n});\n\napp.listen(port, function () {\n    console.log('Frontend Server is listening on port: ' + port);\n    if (true) {\n        console.log('We are in development mode');\n    }\n});\n\n//# sourceURL=webpack:///./src/server/index.js?");
+
+/***/ }),
+
+/***/ "./src/shared/actions/creators.jsx":
+/*!*****************************************!*\
+  !*** ./src/shared/actions/creators.jsx ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.loadData = exports.nextReview = exports.stopReview = exports.deleteDeck = exports.reviewDeck = exports.studyDeck = exports.addCard = exports.addDeck = undefined;\n\nvar _types = __webpack_require__(/*! ./types */ \"./src/shared/actions/types.jsx\");\n\nvar _Card = __webpack_require__(/*! ../data_models/Card */ \"./src/shared/data_models/Card.js\");\n\nvar _Card2 = _interopRequireDefault(_Card);\n\nvar _Deck = __webpack_require__(/*! ../data_models/Deck */ \"./src/shared/data_models/Deck.js\");\n\nvar _Deck2 = _interopRequireDefault(_Deck);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar addDeck = exports.addDeck = function addDeck(name) {\n  return { type: _types.ADD_DECK, data: new _Deck2.default(name) };\n};\n\nvar addCard = exports.addCard = function addCard(front, back, deckID) {\n  return { type: _types.ADD_CARD, data: new _Card2.default(front, back, deckID) };\n};\n\nvar studyDeck = exports.studyDeck = function studyDeck(deckID) {\n  return { type: _types.STUDY_DECK, data: { deckID: deckID } };\n};\n\nvar reviewDeck = exports.reviewDeck = function reviewDeck(deckID) {\n  return { type: _types.REVIEW_DECK, data: { deckID: deckID } };\n};\n\nvar deleteDeck = exports.deleteDeck = function deleteDeck(deckID) {\n  return { type: _types.DELETE_DECK, data: { deckID: deckID } };\n};\n\nvar stopReview = exports.stopReview = function stopReview() {\n  return { type: _types.STOP_REVIEW, data: {} };\n};\n\nvar nextReview = exports.nextReview = function nextReview() {\n  return { type: _types.NEXT_REVIEW, data: {} };\n};\n\nvar loadData = exports.loadData = function loadData(data) {\n  return { type: _types.LOAD_DATA, data: data };\n};\n\n//# sourceURL=webpack:///./src/shared/actions/creators.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/actions/types.jsx":
+/*!**************************************!*\
+  !*** ./src/shared/actions/types.jsx ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar ADD_DECK = exports.ADD_DECK = \"ADD_DECK\";\nvar ADD_CARD = exports.ADD_CARD = \"ADD_CARD\";\nvar STUDY_DECK = exports.STUDY_DECK = \"STUDY_DECK\";\nvar REVIEW_DECK = exports.REVIEW_DECK = \"REVIEW_DECK\";\nvar DELETE_DECK = exports.DELETE_DECK = \"DELETE_DECK\";\nvar STOP_REVIEW = exports.STOP_REVIEW = \"STOP_REVIEW\";\nvar NEXT_REVIEW = exports.NEXT_REVIEW = \"NEXT_REVIEW\";\nvar LOAD_DATA = exports.LOAD_DATA = \"LOAD_DATA\";\n\n//# sourceURL=webpack:///./src/shared/actions/types.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/DeckPage/Deck.jsx":
+/*!*************************************************!*\
+  !*** ./src/shared/components/DeckPage/Deck.jsx ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Button = __webpack_require__(/*! ../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _NormalText = __webpack_require__(/*! ../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nvar _Card = __webpack_require__(/*! ../NewCardPage/Card.jsx */ \"./src/shared/components/NewCardPage/Card.jsx\");\n\nvar _Card2 = _interopRequireDefault(_Card);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Deck = function (_Component) {\n  _inherits(Deck, _Component);\n\n  function Deck(props) {\n    _classCallCheck(this, Deck);\n\n    var _this = _possibleConstructorReturn(this, (Deck.__proto__ || Object.getPrototypeOf(Deck)).call(this, props));\n\n    _this._study = function () {\n      _this.props.study();\n    };\n\n    _this._review = function () {\n      _this.props.review();\n    };\n\n    _this._addCards = function () {\n      _this.props.add();\n    };\n\n    _this._deleteDeck = function () {\n      _this.props.delete();\n    };\n\n    _this.state = { deckWidth: 0, deckHeight: 0 };\n    _this._updatePosition = _this._updatePosition.bind(_this);\n    _this.deckRef = _react2.default.createRef();\n    _this.deckFigRef = _react2.default.createRef();\n    return _this;\n  }\n\n  _createClass(Deck, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      this._updatePosition();\n      window.addEventListener('resize', this._updatePosition);\n    }\n  }, {\n    key: \"componentWillUnmount\",\n    value: function componentWillUnmount() {\n      window.removeEventListener('resize', this._updatePosition);\n    }\n  }, {\n    key: \"_updatePosition\",\n    value: function _updatePosition(e) {\n      var deck = this.deckRef.current;\n      var deckFig = this.deckFigRef.current;\n      this.setState({\n        deckWidth: deckFig.offsetWidth,\n        deckHeight: deckFig.offsetHeight\n      });\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      var _this2 = this;\n\n      return _react2.default.createElement(\n        \"div\",\n        { className: \"deckContainer\", id: this.props.id, ref: this.deckRef },\n        _react2.default.createElement(\n          \"figure\",\n          {\n            onClick: this._study,\n            ref: this.deckFigRef\n          },\n          this.props.deck.cards.map(function (card, cardIndex) {\n            return _react2.default.createElement(_Card2.default, {\n              key: card.id,\n              containerWidth: _this2.state.deckWidth,\n              containerHeight: _this2.state.deckHeight,\n              cardIndex: cardIndex,\n              zIndex: cardIndex + 1,\n              id: card.id,\n              uncover: false\n            });\n          })\n        ),\n        _react2.default.createElement(\n          \"div\",\n          { className: \"deckGroup\" },\n          _react2.default.createElement(\n            _Button2.default,\n            { className: \"deckButton\", onClick: this._deleteDeck },\n            _react2.default.createElement(\n              _NormalText2.default,\n              null,\n              this.props.deck.name,\n              \": Delete\"\n            )\n          ),\n          _react2.default.createElement(\n            _Button2.default,\n            { className: \"editButton\", onClick: this._addCards },\n            _react2.default.createElement(\n              _NormalText2.default,\n              null,\n              this.props.count,\n              \" Cards: Add\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return Deck;\n}(_react.Component);\n\nDeck.displayName = \"Deck\";\nexports.default = Deck;\n\n//# sourceURL=webpack:///./src/shared/components/DeckPage/Deck.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/DeckPage/DeckCreation.jsx":
+/*!*********************************************************!*\
+  !*** ./src/shared/components/DeckPage/DeckCreation.jsx ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _DeckCreationFields = __webpack_require__(/*! ./DeckCreationFields */ \"./src/shared/components/DeckPage/DeckCreationFields.jsx\");\n\nvar _Snackbar = __webpack_require__(/*! ../common/Snackbar */ \"./src/shared/components/common/Snackbar.jsx\");\n\nvar _Snackbar2 = _interopRequireDefault(_Snackbar);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar DeckCreation = function (_Component) {\n  _inherits(DeckCreation, _Component);\n\n  function DeckCreation(props) {\n    _classCallCheck(this, DeckCreation);\n\n    var _this = _possibleConstructorReturn(this, (DeckCreation.__proto__ || Object.getPrototypeOf(DeckCreation)).call(this, props));\n\n    _this._newDeck = function (name) {\n      _this.props.create(name);\n      _this.setState({ startCreating: false });\n    };\n\n    _this._startCreating = function () {\n      _this.setState({ startCreating: true });\n    };\n\n    _this.state = { startCreating: false };\n    return _this;\n  }\n\n  _createClass(DeckCreation, [{\n    key: \"render\",\n    value: function render() {\n      var contents = this.props.error ? _react2.default.createElement(\n        \"div\",\n        null,\n        _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }),\n        _react2.default.createElement(\n          _Snackbar2.default,\n          { display: this.props.error && this.props.showMsg, handleClick: this.props.closeMsg, dwellTime: 1000 },\n          this.props.error\n        )\n      ) : this.state.startCreating ? _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }) : _react2.default.createElement(_DeckCreationFields.CreateDeckButton, { onClick: this._startCreating });\n      return contents;\n    }\n  }]);\n\n  return DeckCreation;\n}(_react.Component);\n\nexports.default = DeckCreation;\n\n//# sourceURL=webpack:///./src/shared/components/DeckPage/DeckCreation.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/DeckPage/DeckCreationFields.jsx":
+/*!***************************************************************!*\
+  !*** ./src/shared/components/DeckPage/DeckCreationFields.jsx ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.EnterDeck = exports.CreateDeckButton = undefined;\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Button = __webpack_require__(/*! ../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _NormalText = __webpack_require__(/*! ./../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nvar _LabeledInput = __webpack_require__(/*! ../common/LabeledInput */ \"./src/shared/components/common/LabeledInput.jsx\");\n\nvar _LabeledInput2 = _interopRequireDefault(_LabeledInput);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar CreateDeckButton = function (_Component) {\n  _inherits(CreateDeckButton, _Component);\n\n  function CreateDeckButton() {\n    _classCallCheck(this, CreateDeckButton);\n\n    return _possibleConstructorReturn(this, (CreateDeckButton.__proto__ || Object.getPrototypeOf(CreateDeckButton)).apply(this, arguments));\n  }\n\n  _createClass(CreateDeckButton, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        _Button2.default,\n        { className: \"createDeck\", onClick: this.props.onClick },\n        _react2.default.createElement(\n          _NormalText2.default,\n          null,\n          \"Create Deck\"\n        )\n      );\n    }\n  }]);\n\n  return CreateDeckButton;\n}(_react.Component);\n\nvar EnterDeck = function (_Component2) {\n  _inherits(EnterDeck, _Component2);\n\n  function EnterDeck(props) {\n    _classCallCheck(this, EnterDeck);\n\n    var _this2 = _possibleConstructorReturn(this, (EnterDeck.__proto__ || Object.getPrototypeOf(EnterDeck)).call(this, props));\n\n    _this2._create = function () {\n      _this2.props.create(_this2.state.deckName);\n    };\n\n    _this2._onChange = function (deckName) {\n      _this2.setState({ deckName: deckName });\n    };\n\n    _this2.state = { deckName: \"\" };\n    return _this2;\n  }\n\n  _createClass(EnterDeck, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { id: \"deckCreation\" },\n        _react2.default.createElement(_LabeledInput2.default, {\n          onEntry: this.props.create,\n          onChange: this._onChange,\n          className: \"nameField fontNormal\",\n          label: \"Deck Name\",\n          placeholder: \" New Deck Name \"\n        }),\n        _react2.default.createElement(CreateDeckButton, {\n          onClick: this._create\n        })\n      );\n    }\n  }]);\n\n  return EnterDeck;\n}(_react.Component);\n\nexports.CreateDeckButton = CreateDeckButton;\nexports.EnterDeck = EnterDeck;\n\n//# sourceURL=webpack:///./src/shared/components/DeckPage/DeckCreationFields.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/DeckPage/index.jsx":
+/*!**************************************************!*\
+  !*** ./src/shared/components/DeckPage/index.jsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _creators = __webpack_require__(/*! ./../../actions/creators */ \"./src/shared/actions/creators.jsx\");\n\nvar _Deck = __webpack_require__(/*! ./Deck */ \"./src/shared/components/DeckPage/Deck.jsx\");\n\nvar _Deck2 = _interopRequireDefault(_Deck);\n\nvar _DeckCreation = __webpack_require__(/*! ./DeckCreation */ \"./src/shared/components/DeckPage/DeckCreation.jsx\");\n\nvar _DeckCreation2 = _interopRequireDefault(_DeckCreation);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar DecksScreen = function (_Component) {\n  _inherits(DecksScreen, _Component);\n\n  function DecksScreen(props) {\n    _classCallCheck(this, DecksScreen);\n\n    var _this = _possibleConstructorReturn(this, (DecksScreen.__proto__ || Object.getPrototypeOf(DecksScreen)).call(this, props));\n\n    _this._createDeck = function (name) {\n      try {\n        var createDeckAction = (0, _creators.addDeck)(name);\n        _this.props.createDeck(createDeckAction);\n        _this.setState({ error: null, showMsg: false });\n        _this.props.history.push(\"/createCard/\" + createDeckAction.data.id);\n      } catch (e) {\n        _this.setState({ error: e, showMsg: true });\n      }\n    };\n\n    _this._closeMsg = function () {\n      _this.setState({ showMsg: false });\n    };\n\n    _this._addCards = function (deckID) {\n      _this.props.history.push({\n        pathname: \"/createCard/\" + deckID,\n        state: {\n          returnto: _this.props.location.pathname\n        }\n      });\n    };\n\n    _this._study = function (deckID) {\n      _this.props.studyDeck(deckID);\n      _this.props.history.push({\n        pathname: '/study',\n        state: {\n          deckID: deckID //access: this.props.location.state.deckID\n        }\n      });\n    };\n\n    _this._review = function (deckID) {\n      _this.props.reviewDeck(deckID);\n      _this.props.history.push('review');\n    };\n\n    _this._delete = function (deckID) {\n      _this.props.deleteDeck(deckID);\n    };\n\n    _this.state = { error: null, showMsg: false };\n    return _this;\n  }\n\n  _createClass(DecksScreen, [{\n    key: \"_mkDeckViews\",\n    value: function _mkDeckViews() {\n      var _this2 = this;\n\n      if (!this.props.decks) {\n        return null;\n      }\n\n      return _react2.default.createElement(\n        \"div\",\n        { className: \"playTable\" },\n        this.props.decks.map(function (deck) {\n          return _react2.default.createElement(_Deck2.default, {\n            deck: deck,\n            count: _this2.props.counts[deck.id],\n            key: deck.id,\n            id: '_' + deck.id //JS variable for querySelector can't start with a number\n            , add: function add() {\n              _this2._addCards(deck.id);\n            },\n            study: function study() {\n              _this2._study(deck.id);\n            },\n            \"delete\": function _delete() {\n              _this2._delete(deck.id);\n            },\n            review: function review() {\n              _this2._review(deck.id);\n            }\n          });\n        })\n      );\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { id: \"deckPage\" },\n        _react2.default.createElement(_DeckCreation2.default, { create: this._createDeck, error: this.state.error, showMsg: this.state.showMsg, closeMsg: this._closeMsg }),\n        this._mkDeckViews()\n      );\n    }\n  }]);\n\n  return DecksScreen;\n}(_react.Component);\n\nDecksScreen.displayName = \"DecksScreen\";\n\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    createDeck: function createDeck(deckAction) {\n      dispatch(deckAction);\n    },\n    studyDeck: function studyDeck(deckID) {\n      dispatch((0, _creators.studyDeck)(deckID));\n    },\n    reviewDeck: function reviewDeck(deckID) {\n      dispatch((0, _creators.reviewDeck)(deckID));\n    },\n    deleteDeck: function deleteDeck(deckID) {\n      dispatch((0, _creators.deleteDeck)(deckID));\n    }\n  };\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    decks: state.decks,\n    counts: state.decks.reduce(function (sum, deck) {\n      sum[deck.id] = deck.cards.length;\n      return sum;\n    }, {})\n  };\n};\n\nmodule.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DecksScreen);\n\n//# sourceURL=webpack:///./src/shared/components/DeckPage/index.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/Layout/Logo.jsx":
+/*!***********************************************!*\
+  !*** ./src/shared/components/Layout/Logo.jsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Logo = function (_Component) {\n  _inherits(Logo, _Component);\n\n  function Logo() {\n    _classCallCheck(this, Logo);\n\n    return _possibleConstructorReturn(this, (Logo.__proto__ || Object.getPrototypeOf(Logo)).apply(this, arguments));\n  }\n\n  _createClass(Logo, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"svg\",\n        {\n          width: \"200\",\n          height: \"100\",\n          viewBox: \"0 0 200 350\",\n          id: \"svgLogo\"\n        },\n        _react2.default.createElement(\n          \"g\",\n          null,\n          _react2.default.createElement(\"rect\", {\n            style: {\n              fill: 'lightblue',\n              fillOpacity: 1,\n              stroke: '',\n              strokeWidth: 2,\n              strokeMiterlimit: 4,\n              strokeDasharray: 'none',\n              strokeOpacity: 1\n            },\n            id: \"OL\",\n            width: \"211.28172\",\n            height: \"199.94244\",\n            x: \"5.4841413\",\n            y: \"37\" }),\n          _react2.default.createElement(\"rect\", {\n            id: \"LV\",\n            width: \"41.577381\",\n            height: \"153.45834\",\n            x: \"24.190477\",\n            y: \"61.898811\",\n            style: {\n              strokeWidth: 0.37226507,\n              fill: 'red'\n            } }),\n          _react2.default.createElement(\"rect\", {\n            id: \"LH\",\n            width: \"146.65477\",\n            height: \"19.654755\",\n            x: \"24.190462\",\n            y: \"195.70238\",\n            style: {\n              strokeWidth: 0.31524804,\n              fill: 'red'\n            } }),\n          _react2.default.createElement(\"rect\", {\n            id: \"QH\",\n            width: \"99.029762\",\n            height: \"18.142857\",\n            x: \"71.815475\",\n            y: \"61.898819\",\n            style: {\n              strokeWidth: 0.25593761\n            } }),\n          _react2.default.createElement(\"rect\", {\n            id: \"QV\",\n            width: \"20.410706\",\n            height: \"130\",\n            x: \"150.43452\",\n            y: \"61.898819\",\n            style: {\n              strokeWidth: 0.23363407\n            } }),\n          _react2.default.createElement(\"path\", {\n            id: \"QA\",\n            style: {\n              fill: 'none',\n              fillOpacity: 1,\n              stroke: 'yellow',\n              strokeWidth: 19.21442986,\n              strokeMiterlimit: 4,\n              strokeDasharray: 'none',\n              strokeOpacity: 1\n            },\n            type: \"arc\",\n            cx: \"159.50595\",\n            cy: \"131.14861\",\n            rx: \"35.289242\",\n            ry: \"33.480274\",\n            d: \"m 194.79519,131.14861 a 35.289242,33.480274 0 0 1 -17.7583,29.05677 35.289242,33.480274 0 0 1 -35.4022,-0.18722 35.289242,33.480274 0 0 1 -17.41579,-29.24278\"\n          })\n        )\n      );\n    }\n  }]);\n\n  return Logo;\n}(_react.Component);\n\nLogo.displayName = \"Logo\";\nexports.default = Logo;\n\n//# sourceURL=webpack:///./src/shared/components/Layout/Logo.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/Layout/index.jsx":
+/*!************************************************!*\
+  !*** ./src/shared/components/Layout/index.jsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Logo = __webpack_require__(/*! ./Logo */ \"./src/shared/components/Layout/Logo.jsx\");\n\nvar _Logo2 = _interopRequireDefault(_Logo);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Navbar = function (_Component) {\n  _inherits(Navbar, _Component);\n\n  function Navbar(props) {\n    _classCallCheck(this, Navbar);\n\n    var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));\n\n    _this._handleScroll = function (evt) {\n      //console.log('window.scrollTop ', window.pageYOffset);\n      var currentScrollY = window.pageYOffset; //get scroll top position\n      //compare current scroll position with previous (differ by 1)\n      if (currentScrollY > _this.prevScrollY) {\n        _this.setState({ navbarClass: \"hide\" });\n      } else {\n        _this.setState({ navbarClass: \"navbar\" });\n      }\n\n      _this.prevScrollY = currentScrollY;\n    };\n\n    _this.state = {\n      navbarClass: \"navbar\"\n    };\n    _this.prevScrollY = 0;\n    return _this;\n  }\n\n  _createClass(Navbar, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      //scroll event on window\n      window.addEventListener('scroll', this._handleScroll);\n    }\n  }, {\n    key: \"componentWillUnmount\",\n    value: function componentWillUnmount() {\n      window.removeEventListener('scroll', this._handleScroll);\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { className: this.state.navbarClass },\n        this.props.children\n      );\n    }\n  }]);\n\n  return Navbar;\n}(_react.Component);\n\nvar Footer = function (_Component2) {\n  _inherits(Footer, _Component2);\n\n  function Footer() {\n    var _ref;\n\n    var _temp, _this2, _ret;\n\n    _classCallCheck(this, Footer);\n\n    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n\n    return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this2), _this2._displayCopyRight = function () {\n      return _react2.default.createElement(\n        \"span\",\n        { style: { display: 'inline-block', paddingRight: '5px' } },\n        \"2019 - \" + new Date().getFullYear()\n      );\n    }, _temp), _possibleConstructorReturn(_this2, _ret);\n  }\n\n  _createClass(Footer, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"footer\",\n        { style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' } },\n        _react2.default.createElement(\n          \"div\",\n          { style: { color: 'white', fontSize: '20px' } },\n          \"\\xA9 \",\n          this._displayCopyRight(),\n          _react2.default.createElement(\n            \"a\",\n            { href: \"javascript:void();\", target: \"_blank\", style: { textDecoration: 'none', color: 'white' }, className: \"top_tooltip\" },\n            \"Q.M. Long\"\n          )\n        ),\n        _react2.default.createElement(\n          \"h1\",\n          null,\n          \"Footer Grid\"\n        )\n      );\n    }\n  }]);\n\n  return Footer;\n}(_react.Component);\n\nvar Layout = function (_Component3) {\n  _inherits(Layout, _Component3);\n\n  function Layout() {\n    _classCallCheck(this, Layout);\n\n    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));\n  }\n\n  _createClass(Layout, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { className: \"layout\" },\n        _react2.default.createElement(\n          Navbar,\n          null,\n          _react2.default.createElement(_Logo2.default, null),\n          _react2.default.createElement(\n            \"ul\",\n            null,\n            _react2.default.createElement(\n              \"li\",\n              null,\n              _react2.default.createElement(\n                \"a\",\n                { href: \"#\" },\n                \"Home\"\n              )\n            ),\n            _react2.default.createElement(\n              \"li\",\n              null,\n              _react2.default.createElement(\n                \"a\",\n                { href: \"#\" },\n                \"About\"\n              )\n            ),\n            _react2.default.createElement(\n              \"li\",\n              null,\n              _react2.default.createElement(\n                \"a\",\n                { href: \"#\" },\n                \"Games\"\n              )\n            ),\n            _react2.default.createElement(\n              \"li\",\n              null,\n              _react2.default.createElement(\n                \"a\",\n                { href: \"#\" },\n                \"Portfolio\"\n              )\n            ),\n            _react2.default.createElement(\n              \"li\",\n              null,\n              _react2.default.createElement(\n                \"a\",\n                { href: \"#\" },\n                \"Contact\"\n              )\n            )\n          )\n        ),\n        _react2.default.createElement(\n          \"section\",\n          null,\n          this.props.children\n        ),\n        _react2.default.createElement(Footer, null)\n      );\n    }\n  }]);\n\n  return Layout;\n}(_react.Component);\n\nLayout.displayName = \"Layout\";\n\n\nmodule.exports = Layout;\n\n//# sourceURL=webpack:///./src/shared/components/Layout/index.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/NewCardPage/Card.jsx":
+/*!****************************************************!*\
+  !*** ./src/shared/components/NewCardPage/Card.jsx ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles.js */ \"./public/css/styles.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Card = function (_Component) {\n  _inherits(Card, _Component);\n\n  function Card(props) {\n    _classCallCheck(this, Card);\n\n    var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));\n\n    _this._flipCard = function () {\n      var orientation = _this.state.orientation === 'front' ? 'back' : 'front';\n      var className = 'flip-animation';\n      _this.setState({ orientation: orientation, className: className });\n    };\n\n    _this._animeEnd = function () {\n      _this.setState({ className: '' });\n    };\n\n    _this.state = { orientation: 'front', className: '' };\n    return _this;\n  }\n\n  _createClass(Card, [{\n    key: \"render\",\n    value: function render() {\n      var _props = this.props,\n          _props$containerWidth = _props.containerWidth,\n          containerWidth = _props$containerWidth === undefined ? 0 : _props$containerWidth,\n          _props$containerHeigh = _props.containerHeight,\n          containerHeight = _props$containerHeigh === undefined ? 0 : _props$containerHeigh,\n          _props$cardIndex = _props.cardIndex,\n          cardIndex = _props$cardIndex === undefined ? 0 : _props$cardIndex,\n          _props$zIndex = _props.zIndex,\n          zIndex = _props$zIndex === undefined ? 1 : _props$zIndex,\n          _props$uncover = _props.uncover,\n          uncover = _props$uncover === undefined ? false : _props$uncover,\n          _props$orientation = _props.orientation,\n          orientation = _props$orientation === undefined ? 'front' : _props$orientation,\n          _props$card = _props.card,\n          card = _props$card === undefined ? null : _props$card;\n\n      //calculate each card position\n\n      var stackGap = 4 * cardIndex;\n      var offsetX = (containerWidth - _styles.cardStyle.width) / 2 - stackGap;\n      var offsetY = (containerHeight - _styles.cardStyle.height) / 2 - stackGap;\n\n      var bgColor = uncover ? 'white' : 'red';\n      var extraStyle = {\n        top: offsetY,\n        left: offsetX,\n        zIndex: zIndex,\n        backgroundColor: bgColor\n      };\n      var concatStyle = Object.assign({}, _styles.cardStyle, extraStyle);\n      return _react2.default.createElement(\n        \"div\",\n        { style: concatStyle, onClick: this._flipCard, className: this.state.className, onAnimationEnd: this._animeEnd },\n        card && uncover ? card[this.state.orientation] : null\n      );\n    }\n  }]);\n\n  return Card;\n}(_react.Component);\n\nCard.displayName = \"Card\";\nexports.default = Card;\n\n//# sourceURL=webpack:///./src/shared/components/NewCardPage/Card.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/NewCardPage/index.jsx":
+/*!*****************************************************!*\
+  !*** ./src/shared/components/NewCardPage/index.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _creators = __webpack_require__(/*! ./../../actions/creators */ \"./src/shared/actions/creators.jsx\");\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _Button = __webpack_require__(/*! ../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _LabeledInput = __webpack_require__(/*! ../common/LabeledInput */ \"./src/shared/components/common/LabeledInput.jsx\");\n\nvar _LabeledInput2 = _interopRequireDefault(_LabeledInput);\n\nvar _NormalText = __webpack_require__(/*! ../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nvar _Input = __webpack_require__(/*! ../common/Input */ \"./src/shared/components/common/Input.jsx\");\n\nvar _Input2 = _interopRequireDefault(_Input);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nvar _Snackbar = __webpack_require__(/*! ../common/Snackbar */ \"./src/shared/components/common/Snackbar.jsx\");\n\nvar _Snackbar2 = _interopRequireDefault(_Snackbar);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar NewCard = function (_Component) {\n  _inherits(NewCard, _Component);\n\n  function NewCard(props) {\n    _classCallCheck(this, NewCard);\n\n    var _this = _possibleConstructorReturn(this, (NewCard.__proto__ || Object.getPrototypeOf(NewCard)).call(this, props));\n\n    _this._deckID = function () {\n      return _this.props.match.params.deckID;\n    };\n\n    _this._handleFront = function (value) {\n      _this.setState({ front: value });\n    };\n\n    _this._handleBack = function (value) {\n      _this.setState({ back: value });\n    };\n\n    _this._createCard = function () {\n      //if card exists, throw exception and catch it\n      try {\n        _this.props.createCard(_this.state.front, _this.state.back, _this._deckID());\n\n        //clear front back input fields after adding card \n        _this.setState({ front: '', back: '', error: null, showMsg: false });\n\n        if (!_this.props.history.location.pathname === \"/createCard/\" + _this._deckID()) {\n          _this.props.history.push(\"/createCard/\" + _this._deckID());\n        }\n      } catch (e) {\n        _this.setState({ error: e, showMsg: true });\n      }\n    };\n\n    _this._closeMsg = function () {\n      _this.setState({ showMsg: false });\n    };\n\n    _this._reviewDeck = function () {\n      _this.props.reviewDeck(_this._deckID());\n      _this.props.history.push('/review');\n    };\n\n    _this._doneCreating = function () {\n      _this.props.history.push('/');\n    };\n\n    _this.state = { front: \"\", back: \"\", error: null, showMsg: false };\n    return _this;\n  }\n\n  _createClass(NewCard, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { id: \"newCardPage\" },\n        _react2.default.createElement(\n          \"h1\",\n          null,\n          \"New Card Page\"\n        ),\n        _react2.default.createElement(\n          \"form\",\n          { id: \"createCard\" },\n          _react2.default.createElement(_LabeledInput2.default, {\n            label: \"Front\",\n            onChange: this._handleFront,\n            value: this.state.front,\n            className: \"nameField wideButton fontNormal\"\n          }),\n          _react2.default.createElement(_LabeledInput2.default, {\n            label: \"Back\",\n            onChange: this._handleBack,\n            value: this.state.back,\n            className: \"nameField wideButton fontNormal\"\n          }),\n          _react2.default.createElement(_Input2.default, { type: \"button\",\n            style: _styles.inputButtonStyle //in-line style to override bootstrap.css\n            , onClick: this._createCard,\n            value: \"Create Card\",\n            readOnly: true //button value\n          }),\n          this.state.error ? _react2.default.createElement(\n            _Snackbar2.default,\n            { display: this.state.error && this.state.showMsg, handleClick: this._closeMsg, dwellTime: 1000 },\n            this.state.error\n          ) : null\n        ),\n        _react2.default.createElement(\n          \"div\",\n          { style: { flexDirection: \"row\" } },\n          _react2.default.createElement(\n            _Button2.default,\n            { onClick: this._doneCreating },\n            _react2.default.createElement(\n              _NormalText2.default,\n              null,\n              \"Done\"\n            )\n          ),\n          _react2.default.createElement(\n            _Button2.default,\n            { onClick: this._reviewDeck },\n            _react2.default.createElement(\n              _NormalText2.default,\n              null,\n              \"Review Deck\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return NewCard;\n}(_react.Component);\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return { decks: state.decks };\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    createCard: function createCard(front, back, deckID) {\n      dispatch((0, _creators.addCard)(front, back, deckID));\n    },\n    reviewDeck: function reviewDeck(deckID) {\n      dispatch((0, _creators.reviewDeck)(deckID));\n    }\n  };\n};\n\nmodule.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(NewCard);\n\n//# sourceURL=webpack:///./src/shared/components/NewCardPage/index.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/ReviewPage/QuizView.jsx":
+/*!*******************************************************!*\
+  !*** ./src/shared/components/ReviewPage/QuizView.jsx ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _HeadingText = __webpack_require__(/*! ../common/HeadingText */ \"./src/shared/components/common/HeadingText.jsx\");\n\nvar _HeadingText2 = _interopRequireDefault(_HeadingText);\n\nvar _ReviewButtons = __webpack_require__(/*! ./ReviewButtons */ \"./src/shared/components/ReviewPage/ReviewButtons.jsx\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar QuizView = function (_Component) {\n  _inherits(QuizView, _Component);\n\n  _createClass(QuizView, [{\n    key: \"_getInitialState\",\n    value: function _getInitialState() {\n      return { wasReviewed: false, wasCorrect: false, id: null };\n    }\n  }]);\n\n  function QuizView(props) {\n    _classCallCheck(this, QuizView);\n\n    var _this = _possibleConstructorReturn(this, (QuizView.__proto__ || Object.getPrototypeOf(QuizView)).call(this, props));\n\n    _this._continue = function () {\n      _this.setState(_this._getInitialState());\n      _this.props.continue();\n    };\n\n    _this._selectAnswer = function (correct, id) {\n      _this.props.onReview(correct);\n      _this.setState({ wasReviewed: true, wasCorrect: correct, wasClicked: id });\n    };\n\n    _this.state = _this._getInitialState();\n    return _this;\n  }\n\n  _createClass(QuizView, [{\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        null,\n        _react2.default.createElement(\n          \"div\",\n          { className: \"quizView\" },\n          _react2.default.createElement(\n            _HeadingText2.default,\n            null,\n            \"Question: \",\n            this.props.prompt\n          )\n        ),\n        (0, _ReviewButtons.mkAnswerButtons)(this.props.answers, this.props.correctAnswer, this.state.wasReviewed, this.state.wasCorrect, this._selectAnswer, this.state.wasClicked),\n        (0, _ReviewButtons.mkContinueQuitButtons)(this.state.wasReviewed, this.state.wasCorrect, this._continue, this.props.quit)\n      );\n    }\n  }]);\n\n  return QuizView;\n}(_react.Component);\n\nQuizView.displayName = \"QuizView\";\n\n\nmodule.exports = QuizView;\n\n//# sourceURL=webpack:///./src/shared/components/ReviewPage/QuizView.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/ReviewPage/ReviewButtons.jsx":
+/*!************************************************************!*\
+  !*** ./src/shared/components/ReviewPage/ReviewButtons.jsx ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Button = __webpack_require__(/*! ./../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _NormalText = __webpack_require__(/*! ./../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nvar _md = __webpack_require__(/*! md5 */ \"md5\");\n\nvar _md2 = _interopRequireDefault(_md);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar ContinueButton = function (_Component) {\n  _inherits(ContinueButton, _Component);\n\n  function ContinueButton() {\n    _classCallCheck(this, ContinueButton);\n\n    return _possibleConstructorReturn(this, (ContinueButton.__proto__ || Object.getPrototypeOf(ContinueButton)).apply(this, arguments));\n  }\n\n  _createClass(ContinueButton, [{\n    key: \"render\",\n    value: function render() {\n      var text = this.props.wasCorrect ? \"Correct! Next card?\" : \"Oops, not quite. Next card?\";\n      return _react2.default.createElement(\n        _Button2.default,\n        { onClick: this.props.onClick, style: { backgroundColor: _styles.colors.pink } },\n        _react2.default.createElement(\n          _NormalText2.default,\n          null,\n          text\n        )\n      );\n    }\n  }]);\n\n  return ContinueButton;\n}(_react.Component);\n\nfunction mkContinueQuitButtons(wasReviewed, wasCorrect, continueFunc, quitFunc) {\n  if (wasReviewed) {\n    return _react2.default.createElement(ContinueButton, { onClick: continueFunc, wasCorrect: wasCorrect });\n  } else {\n    return _react2.default.createElement(\n      _Button2.default,\n      { onClick: quitFunc, style: { backgroundColor: _styles.colors.yellow } },\n      _react2.default.createElement(\n        _NormalText2.default,\n        null,\n        \"Stop Quiz\"\n      )\n    );\n  }\n}\n\nfunction mkAnswerButtons(answers, correctAnswer, wasReviewed, wasCorrect, selectAnswerFunc, wasClicked) {\n  if (!answers) return null;\n\n  return answers.map(function (a, aIndex) {\n    var isCorrectAnswer = a === correctAnswer;\n    var buttonStyle = styles.options;\n\n    var myID = '_' + (0, _md2.default)(a);\n    if (wasReviewed && wasClicked === myID) {\n      if (wasCorrect) {\n        buttonStyle = Object.assign({}, buttonStyle, styles.rightAnswer);\n      } else {\n        buttonStyle = Object.assign({}, buttonStyle, styles.wrongAnswer);\n      }\n    }\n\n    return _react2.default.createElement(\n      \"div\",\n      { key: a, className: \"answerOptions\" },\n      _react2.default.createElement(\n        _Button2.default,\n        {\n          disabled: wasReviewed,\n          style: buttonStyle,\n          id: myID,\n          onClick: function onClick(thisID) {\n            selectAnswerFunc(isCorrectAnswer, thisID);\n          }\n        },\n        _react2.default.createElement(\n          _NormalText2.default,\n          null,\n          aIndex + 1,\n          \". \",\n          a\n        )\n      )\n    );\n  });\n}\n\nvar styles = {\n  options: { backgroundColor: \"#FFFFFF\" },\n  continueButton: { backgroundColor: _styles.colors.tan },\n  rightAnswer: { backgroundColor: _styles.colors.green },\n  wrongAnswer: { backgroundColor: _styles.colors.pink }\n};\n\nmodule.exports = { mkContinueQuitButtons: mkContinueQuitButtons, mkAnswerButtons: mkAnswerButtons };\n\n//# sourceURL=webpack:///./src/shared/components/ReviewPage/ReviewButtons.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/ReviewPage/ReviewSummary.jsx":
+/*!************************************************************!*\
+  !*** ./src/shared/components/ReviewPage/ReviewSummary.jsx ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.mkReviewSummary = undefined;\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _HeadingText = __webpack_require__(/*! ./../common/HeadingText */ \"./src/shared/components/common/HeadingText.jsx\");\n\nvar _HeadingText2 = _interopRequireDefault(_HeadingText);\n\nvar _NormalText = __webpack_require__(/*! ../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nvar _Button = __webpack_require__(/*! ../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction mkReviewSummary(percentCorrect, quitFunc) {\n  return _react2.default.createElement(\n    \"div\",\n    { style: styles.done },\n    _react2.default.createElement(\n      _HeadingText2.default,\n      { style: styles.alternate },\n      \"Reviews cleared!\"\n    ),\n    _react2.default.createElement(\n      _NormalText2.default,\n      { style: styles.alternate },\n      Math.round(percentCorrect * 100),\n      \"% correct\"\n    ),\n    _react2.default.createElement(\n      _Button2.default,\n      { onClick: quitFunc, style: styles.doneButton },\n      _react2.default.createElement(\n        _NormalText2.default,\n        null,\n        \"Done\"\n      )\n    )\n  );\n}\n\nvar styles = {\n  alternate: { color: \"#FFFFFF\" },\n  done: { display: 'flex', flexDirection: 'column', alignItems: \"center\" },\n  doneButton: { backgroundColor: _styles.colors.tan }\n};\n\nexports.mkReviewSummary = mkReviewSummary;\n\n//# sourceURL=webpack:///./src/shared/components/ReviewPage/ReviewSummary.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/ReviewPage/index.jsx":
+/*!****************************************************!*\
+  !*** ./src/shared/components/ReviewPage/index.jsx ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _ReviewSummary = __webpack_require__(/*! ./ReviewSummary */ \"./src/shared/components/ReviewPage/ReviewSummary.jsx\");\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nvar _creators = __webpack_require__(/*! ./../../actions/creators */ \"./src/shared/actions/creators.jsx\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar QuizView = __webpack_require__(/*! ./QuizView */ \"./src/shared/components/ReviewPage/QuizView.jsx\");\n\nvar ReviewScreen = function (_Component) {\n  _inherits(ReviewScreen, _Component);\n\n  function ReviewScreen(props) {\n    _classCallCheck(this, ReviewScreen);\n\n    var _this = _possibleConstructorReturn(this, (ReviewScreen.__proto__ || Object.getPrototypeOf(ReviewScreen)).call(this, props));\n\n    _this._onReview = function (correct) {\n      if (correct) {\n        _this.setState({ numCorrect: _this.state.numCorrect + 1 });\n      }\n      _this.setState({ numReviewed: _this.state.numReviewed + 1 });\n    };\n\n    _this._nextReview = function () {\n      _this.props.nextReview();\n    };\n\n    _this._quitReviewing = function () {\n      _this.props.stopReview();\n      _this.props.history.goBack();\n    };\n\n    _this.state = { numReviewed: 0, numCorrect: 0 };\n    return _this;\n  }\n\n  _createClass(ReviewScreen, [{\n    key: \"_contents\",\n    value: function _contents() {\n      if (!this.props.reviews || this.props.reviews.length === 0) {\n        return null;\n      }\n\n      if (this.props.currentReview < this.props.reviews.length) {\n        return _react2.default.createElement(QuizView, _extends({\n          onReview: this._onReview,\n          \"continue\": this._nextReview,\n          quit: this._quitReviewing\n        }, this.props.reviews[this.props.currentReview]));\n      } else {\n        var percent = this.state.numCorrect / this.state.numReviewed;\n        return (0, _ReviewSummary.mkReviewSummary)(percent, this._quitReviewing);\n      }\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      return _react2.default.createElement(\n        \"div\",\n        { style: styles.container },\n        this._contents()\n      );\n    }\n  }]);\n\n  return ReviewScreen;\n}(_react.Component);\n\nReviewScreen.displayName = \"ReviewScreen\";\n\n\nvar styles = {\n  container: { backgroundColor: _styles.colors.blue, flex: 1, paddingTop: 24 }\n};\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    nextReview: function nextReview() {\n      dispatch((0, _creators.nextReview)());\n    },\n    stopReview: function stopReview() {\n      dispatch((0, _creators.stopReview)());\n    }\n  };\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    reviews: state.currentReview.questions,\n    currentReview: state.currentReview.currentQuestionIndex\n  };\n};\n\nmodule.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ReviewScreen);\n\n//# sourceURL=webpack:///./src/shared/components/ReviewPage/index.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/StudyPage/index.jsx":
+/*!***************************************************!*\
+  !*** ./src/shared/components/StudyPage/index.jsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nvar _creators = __webpack_require__(/*! ./../../actions/creators */ \"./src/shared/actions/creators.jsx\");\n\nvar _Card = __webpack_require__(/*! ../NewCardPage/Card.jsx */ \"./src/shared/components/NewCardPage/Card.jsx\");\n\nvar _Card2 = _interopRequireDefault(_Card);\n\nvar _Button = __webpack_require__(/*! ../common/Button */ \"./src/shared/components/common/Button.jsx\");\n\nvar _Button2 = _interopRequireDefault(_Button);\n\nvar _NormalText = __webpack_require__(/*! ../common/NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar CardsScreen = function (_Component) {\n  _inherits(CardsScreen, _Component);\n\n  function CardsScreen(props) {\n    _classCallCheck(this, CardsScreen);\n\n    var _this = _possibleConstructorReturn(this, (CardsScreen.__proto__ || Object.getPrototypeOf(CardsScreen)).call(this, props));\n\n    _this._review = function () {\n      _this.props.reviewDeck(_this.props.location.state.deckID);\n      _this.props.history.push('review');\n    };\n\n    _this.state = { cardFigWidth: 0, cardFigHeight: 0 };\n    _this._updatePosition = _this._updatePosition.bind(_this);\n    _this.cardFigRef = _react2.default.createRef(); //just for current card\n    return _this;\n  }\n\n  _createClass(CardsScreen, [{\n    key: \"componentDidMount\",\n    value: function componentDidMount() {\n      this._updatePosition();\n      //to make responsive\n      window.addEventListener('resize', this._updatePosition);\n    }\n  }, {\n    key: \"componentWillUnmount\",\n    value: function componentWillUnmount() {\n      window.removeEventListener('resize', this._updatePosition);\n    }\n  }, {\n    key: \"_updatePosition\",\n    value: function _updatePosition(e) {\n      var cardFig = this.cardFigRef.current;\n      //update card figure container size\n      this.setState({\n        cardFigWidth: cardFig.offsetWidth,\n        cardFigHeight: cardFig.offsetHeight\n      });\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      var _this2 = this;\n\n      return _react2.default.createElement(\n        \"div\",\n        { id: \"studyPage\" },\n        _react2.default.createElement(\n          \"div\",\n          { id: \"cards\" },\n          this.props.cards.map(function (card) {\n            return _react2.default.createElement(\n              \"figure\",\n              { key: card.id, ref: _this2.cardFigRef },\n              _react2.default.createElement(_Card2.default, {\n                card: card,\n                id: '_' + card.id //JS variable for querySelector can't start with a number\n                , containerWidth: _this2.state.cardFigWidth,\n                containerHeight: _this2.state.cardFigHeight,\n                uncover: true //show front and back\n              })\n            );\n          })\n        ),\n        _react2.default.createElement(\n          \"div\",\n          { className: \"\" },\n          _react2.default.createElement(\n            _Button2.default,\n            { className: \"editButton\", onClick: this._review },\n            _react2.default.createElement(\n              _NormalText2.default,\n              null,\n              \"Start Quiz\"\n            )\n          )\n        )\n      );\n    }\n  }]);\n\n  return CardsScreen;\n}(_react.Component);\n\nCardsScreen.displayName = \"CardsScreen\";\n\n\nvar mapDispatchToProps = function mapDispatchToProps(dispatch) {\n  return {\n    reviewDeck: function reviewDeck(deckID) {\n      dispatch((0, _creators.reviewDeck)(deckID));\n    }\n  };\n};\n\nvar mapStateToProps = function mapStateToProps(state) {\n  return {\n    cards: state.currentCards\n  };\n};\n\nmodule.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CardsScreen);\n\n//# sourceURL=webpack:///./src/shared/components/StudyPage/index.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/Button.jsx":
+/*!*************************************************!*\
+  !*** ./src/shared/components/common/Button.jsx ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Button = function (_Component) {\n  _inherits(Button, _Component);\n\n  function Button(props) {\n    _classCallCheck(this, Button);\n\n    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));\n\n    _this._onClick = function (e) {\n      e.preventDefault();\n      //e.persist();//will remove the synthetic event from the pool and retake the reference to the event\n      _this.props.onClick(_this.buttonRef.current.id);\n    };\n\n    _this.buttonRef = _react2.default.createRef();\n    return _this;\n  }\n\n  _createClass(Button, [{\n    key: \"render\",\n    value: function render() {\n      var concatStyles = Object.assign({}, this.props.style);\n\n      return _react2.default.createElement(\n        \"button\",\n        {\n          className: \"wideButton\",\n          onClick: this._onClick,\n          style: concatStyles,\n          disabled: this.props.disabled,\n          id: this.props.id,\n          ref: this.buttonRef\n        },\n        this.props.children\n      );\n    }\n  }]);\n\n  return Button;\n}(_react.Component);\n\nButton.displayName = \"Button\";\n\n\nButton.defaultProps = { disabled: false };\n\nexports.default = Button;\n\n//# sourceURL=webpack:///./src/shared/components/common/Button.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/HeadingText.jsx":
+/*!******************************************************!*\
+  !*** ./src/shared/components/common/HeadingText.jsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar HeadingText = function (_Component) {\n  _inherits(HeadingText, _Component);\n\n  function HeadingText() {\n    _classCallCheck(this, HeadingText);\n\n    return _possibleConstructorReturn(this, (HeadingText.__proto__ || Object.getPrototypeOf(HeadingText)).apply(this, arguments));\n  }\n\n  _createClass(HeadingText, [{\n    key: \"render\",\n    value: function render() {\n      var width = window.screen.width;\n      var concatStyles = Object.assign({}, this.props.style, { fontSize: width / _styles.scalingFactors.big });\n\n      return _react2.default.createElement(\n        \"span\",\n        {\n          style: concatStyles\n        },\n        this.props.children\n      );\n    }\n  }]);\n\n  return HeadingText;\n}(_react.Component);\n\nHeadingText.displayName = \"HeadingText\";\nexports.default = HeadingText;\n\n//# sourceURL=webpack:///./src/shared/components/common/HeadingText.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/Input.jsx":
+/*!************************************************!*\
+  !*** ./src/shared/components/common/Input.jsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Input = function (_Component) {\n  _inherits(Input, _Component);\n\n  function Input(props) {\n    _classCallCheck(this, Input);\n\n    var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));\n\n    _this._onSubmit = function (ev) {\n      var keyCode = ev.keyCode || ev.which;\n      if (keyCode == 13) {\n        if (_this.props.onEntry && typeof _this.props.onEntry === 'function') {\n          _this.props.onEntry(_this.state.text);\n\n          if (_this.props.clearOnSubmit) {\n            _this.setState({ text: \"\" });\n          }\n        }\n      }\n    };\n\n    _this._onChange = function (ev) {\n      _this.setState({ text: ev.target.value });\n\n      if (_this.props.onChange) {\n        _this.props.onChange(ev.target.value);\n      }\n    };\n\n    _this.state = { text: \"\" }; //a controlled component\n    return _this;\n  }\n\n  //add this to update input field (e.g clear it after submit)\n\n\n  _createClass(Input, [{\n    key: \"componentWillReceiveProps\",\n    value: function componentWillReceiveProps(nextProps) {\n      if (nextProps.value != undefined) {\n        this.setState({ text: nextProps.value });\n      }\n    }\n  }, {\n    key: \"render\",\n    value: function render() {\n      var _props = this.props,\n          _props$placeholder = _props.placeholder,\n          placeholder = _props$placeholder === undefined ? '' : _props$placeholder,\n          _props$type = _props.type,\n          type = _props$type === undefined ? '' : _props$type,\n          _props$name = _props.name,\n          name = _props$name === undefined ? '' : _props$name,\n          _props$className = _props.className,\n          className = _props$className === undefined ? '' : _props$className,\n          _props$style = _props.style,\n          style = _props$style === undefined ? {} : _props$style,\n          _props$onClick = _props.onClick,\n          onClick = _props$onClick === undefined ? null : _props$onClick,\n          _props$readOnly = _props.readOnly,\n          readOnly = _props$readOnly === undefined ? false : _props$readOnly;\n\n\n      var localStyle = {\n        container: {\n          display: 'flex',\n          flexDirection: 'row'\n        },\n        input: {\n          flex: '1'\n        }\n      };\n\n      var concatStyle = Object.assign({}, style, localStyle.input);\n\n      return _react2.default.createElement(\n        \"div\",\n        { style: localStyle.container },\n        _react2.default.createElement(\"input\", {\n          placeholder: placeholder,\n          type: type,\n          name: name,\n          className: className,\n          style: concatStyle,\n          ref: \"inputRef\" //use ref if not capture state change\n          , onChange: this._onChange,\n          onKeyUp: this._onSubmit,\n          onClick: onClick,\n          readOnly: readOnly,\n          value: readOnly ? this.props.value : this.state.text //if passed a value then it should be read-only\n        })\n      );\n    }\n  }]);\n\n  return Input;\n}(_react.Component);\n\n// Default props for custom attributes\n\n\nInput.defaultProps = { clearOnSubmit: true };\n\nexports.default = Input;\n\n//# sourceURL=webpack:///./src/shared/components/common/Input.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/LabeledInput.jsx":
+/*!*******************************************************!*\
+  !*** ./src/shared/components/common/LabeledInput.jsx ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Input = __webpack_require__(/*! ./Input */ \"./src/shared/components/common/Input.jsx\");\n\nvar _Input2 = _interopRequireDefault(_Input);\n\nvar _NormalText = __webpack_require__(/*! ./NormalText */ \"./src/shared/components/common/NormalText.jsx\");\n\nvar _NormalText2 = _interopRequireDefault(_NormalText);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar LabeledInput = function (_Component) {\n  _inherits(LabeledInput, _Component);\n\n  function LabeledInput() {\n    _classCallCheck(this, LabeledInput);\n\n    return _possibleConstructorReturn(this, (LabeledInput.__proto__ || Object.getPrototypeOf(LabeledInput)).apply(this, arguments));\n  }\n\n  _createClass(LabeledInput, [{\n    key: \"render\",\n    value: function render() {\n      var localStyle = {\n        container: {\n          display: 'flex',\n          flexDirection: 'row'\n        }\n      };\n\n      return _react2.default.createElement(\n        \"div\",\n        { style: localStyle.container },\n        _react2.default.createElement(\n          _NormalText2.default,\n          null,\n          this.props.label,\n          \":\"\n        ),\n        _react2.default.createElement(_Input2.default, _extends({\n          type: \"text\"\n        }, this.props))\n      );\n    }\n  }]);\n\n  return LabeledInput;\n}(_react.Component);\n\nexports.default = LabeledInput;\n\n//# sourceURL=webpack:///./src/shared/components/common/LabeledInput.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/NormalText.jsx":
+/*!*****************************************************!*\
+  !*** ./src/shared/components/common/NormalText.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _styles = __webpack_require__(/*! ../../../../public/css/styles */ \"./public/css/styles.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar NormalText = function (_Component) {\n  _inherits(NormalText, _Component);\n\n  function NormalText() {\n    _classCallCheck(this, NormalText);\n\n    return _possibleConstructorReturn(this, (NormalText.__proto__ || Object.getPrototypeOf(NormalText)).apply(this, arguments));\n  }\n\n  _createClass(NormalText, [{\n    key: \"render\",\n    value: function render() {\n      //let width = window.screen.width;\n      var width = 1200;\n      var concatStyles = Object.assign({}, this.props.style, { fontSize: width * 1.0 / _styles.scalingFactors.normal });\n\n      return _react2.default.createElement(\n        \"span\",\n        { className: \"fontNormal\",\n          style: concatStyles\n        },\n        this.props.children\n      );\n    }\n  }]);\n\n  return NormalText;\n}(_react.Component);\n\nNormalText.displayName = \"NormalText\";\nexports.default = NormalText;\n\n//# sourceURL=webpack:///./src/shared/components/common/NormalText.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/components/common/Snackbar.jsx":
+/*!***************************************************!*\
+  !*** ./src/shared/components/common/Snackbar.jsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar Snackbar = function (_Component) {\n  _inherits(Snackbar, _Component);\n\n  function Snackbar() {\n    var _ref;\n\n    var _temp, _this, _ret;\n\n    _classCallCheck(this, Snackbar);\n\n    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {\n      args[_key] = arguments[_key];\n    }\n\n    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Snackbar.__proto__ || Object.getPrototypeOf(Snackbar)).call.apply(_ref, [this].concat(args))), _this), _this._handleClick = function () {\n      _this.props.handleClick();\n    }, _temp), _possibleConstructorReturn(_this, _ret);\n  }\n\n  _createClass(Snackbar, [{\n    key: 'componentWillUnmount',\n    value: function componentWillUnmount() {\n      console.log('snackbar will unmount');\n    }\n  }, {\n    key: 'render',\n    value: function render() {\n      var _style = {\n        display: this.props.display ? 'block' : 'none'\n      };\n\n      return _react2.default.createElement(\n        'div',\n        { id: 'snackbar', style: _style, onClick: this._handleClick },\n        this.props.children\n      );\n    }\n  }]);\n\n  return Snackbar;\n}(_react.Component);\n\nSnackbar.defaultProps = { dwellTime: 1000 };\n\nexports.default = Snackbar;\n\n//# sourceURL=webpack:///./src/shared/components/common/Snackbar.jsx?");
+
+/***/ }),
+
+/***/ "./src/shared/data_models/Card.js":
+/*!****************************************!*\
+  !*** ./src/shared/data_models/Card.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _md = __webpack_require__(/*! md5 */ \"md5\");\n\nvar _md2 = _interopRequireDefault(_md);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Card = function () {\n  function Card(front, back, deckID) {\n    _classCallCheck(this, Card);\n\n    this.front = front;\n    this.back = back;\n    this.deckID = deckID;\n    this.id = (0, _md2.default)(front + back + deckID);\n  }\n\n  _createClass(Card, [{\n    key: \"setFromObject\",\n    value: function setFromObject(ob) {\n      this.front = ob.front;\n      this.back = ob.back;\n      this.deckID = ob.deckID;\n      this.id = ob.id;\n    }\n  }, {\n    key: \"isOneSideEmpty\",\n    value: function isOneSideEmpty() {\n      var emptyStringPattern = /^\\s*$/; // has zero or more space and has only space\n      return emptyStringPattern.test(this.front) || emptyStringPattern.test(this.back);\n    }\n  }], [{\n    key: \"createInstance\",\n    value: function createInstance(ob) {\n      //to save lines of code when creating a new card\n      var c = new Card(ob.front, ob.back, ob.deckID);\n      c.setFromObject(ob);\n      return c;\n    }\n  }]);\n\n  return Card;\n}();\n\nexports.default = Card;\n\n//# sourceURL=webpack:///./src/shared/data_models/Card.js?");
+
+/***/ }),
+
+/***/ "./src/shared/data_models/Deck.js":
+/*!****************************************!*\
+  !*** ./src/shared/data_models/Deck.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _md = __webpack_require__(/*! md5 */ \"md5\");\n\nvar _md2 = _interopRequireDefault(_md);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Deck = function () {\n  function Deck(name) {\n    _classCallCheck(this, Deck);\n\n    this.name = name;\n    this.id = (0, _md2.default)(\"deck:\" + name);\n    this.cards = [];\n  }\n\n  _createClass(Deck, [{\n    key: \"setFromObject\",\n    value: function setFromObject(ob) {\n      this.name = ob.name;\n      this.cards = ob.cards;\n      this.id = ob.id;\n    }\n  }, {\n    key: \"findCard\",\n    value: function findCard(cardID) {\n      return this.cards.find(function (card) {\n        return card.id === cardID;\n      });\n    }\n  }, {\n    key: \"addCard\",\n    value: function addCard(card) {\n      if (this.findCard(card.id)) {\n        throw \"card already exists\";\n      }\n      if (card.isOneSideEmpty()) {\n        throw \"one side of the card is empty\";\n      }\n      this.cards = this.cards.concat(card);\n    }\n  }, {\n    key: \"isDeckNameEmpty\",\n    value: function isDeckNameEmpty() {\n      var emptyStringPattern = /^\\s*$/; // has zero or more space and has only space\n      return emptyStringPattern.test(this.name);\n    }\n  }], [{\n    key: \"createInstance\",\n    value: function createInstance(ob) {\n      var d = new Deck(ob.name);\n      d.setFromObject(ob);\n      return d;\n    }\n  }]);\n\n  return Deck;\n}();\n\nexports.default = Deck;\n\n//# sourceURL=webpack:///./src/shared/data_models/Deck.js?");
+
+/***/ }),
+
+/***/ "./src/shared/data_models/Mocks.js":
+/*!*****************************************!*\
+  !*** ./src/shared/data_models/Mocks.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.MockDeck = exports.MockDecks = exports.MockCard = exports.MockCards = exports.MockReviews = undefined;\n\nvar _Card = __webpack_require__(/*! ./Card */ \"./src/shared/data_models/Card.js\");\n\nvar _Card2 = _interopRequireDefault(_Card);\n\nvar _Deck = __webpack_require__(/*! ./Deck */ \"./src/shared/data_models/Deck.js\");\n\nvar _Deck2 = _interopRequireDefault(_Deck);\n\nvar _QuizCardView = __webpack_require__(/*! ./QuizCardView */ \"./src/shared/data_models/QuizCardView.js\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar MockCards = [new _Card2.default(\"der Hund\", \"the dog\", \"fakeDeckID\"), new _Card2.default(\"das Kind\", \"the child\", \"fakeDeckID\"), new _Card2.default(\"die Frau\", \"the woman\", \"fakeDeckID\"), new _Card2.default(\"die Katze\", \"the cat\", \"fakeDeckID\")];\n\nvar MockCard = MockCards[0];\nvar MockReviews = (0, _QuizCardView.mkReviews)(MockCards);\n\nvar MockDecks0 = [new _Deck2.default(\"Chinese\")];\nvar MockDecks1 = [new _Deck2.default(\"French\")];\nvar MockDecks2 = [new _Deck2.default(\"German1\"), new _Deck2.default(\"German2\")];\nvar MockDecks3 = [new _Deck2.default(\"Spanish1\"), new _Deck2.default(\"Spanish2\"), new _Deck2.default(\"Spanish3\")];\n\nMockDecks0.map(function (deck) {\n  deck.addCard(new _Card2.default(\"nihou\", \"how are you\", deck.id));\n  return deck;\n});\n\nMockDecks1.map(function (deck) {\n  deck.addCard(new _Card2.default(\"chien\", \"Dog\", deck.id));\n  deck.addCard(new _Card2.default(\"chat\", \"Cat\", deck.id));\n  deck.addCard(new _Card2.default(\"pain\", \"Bread\", deck.id));\n  return deck;\n});\n\nMockDecks2.map(function (deck) {\n  deck.addCard(new _Card2.default(\"der Hund\", \"the dog\", deck.id));\n  deck.addCard(new _Card2.default(\"die Katze\", \"the cat\", deck.id));\n  deck.addCard(new _Card2.default(\"das Brot\", \"the bread\", deck.id));\n  deck.addCard(new _Card2.default(\"die Frau\", \"the woman\", deck.id));\n  return deck;\n});\n\nMockDecks2[0].addCard(new _Card2.default(\"Auf Wiedersehen\", \"goodbye\", MockDecks2[0].id));\nMockDecks2[0].addCard(new _Card2.default(\"danken\", \"thank\", MockDecks2[0].id));\n\nMockDecks3.map(function (deck) {\n  deck.addCard(new _Card2.default(\"el rey\", \"the king\", deck.id));\n  deck.addCard(new _Card2.default(\"la reina\", \"the queen\", deck.id));\n  return deck;\n});\n\nvar MockDecks = [].concat(MockDecks0, MockDecks1, MockDecks2, MockDecks3);\n\nvar MockDeck = MockDecks[0];\n\nexports.MockReviews = MockReviews;\nexports.MockCards = MockCards;\nexports.MockCard = MockCard;\nexports.MockDecks = MockDecks;\nexports.MockDeck = MockDeck;\n\n//# sourceURL=webpack:///./src/shared/data_models/Mocks.js?");
+
+/***/ }),
+
+/***/ "./src/shared/data_models/QuizCardView.js":
+/*!************************************************!*\
+  !*** ./src/shared/data_models/QuizCardView.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.QuizCardView = exports.mkReviews = undefined;\n\nvar _lodash = __webpack_require__(/*! lodash */ \"lodash\");\n\nvar _lodash2 = _interopRequireDefault(_lodash);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar QuizCardView = function QuizCardView(orientation, cardID, prompt, correctAnswer, answers) {\n  _classCallCheck(this, QuizCardView);\n\n  this.orientation = orientation;\n  this.cardID = cardID;\n  this.prompt = prompt;\n  this.correctAnswer = correctAnswer;\n  this.answers = answers;\n};\n\nfunction mkReviews(cards) {\n  var makeReviews = function makeReviews(sideOne, sideTwo) {\n    return cards.map(function (card) {\n      var others = cards.filter(function (other) {\n        return other.id !== card.id;\n      });\n\n      var answers = _lodash2.default.shuffle([card[sideTwo]].concat(_lodash2.default.sampleSize(_lodash2.default.map(others, sideTwo), 3)));\n\n      return new QuizCardView(sideOne, card.id, card[sideOne], card[sideTwo], answers);\n    });\n  };\n\n  var reviews = makeReviews(\"front\", \"back\").concat(makeReviews(\"back\", \"front\"));\n  return _lodash2.default.shuffle(reviews);\n}\n\nexports.mkReviews = mkReviews;\nexports.QuizCardView = QuizCardView;\n\n//# sourceURL=webpack:///./src/shared/data_models/QuizCardView.js?");
+
+/***/ }),
+
+/***/ "./src/shared/reducers/cards.js":
+/*!**************************************!*\
+  !*** ./src/shared/reducers/cards.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n    value: true\n});\n\nvar _types = __webpack_require__(/*! ./../actions/types */ \"./src/shared/actions/types.jsx\");\n\nfunction findDeck(decks, id) {\n    return decks.find(function (d) {\n        return d.id === id;\n    });\n}\n\nvar reducer = function reducer() {\n    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n    var action = arguments[1];\n    var decks = arguments[2];\n\n    switch (action.type) {\n        case _types.STUDY_DECK:\n            return findDeck(decks, action.data.deckID).cards;\n    }\n    return state;\n};\n\nexports.default = reducer;\n\n//# sourceURL=webpack:///./src/shared/reducers/cards.js?");
+
+/***/ }),
+
+/***/ "./src/shared/reducers/decks.js":
+/*!**************************************!*\
+  !*** ./src/shared/reducers/decks.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _types = __webpack_require__(/*! ../actions/types */ \"./src/shared/actions/types.jsx\");\n\nvar _decks = __webpack_require__(/*! ./../storage/decks */ \"./src/shared/storage/decks.js\");\n\nfunction decksWithNewCard(oldDecks, card) {\n  var newState = oldDecks.map(function (deck) {\n    if (deck.id === card.deckID) {\n      try {\n        deck.addCard(card);\n        return deck;\n      } catch (e) {\n        throw e;\n      }\n    } else {\n      return deck;\n    }\n  });\n  saveDecks(newState); //save to localStorage for now\n  return newState;\n}\n\nfunction saveDecks(state) {\n  (0, _decks.writeDecks)(state);\n  return state;\n}\n\nfunction findDeck(decks, id) {\n  //also used in reducer/reviews.js and cards.js\n  return decks.find(function (d) {\n    return d.id === id;\n  });\n}\n\nvar reducer = function reducer() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments[1];\n\n  switch (action.type) {\n    case _types.LOAD_DATA:\n      return action.data;\n    case _types.ADD_DECK:\n      if (findDeck(state, action.data.id)) {\n        throw \"deck already exists\";\n      }\n      if (action.data.isDeckNameEmpty()) {\n        throw \"deck name is empty\";\n      }\n      var newState = state.concat(action.data);\n      saveDecks(newState);\n      return newState;\n    case _types.DELETE_DECK:\n      {\n        var _newState = state.filter(function (deck) {\n          return deck.id !== action.data.deckID;\n        });\n        saveDecks(_newState);\n        return _newState;\n      }\n    case _types.ADD_CARD:\n      return decksWithNewCard(state, action.data);\n\n  }\n  return state;\n};\n\nexports.default = reducer;\n\n//# sourceURL=webpack:///./src/shared/reducers/decks.js?");
+
+/***/ }),
+
+/***/ "./src/shared/reducers/index.js":
+/*!**************************************!*\
+  !*** ./src/shared/reducers/index.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _Mocks = __webpack_require__(/*! ./../data_models/Mocks */ \"./src/shared/data_models/Mocks.js\");\n\nvar _decks = __webpack_require__(/*! ./decks */ \"./src/shared/reducers/decks.js\");\n\nvar _decks2 = _interopRequireDefault(_decks);\n\nvar _cards = __webpack_require__(/*! ./cards */ \"./src/shared/reducers/cards.js\");\n\nvar _cards2 = _interopRequireDefault(_cards);\n\nvar _reviews = __webpack_require__(/*! ./reviews */ \"./src/shared/reducers/reviews.js\");\n\nvar _reviews2 = _interopRequireDefault(_reviews);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar initialState = function initialState() {\n  return { decks: _Mocks.MockDecks, currentReview: (0, _reviews.mkReviewState)(), currentCards: [] };\n};\n\nmodule.exports = function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState();\n  var action = arguments[1];\n\n  var decks = (0, _decks2.default)(state.decks, action);\n  var cards = (0, _cards2.default)(state.currentCards, action, decks);\n\n  return {\n    decks: decks,\n    currentReview: (0, _reviews2.default)(state.currentReview, action, decks),\n    currentCards: cards\n  };\n};\n\n//# sourceURL=webpack:///./src/shared/reducers/index.js?");
+
+/***/ }),
+
+/***/ "./src/shared/reducers/reviews.js":
+/*!****************************************!*\
+  !*** ./src/shared/reducers/reviews.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.mkReviewState = undefined;\n\nvar _QuizCardView = __webpack_require__(/*! ./../data_models/QuizCardView */ \"./src/shared/data_models/QuizCardView.js\");\n\nvar _types = __webpack_require__(/*! ./../actions/types */ \"./src/shared/actions/types.jsx\");\n\nvar mkReviewState = exports.mkReviewState = function mkReviewState() {\n  var deckID = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;\n  var questions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];\n  var currentQuestionIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;\n\n  return { deckID: deckID, questions: questions, currentQuestionIndex: currentQuestionIndex };\n};\n\nfunction findDeck(decks, id) {\n  return decks.find(function (d) {\n    return d.id === id;\n  });\n}\n\nfunction generateReviews(deck) {\n  return mkReviewState(deck.id, (0, _QuizCardView.mkReviews)(deck.cards), 0);\n}\n\nfunction nextReview(state) {\n  return mkReviewState(state.deckID, state.questions, state.currentQuestionIndex + 1);\n}\n\nvar reducer = function reducer() {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : mkReviewState();\n  var action = arguments[1];\n  var decks = arguments[2];\n\n  switch (action.type) {\n    case _types.REVIEW_DECK:\n      return generateReviews(findDeck(decks, action.data.deckID));\n    case _types.NEXT_REVIEW:\n      return nextReview(state);\n    case _types.STOP_REVIEW:\n      return mkReviewState(); //reset review\n  }\n  return state;\n};\n\nexports.default = reducer;\n\n//# sourceURL=webpack:///./src/shared/reducers/reviews.js?");
+
+/***/ }),
+
+/***/ "./src/shared/routes/switchRoutes.js":
+/*!*******************************************!*\
+  !*** ./src/shared/routes/switchRoutes.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n// import { fetchCards } from './api/cards-api';\nvar DeckPage = __webpack_require__(/*! ../components/DeckPage/index.jsx */ \"./src/shared/components/DeckPage/index.jsx\");\nvar NewCardPage = __webpack_require__(/*! ../components/NewCardPage/index.jsx */ \"./src/shared/components/NewCardPage/index.jsx\");\nvar StudyPage = __webpack_require__(/*! ../components/StudyPage/index.jsx */ \"./src/shared/components/StudyPage/index.jsx\");\nvar ReviewPage = __webpack_require__(/*! ../components/ReviewPage/index.jsx */ \"./src/shared/components/ReviewPage/index.jsx\");\n\nvar switchRoutes = [{\n  path: '/',\n  exact: true,\n  component: DeckPage\n  // fetchInitialData: (path = '') => fetchCards(path.split('/').pop()),\n}, {\n  path: '/createCard/:deckID',\n  component: NewCardPage\n}, {\n  path: '/study',\n  component: StudyPage\n}, {\n  path: '/review',\n  component: ReviewPage\n}];\n\nexports.default = switchRoutes;\n\n//# sourceURL=webpack:///./src/shared/routes/switchRoutes.js?");
+
+/***/ }),
+
+/***/ "./src/shared/routes/withAllRoutes.js":
+/*!********************************************!*\
+  !*** ./src/shared/routes/withAllRoutes.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"react\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _switchRoutes = __webpack_require__(/*! ./switchRoutes */ \"./src/shared/routes/switchRoutes.js\");\n\nvar _switchRoutes2 = _interopRequireDefault(_switchRoutes);\n\nvar _reactRedux = __webpack_require__(/*! react-redux */ \"react-redux\");\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\n// import Navbar from './components/Navbar';\n// import NoMatch from './components/NoMatch';\n\nvar _require = __webpack_require__(/*! react-router */ \"react-router\"),\n    withRouter = _require.withRouter;\n\nvar _require2 = __webpack_require__(/*! react-router-dom */ \"react-router-dom\"),\n    Route = _require2.Route,\n    Switch = _require2.Switch;\n\n//const Layout = withRouter(require('../components/Layout/index.jsx'));\n\n\nvar Layout = withRouter(__webpack_require__(/*! ../components/Layout */ \"./src/shared/components/Layout/index.jsx\"));\n\n// const DeckPage = require('../components/DeckPage/index.jsx');//test\n\nvar withAllRoutes = function withAllRoutes(DynamicRouter, store) {\n  return function (_Component) {\n    _inherits(_class, _Component);\n\n    function _class() {\n      _classCallCheck(this, _class);\n\n      return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));\n    }\n\n    _createClass(_class, [{\n      key: 'render',\n      value: function render() {\n        return _react2.default.createElement(\n          _reactRedux.Provider,\n          { store: store },\n          _react2.default.createElement(\n            DynamicRouter,\n            this.props,\n            _react2.default.createElement(\n              Layout,\n              null,\n              _react2.default.createElement(\n                Switch,\n                null,\n                _switchRoutes2.default.map(function (_ref) {\n                  var path = _ref.path,\n                      exact = _ref.exact,\n                      Component = _ref.component;\n                  return _react2.default.createElement(Route, { key: path, path: path, exact: exact, component: function component(props) {\n                      return _react2.default.createElement(Component, props);\n                    } });\n                })\n              )\n            )\n          )\n        );\n      }\n    }]);\n\n    return _class;\n  }(_react.Component);\n};\n\nmodule.exports = withAllRoutes;\n\n//# sourceURL=webpack:///./src/shared/routes/withAllRoutes.js?");
+
+/***/ }),
+
+/***/ "./src/shared/storage/decks.js":
+/*!*************************************!*\
+  !*** ./src/shared/storage/decks.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nexports.writeDecks = exports.readDecks = exports.DECK_KEY = undefined;\n\nvar _Deck = __webpack_require__(/*! ./../data_models/Deck */ \"./src/shared/data_models/Deck.js\");\n\nvar _Deck2 = _interopRequireDefault(_Deck);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar DECK_KEY = exports.DECK_KEY = \"cardgame:decks\";\n\nasync function read(key, deserializer) {\n  try {\n    var val = await localStorage.getItem(key);\n    if (val !== null) {\n      var readValue = JSON.parse(val).map(function (serialized) {\n        return deserializer(serialized);\n      });\n      return readValue;\n    } else {\n      console.info(key + \" not found on disk.\");\n      return [];\n    }\n  } catch (error) {\n    console.warn(\"localStorage error: \", error.message);\n  }\n}\n\nasync function write(key, item) {\n  try {\n    await localStorage.setItem(key, JSON.stringify(item));\n  } catch (error) {\n    console.error(\"localStorage error: \", error.message);\n  }\n}\n\nvar readDecks = exports.readDecks = function readDecks() {\n  return read(DECK_KEY, _Deck2.default.createInstance);\n};\n\nvar writeDecks = exports.writeDecks = function writeDecks(decks) {\n  return write(DECK_KEY, decks);\n};\n\n//# sourceURL=webpack:///./src/shared/storage/decks.js?");
+
+/***/ }),
+
+/***/ "body-parser":
+/*!******************************!*\
+  !*** external "body-parser" ***!
+  \******************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("react");
+eval("module.exports = require(\"body-parser\");\n\n//# sourceURL=webpack:///external_%22body-parser%22?");
 
 /***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _styles = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NormalText = function (_Component) {
-  _inherits(NormalText, _Component);
-
-  function NormalText() {
-    _classCallCheck(this, NormalText);
-
-    return _possibleConstructorReturn(this, (NormalText.__proto__ || Object.getPrototypeOf(NormalText)).apply(this, arguments));
-  }
-
-  _createClass(NormalText, [{
-    key: "render",
-    value: function render() {
-      var width = window.screen.width;
-      var concatStyles = Object.assign({}, this.props.style, { fontSize: width * 1.0 / _styles.scalingFactors.normal });
-
-      return _react2.default.createElement(
-        "span",
-        { className: "fontNormal",
-          style: concatStyles
-        },
-        this.props.children
-      );
-    }
-  }]);
-
-  return NormalText;
-}(_react.Component);
-
-NormalText.displayName = "NormalText";
-exports.default = NormalText;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var cardStyle = exports.cardStyle = {
-    position: "absolute",
-    border: "2px solid yellow",
-    height: 100,
-    width: 70,
-    padding: 10,
-    borderRadius: 10,
-    cursor: 'pointer',
-    textAlign: 'center'
-};
-
-var scalingFactors = exports.scalingFactors = {
-    normal: 45,
-    big: 30
-};
-
-var colors = exports.colors = {
-    pink: "#FDA6CD",
-    pink2: "#d35d90",
-    green: "#65ed99",
-    tan: "#FFEFE8",
-    blue: "#5DA9E9",
-    gray1: "#888888",
-    red: "#ff0000",
-    white: "#ffffff"
-};
-
-var fonts = exports.fonts = {
-    normal: { fontSize: 24 },
-    alternate: { fontSize: 50, color: "#FFFFFF" },
-    big: { fontSize: 32, alignSelf: "center" }
-};
-
-var headerStyle = exports.headerStyle = {
-    position: 'relative',
-    top: 80,
-    margin: 0
-};
-
-var inputButtonStyle = exports.inputButtonStyle = {
-    justifyContent: "center",
-    padding: 10,
-    margin: 10,
-    fontSize: 24,
-    alignItems: "center",
-    backgroundColor: 'green',
-    color: 'white'
-};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Button = function (_Component) {
-  _inherits(Button, _Component);
-
-  function Button(props) {
-    _classCallCheck(this, Button);
-
-    var _this = _possibleConstructorReturn(this, (Button.__proto__ || Object.getPrototypeOf(Button)).call(this, props));
-
-    _this._onClick = function (e) {
-      e.preventDefault();
-      //e.persist();//will remove the synthetic event from the pool and retake the reference to the event
-      _this.props.onClick(_this.buttonRef.current.id);
-    };
-
-    _this.buttonRef = _react2.default.createRef();
-    return _this;
-  }
-
-  _createClass(Button, [{
-    key: "render",
-    value: function render() {
-      var concatStyles = Object.assign({}, this.props.style);
-
-      return _react2.default.createElement(
-        "button",
-        {
-          className: "wideButton",
-          onClick: this._onClick,
-          style: concatStyles,
-          disabled: this.props.disabled,
-          id: this.props.id,
-          ref: this.buttonRef
-        },
-        this.props.children
-      );
-    }
-  }]);
-
-  return Button;
-}(_react.Component);
-
-Button.displayName = "Button";
-
-
-Button.defaultProps = { disabled: false };
-
-exports.default = Button;
-
-/***/ }),
-/* 4 */
+/***/ "express":
+/*!**************************!*\
+  !*** external "express" ***!
+  \**************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("md5");
+eval("module.exports = require(\"express\");\n\n//# sourceURL=webpack:///external_%22express%22?");
 
 /***/ }),
-/* 5 */
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("react-redux");
+eval("module.exports = require(\"lodash\");\n\n//# sourceURL=webpack:///external_%22lodash%22?");
 
 /***/ }),
-/* 6 */
+
+/***/ "md5":
+/*!**********************!*\
+  !*** external "md5" ***!
+  \**********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router-dom");
+eval("module.exports = require(\"md5\");\n\n//# sourceURL=webpack:///external_%22md5%22?");
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _switchRoutes = __webpack_require__(25);
-
-var _switchRoutes2 = _interopRequireDefault(_switchRoutes);
-
-var _routes = __webpack_require__(24);
-
-var _routes2 = _interopRequireDefault(_routes);
-
-var _reactRouterDom = __webpack_require__(6);
-
-var _server = __webpack_require__(27);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//ReactDOMServer
-
-//server-side store
-var _require = __webpack_require__(40),
-    createStore = _require.createStore;
-//import serialize from "serialize-javascript";
-
-//import entryHTML from './entryHTML.js';
-
-
-var reducers = __webpack_require__(36);
-var store = createStore(reducers);
-
-//Use Babel to transform required files from JSX to JS
-__webpack_require__(26)({
-    presets: ['react']
-});
-
-module.exports = function (app) {
-    console.log('------------- called restful-api.js --------------------');
-    //dynamic path '*' or '/*'??????
-    //app.get('*', (req, res, next) => { //not called
-    //app.get('/*', (req, res, next) => {
-    app.get('/', function (req, res, next) {
-        console.log('restful-api req.url: ', req.url); //no
-
-        var activeRoute = _switchRoutes2.default.find(function (route) {
-            return (0, _reactRouterDom.matchPath)(req.url, route);
-        }) || {};
-
-        var promise = activeRoute.fetchInitialData ? activeRoute.fetchInitialData(req.path) : Promise.resolve();
-
-        var ServerRoutes = (0, _routes2.default)(_reactRouterDom.StaticRouter, store); //server side doesn't have store????
-
-        promise.then(function (data) {
-            var context = { data: data };
-
-            //const initialData = `window.INITIAL_DATA = ${serialize(data)}`;
-            var initialData = "window.INITIAL_DATA = " + JSON.stringify(data);
-
-            console.log('restful-api data: ', data);
-
-            var content = (0, _server.renderToString)(_react2.default.createElement(ServerRoutes, { location: req.url, context: context })
-            // <Provider store={store}>
-            //     <StaticRouter>
-            //         <Layout>
-            //             {/* <Switch>
-            //                 <Route path='/' exact component={(props) => (<DeckPage {...props} />)} />  
-            //             </Switch> */}
-            //         </Layout>
-            //     </StaticRouter>
-            // </Provider>
-            );
-
-            res.send(entryHTML(content, initialData)); //send() or render()
-            // res.send(
-            //     `<!DOCTYPE html>
-            //     <html>
-            //         <head>
-            //             <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"> 
-            //             <meta name="viewport" content="width=device-width, initial-scale=1">
-            //         </head>
-            //         <body>
-            //             <div class="container-fluid" id="content">${content}</div>
-            //             <script src="/js/bundle.js"></script>
-            //         </body>
-            //     </html>
-            //     `
-            // )
-        }).catch(next);
-    });
-};
-
-/***/ }),
-/* 8 */
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("body-parser");
+eval("module.exports = require(\"react\");\n\n//# sourceURL=webpack:///external_%22react%22?");
 
 /***/ }),
-/* 9 */
+
+/***/ "react-dom/server":
+/*!***********************************!*\
+  !*** external "react-dom/server" ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("express");
+eval("module.exports = require(\"react-dom/server\");\n\n//# sourceURL=webpack:///external_%22react-dom/server%22?");
 
 /***/ }),
-/* 10 */,
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-// import { renderToString } from "react-dom/server";
-// import { matchPath } from "react-router-dom";
-
-// require('babel-register')({
-//     presets: [ 'react' ]
-// })
-
-var express = __webpack_require__(9),
-    app = express(),
-    port = process.env.PORT || 3000,
-
-// mongoose = require('mongoose'), 
-// passport = require('passport'), 
-// flash = require('connect-flash'), 
-// logger = require('morgan'), 
-// cookieParser = require('cookie-parser'), 
-bodyParser = __webpack_require__(8),
-
-// session = require('express-session'), 
-// sticky = require('sticky-session'), 
-// server = require('http').Server(app),
-// validator = require('express-validator'),
-// errorHandler = require('errorhandler'),
-// compression = require('compression'),
-// mongoDBurl = 'mongodb://localhost:27017/.....',
-// ReactDOMServer = require('react-dom/server'),
-// React = require('react'),
-dummy = 'dumb';
-
-// require('babel-register')({
-//     presets: ['react']
-// });
-
-//set the title for this application
-app.set('title', 'React Card Game');
-
-// set up our express application
-//app.use(express.static('../../public')); 
-app.use(express.static('public'));
-
-// app.use(logger('dev')); // log every request to the console
-// app.use(cookieParser()); // read cookies (needed for auth)
-// app.use(compression());
-// app.use(errorHandler());
-// app.use(validator());
-
-//A new body object containing the parsed data is populated on the request object after the middleware (i.e. req.body). This object will contain key-value pairs, where the value can be a string or array (when extended is false), or any type (when extended is true).
-app.use(bodyParser.urlencoded({ extended: true })); //---- parse application/x-www-form-urlencoded. 
-//extended: true? false?
-//The extended option allows to choose between parsing the URL-encoded data with the querystring library (when false) or the qs library (when true). The "extended" syntax allows for rich objects and arrays to be encoded into the URL-encoded format, allowing for a JSON-like experience with URL-encoded. For more information, please see the qs library.
-//If {extended:false}, you can not post nested objects!
-
-app.use(bodyParser.json());
-
-//app.set('view engine', 'ejs'); 
-
-//methodOverride is for simulating DELETE and PUT. Otherwise they are treated the same as <input ...method='GET'>.
-//in HTML <input... name='method' value='PUT'> --> app.put() in Node.js
-// var methodOverride = require('method-override');
-// app.use(methodOverride());
-
-// config connection to client database for this session
-// var clientDbURL = 'mongodb://localhost:27017/clientDB';
-// mongoose.connect(clientDbURL);
-
-// //set up a session store ==========================
-// //const MongoStore = require('connect-mongo')(session);// replaced by 'connect-mongodb-session' in Express 4
-// //'connect-mongo' automatically store session in a collection called 'sessions', but need to define which database
-// var MongoDBStore = require('connect-mongodb-session')(session);  //MongoDB session store for connect/express built by MongoDB. Pass in an instance of the express-session module the MongoDBStore class will enable you to store your Express sessions in MongoDB. 
-// //'connect-mongodb-session' is a MongoDB-backed session storage for connect and Express. Meant to be a well-maintained and fully-featured replacement for modules like connect-mongo
-
-// // declare a session store instance
-// var store = new MongoDBStore({
-//   //uri: 'mongodb://localhost:27017/connect_mongodb_session',//WRONG: must use client credential database for login seesion
-//   uri: clientDbURL, // uri: a MongoDB connection string (an existing mongoose connection)
-//   collection: 'clientSessions' //collection: the MongoDB collection to store sessions in. By default it's 'sessions'
-// });
-
-// // Catch errors 
-// store.on('error', function(error) {
-//   assert.ifError(error);
-//   assert.ok(false);
-// });
-
-// app.use(session({
-//   secret: 'TL-twApp',// seed for encryption
-//   name: 'TrendifyLive_Twitter_App_Session',
-//   //The name of the session ID cookie to set in the response. The default value is 'connect.sid', but this is problematic when running multiple apps on the same host name (e.g. localhost --not counting ports)
-//   cookie: { 
-//     maxAge: 1000 * 60 * 60 * 24, // 1 day.
-//     //expires: new Date(0) //year 1969 // comment this out as it prohibits toggling passport isAuthenticated().
-//     //The expiration is reset to the original maxAge. By default, no maximum age is set.
-
-//     //httpOnly: true, // don't let browser javascript access cookie ever
-//     //secure: true, // only use cookie over https
-//   },
-//   store: store,
-//   resave: true, //Forces the session to be saved back to the session store, even if the session was never modified during the request. Need 'resave: true' when session.touch() not implemented
-//   saveUninitialized: true
-// }));
-
-// mongodb.MongoClient.connect(mongoDBurl, (err, db) => {
-//     if (err) {
-//       console.error(err);
-//       process.exit(1);
-//     }
-//     app.use((req, res, next) => {
-//         req.clientDB = db.collection('clientDB');
-//         return next();
-//     })
-// });
-
-// require('./config/passport-strategies.js')(passport); // pass passport for configuration
-// //Passport has the request to connect to database
-// //this must be before require('./app/routes.js')(app, passport)
-// // the passport.use to config passport. Then passport then can return a 'user'/client from mongodb and after that it can be used in route!
-// app.use(passport.initialize());
-// app.use(passport.session()); // persistent login sessions
-// app.use(flash()); // use connect-flash for flash messages stored in session
-
-//split the file
-//require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
-__webpack_require__(7)(app);
-
-app.listen(port, function () {
-    console.log('Frontend Server is listening on port: ' + port);
-});
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.loadData = exports.nextReview = exports.stopReview = exports.deleteDeck = exports.reviewDeck = exports.studyDeck = exports.addCard = exports.addDeck = undefined;
-
-var _types = __webpack_require__(13);
-
-var _Card = __webpack_require__(22);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-var _Deck = __webpack_require__(23);
-
-var _Deck2 = _interopRequireDefault(_Deck);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var addDeck = exports.addDeck = function addDeck(name) {
-  return { type: _types.ADD_DECK, data: new _Deck2.default(name) };
-};
-
-var addCard = exports.addCard = function addCard(front, back, deckID) {
-  return { type: _types.ADD_CARD, data: new _Card2.default(front, back, deckID) };
-};
-
-var studyDeck = exports.studyDeck = function studyDeck(deckID) {
-  return { type: _types.STUDY_DECK, data: { deckID: deckID } };
-};
-
-var reviewDeck = exports.reviewDeck = function reviewDeck(deckID) {
-  return { type: _types.REVIEW_DECK, data: { deckID: deckID } };
-};
-
-var deleteDeck = exports.deleteDeck = function deleteDeck(deckID) {
-  return { type: _types.DELETE_DECK, data: { deckID: deckID } };
-};
-
-var stopReview = exports.stopReview = function stopReview() {
-  return { type: _types.STOP_REVIEW, data: {} };
-};
-
-var nextReview = exports.nextReview = function nextReview() {
-  return { type: _types.NEXT_REVIEW, data: {} };
-};
-
-var loadData = exports.loadData = function loadData(data) {
-  return { type: _types.LOAD_DATA, data: data };
-};
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var ADD_DECK = exports.ADD_DECK = "ADD_DECK";
-var ADD_CARD = exports.ADD_CARD = "ADD_CARD";
-var STUDY_DECK = exports.STUDY_DECK = "STUDY_DECK";
-var REVIEW_DECK = exports.REVIEW_DECK = "REVIEW_DECK";
-var DELETE_DECK = exports.DELETE_DECK = "DELETE_DECK";
-var STOP_REVIEW = exports.STOP_REVIEW = "STOP_REVIEW";
-var NEXT_REVIEW = exports.NEXT_REVIEW = "NEXT_REVIEW";
-var LOAD_DATA = exports.LOAD_DATA = "LOAD_DATA";
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-var _Card = __webpack_require__(18);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Deck = function (_Component) {
-  _inherits(Deck, _Component);
-
-  function Deck(props) {
-    _classCallCheck(this, Deck);
-
-    var _this = _possibleConstructorReturn(this, (Deck.__proto__ || Object.getPrototypeOf(Deck)).call(this, props));
-
-    _this._study = function () {
-      _this.props.study();
-    };
-
-    _this._review = function () {
-      _this.props.review();
-    };
-
-    _this._addCards = function () {
-      _this.props.add();
-    };
-
-    _this._deleteDeck = function () {
-      _this.props.delete();
-    };
-
-    _this.state = { deckWidth: 0, deckHeight: 0 };
-    _this._updatePosition = _this._updatePosition.bind(_this);
-    _this.deckRef = _react2.default.createRef();
-    _this.deckFigRef = _react2.default.createRef();
-    return _this;
-  }
-
-  _createClass(Deck, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this._updatePosition();
-      window.addEventListener('resize', this._updatePosition);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener('resize', this._updatePosition);
-    }
-  }, {
-    key: "_updatePosition",
-    value: function _updatePosition(e) {
-      var deck = this.deckRef.current;
-      var deckFig = this.deckFigRef.current;
-      this.setState({
-        deckWidth: deckFig.offsetWidth,
-        deckHeight: deckFig.offsetHeight
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        "div",
-        { className: "deckContainer", id: this.props.id, ref: this.deckRef },
-        _react2.default.createElement(
-          "figure",
-          {
-            onClick: this._study,
-            ref: this.deckFigRef
-          },
-          this.props.deck.cards.map(function (card, cardIndex) {
-            return _react2.default.createElement(_Card2.default, {
-              key: card.id,
-              containerWidth: _this2.state.deckWidth,
-              containerHeight: _this2.state.deckHeight,
-              cardIndex: cardIndex,
-              zIndex: cardIndex + 1,
-              id: card.id,
-              uncover: false
-            });
-          })
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "deckGroup" },
-          _react2.default.createElement(
-            _Button2.default,
-            { className: "deckButton", onClick: this._deleteDeck },
-            _react2.default.createElement(
-              _NormalText2.default,
-              null,
-              this.props.deck.name,
-              ": Delete"
-            )
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { className: "editButton", onClick: this._addCards },
-            _react2.default.createElement(
-              _NormalText2.default,
-              null,
-              this.props.count,
-              " Cards: Add"
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return Deck;
-}(_react.Component);
-
-Deck.displayName = "Deck";
-exports.default = Deck;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DeckCreationFields = __webpack_require__(16);
-
-var _Snackbar = __webpack_require__(21);
-
-var _Snackbar2 = _interopRequireDefault(_Snackbar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DeckCreation = function (_Component) {
-  _inherits(DeckCreation, _Component);
-
-  function DeckCreation(props) {
-    _classCallCheck(this, DeckCreation);
-
-    var _this = _possibleConstructorReturn(this, (DeckCreation.__proto__ || Object.getPrototypeOf(DeckCreation)).call(this, props));
-
-    _this._newDeck = function (name) {
-      _this.props.create(name);
-      _this.setState({ startCreating: false });
-    };
-
-    _this._startCreating = function () {
-      _this.setState({ startCreating: true });
-    };
-
-    _this.state = { startCreating: false };
-    return _this;
-  }
-
-  _createClass(DeckCreation, [{
-    key: "render",
-    value: function render() {
-      var contents = this.props.error ? _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }),
-        _react2.default.createElement(
-          _Snackbar2.default,
-          { display: this.props.error && this.props.showMsg, handleClick: this.props.closeMsg, dwellTime: 1000 },
-          this.props.error
-        )
-      ) : this.state.startCreating ? _react2.default.createElement(_DeckCreationFields.EnterDeck, { create: this._newDeck }) : _react2.default.createElement(_DeckCreationFields.CreateDeckButton, { onClick: this._startCreating });
-      return contents;
-    }
-  }]);
-
-  return DeckCreation;
-}(_react.Component);
-
-exports.default = DeckCreation;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.EnterDeck = exports.CreateDeckButton = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-var _LabeledInput = __webpack_require__(20);
-
-var _LabeledInput2 = _interopRequireDefault(_LabeledInput);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CreateDeckButton = function (_Component) {
-  _inherits(CreateDeckButton, _Component);
-
-  function CreateDeckButton() {
-    _classCallCheck(this, CreateDeckButton);
-
-    return _possibleConstructorReturn(this, (CreateDeckButton.__proto__ || Object.getPrototypeOf(CreateDeckButton)).apply(this, arguments));
-  }
-
-  _createClass(CreateDeckButton, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        _Button2.default,
-        { className: "createDeck", onClick: this.props.onClick },
-        _react2.default.createElement(
-          _NormalText2.default,
-          null,
-          "Create Deck"
-        )
-      );
-    }
-  }]);
-
-  return CreateDeckButton;
-}(_react.Component);
-
-var EnterDeck = function (_Component2) {
-  _inherits(EnterDeck, _Component2);
-
-  function EnterDeck(props) {
-    _classCallCheck(this, EnterDeck);
-
-    var _this2 = _possibleConstructorReturn(this, (EnterDeck.__proto__ || Object.getPrototypeOf(EnterDeck)).call(this, props));
-
-    _this2._create = function () {
-      _this2.props.create(_this2.state.deckName);
-    };
-
-    _this2._onChange = function (deckName) {
-      _this2.setState({ deckName: deckName });
-    };
-
-    _this2.state = { deckName: "" };
-    return _this2;
-  }
-
-  _createClass(EnterDeck, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { id: "deckCreation" },
-        _react2.default.createElement(_LabeledInput2.default, {
-          onEntry: this.props.create,
-          onChange: this._onChange,
-          className: "nameField fontNormal",
-          label: "Deck Name",
-          placeholder: " New Deck Name "
-        }),
-        _react2.default.createElement(CreateDeckButton, {
-          onClick: this._create
-        })
-      );
-    }
-  }]);
-
-  return EnterDeck;
-}(_react.Component);
-
-exports.CreateDeckButton = CreateDeckButton;
-exports.EnterDeck = EnterDeck;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(5);
-
-var _creators = __webpack_require__(12);
-
-var _Deck = __webpack_require__(14);
-
-var _Deck2 = _interopRequireDefault(_Deck);
-
-var _DeckCreation = __webpack_require__(15);
-
-var _DeckCreation2 = _interopRequireDefault(_DeckCreation);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var DecksScreen = function (_Component) {
-  _inherits(DecksScreen, _Component);
-
-  function DecksScreen(props) {
-    _classCallCheck(this, DecksScreen);
-
-    var _this = _possibleConstructorReturn(this, (DecksScreen.__proto__ || Object.getPrototypeOf(DecksScreen)).call(this, props));
-
-    _this._createDeck = function (name) {
-      try {
-        var createDeckAction = (0, _creators.addDeck)(name);
-        _this.props.createDeck(createDeckAction);
-        _this.setState({ error: null, showMsg: false });
-        _this.props.history.push("/createCard/" + createDeckAction.data.id);
-      } catch (e) {
-        _this.setState({ error: e, showMsg: true });
-      }
-    };
-
-    _this._closeMsg = function () {
-      _this.setState({ showMsg: false });
-    };
-
-    _this._addCards = function (deckID) {
-      _this.props.history.push({
-        pathname: "/createCard/" + deckID,
-        state: {
-          returnto: _this.props.location.pathname
-        }
-      });
-    };
-
-    _this._study = function (deckID) {
-      _this.props.studyDeck(deckID);
-      _this.props.history.push({
-        pathname: '/study',
-        state: {
-          deckID: deckID //access: this.props.location.state.deckID
-        }
-      });
-    };
-
-    _this._review = function (deckID) {
-      _this.props.reviewDeck(deckID);
-      _this.props.history.push('review');
-    };
-
-    _this._delete = function (deckID) {
-      _this.props.deleteDeck(deckID);
-    };
-
-    _this.state = { error: null, showMsg: false };
-    return _this;
-  }
-
-  _createClass(DecksScreen, [{
-    key: "_mkDeckViews",
-    value: function _mkDeckViews() {
-      var _this2 = this;
-
-      if (!this.props.decks) {
-        return null;
-      }
-
-      return _react2.default.createElement(
-        "div",
-        { className: "playTable" },
-        this.props.decks.map(function (deck) {
-          return _react2.default.createElement(_Deck2.default, {
-            deck: deck,
-            count: _this2.props.counts[deck.id],
-            key: deck.id,
-            id: '_' + deck.id //JS variable for querySelector can't start with a number
-            , add: function add() {
-              _this2._addCards(deck.id);
-            },
-            study: function study() {
-              _this2._study(deck.id);
-            },
-            "delete": function _delete() {
-              _this2._delete(deck.id);
-            },
-            review: function review() {
-              _this2._review(deck.id);
-            }
-          });
-        })
-      );
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { id: "deckPage" },
-        _react2.default.createElement(_DeckCreation2.default, { create: this._createDeck, error: this.state.error, showMsg: this.state.showMsg, closeMsg: this._closeMsg }),
-        this._mkDeckViews()
-      );
-    }
-  }]);
-
-  return DecksScreen;
-}(_react.Component);
-
-DecksScreen.displayName = "DecksScreen";
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createDeck: function createDeck(deckAction) {
-      dispatch(deckAction);
-    },
-    studyDeck: function studyDeck(deckID) {
-      dispatch((0, _creators.studyDeck)(deckID));
-    },
-    reviewDeck: function reviewDeck(deckID) {
-      dispatch((0, _creators.reviewDeck)(deckID));
-    },
-    deleteDeck: function deleteDeck(deckID) {
-      dispatch((0, _creators.deleteDeck)(deckID));
-    }
-  };
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    decks: state.decks,
-    counts: state.decks.reduce(function (sum, deck) {
-      sum[deck.id] = deck.cards.length;
-      return sum;
-    }, {})
-  };
-};
-
-module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(DecksScreen);
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _styles = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Card = function (_Component) {
-  _inherits(Card, _Component);
-
-  function Card(props) {
-    _classCallCheck(this, Card);
-
-    var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
-
-    _this._flipCard = function () {
-      var orientation = _this.state.orientation === 'front' ? 'back' : 'front';
-      var className = 'flip-animation';
-      _this.setState({ orientation: orientation, className: className });
-    };
-
-    _this._animeEnd = function () {
-      _this.setState({ className: '' });
-    };
-
-    _this.state = { orientation: 'front', className: '' };
-    return _this;
-  }
-
-  _createClass(Card, [{
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          _props$containerWidth = _props.containerWidth,
-          containerWidth = _props$containerWidth === undefined ? 0 : _props$containerWidth,
-          _props$containerHeigh = _props.containerHeight,
-          containerHeight = _props$containerHeigh === undefined ? 0 : _props$containerHeigh,
-          _props$cardIndex = _props.cardIndex,
-          cardIndex = _props$cardIndex === undefined ? 0 : _props$cardIndex,
-          _props$zIndex = _props.zIndex,
-          zIndex = _props$zIndex === undefined ? 1 : _props$zIndex,
-          _props$uncover = _props.uncover,
-          uncover = _props$uncover === undefined ? false : _props$uncover,
-          _props$orientation = _props.orientation,
-          orientation = _props$orientation === undefined ? 'front' : _props$orientation,
-          _props$card = _props.card,
-          card = _props$card === undefined ? null : _props$card;
-
-      //calculate each card position
-
-      var stackGap = 4 * cardIndex;
-      var offsetX = (containerWidth - _styles.cardStyle.width) / 2 - stackGap;
-      var offsetY = (containerHeight - _styles.cardStyle.height) / 2 - stackGap;
-
-      var bgColor = uncover ? 'white' : 'red';
-      var extraStyle = {
-        top: offsetY,
-        left: offsetX,
-        zIndex: zIndex,
-        backgroundColor: bgColor
-      };
-      var concatStyle = Object.assign({}, _styles.cardStyle, extraStyle);
-      return _react2.default.createElement(
-        "div",
-        { style: concatStyle, onClick: this._flipCard, className: this.state.className, onAnimationEnd: this._animeEnd },
-        card && uncover ? card[this.state.orientation] : null
-      );
-    }
-  }]);
-
-  return Card;
-}(_react.Component);
-
-Card.displayName = "Card";
-exports.default = Card;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Input = function (_Component) {
-  _inherits(Input, _Component);
-
-  function Input(props) {
-    _classCallCheck(this, Input);
-
-    var _this = _possibleConstructorReturn(this, (Input.__proto__ || Object.getPrototypeOf(Input)).call(this, props));
-
-    _this._onSubmit = function (ev) {
-      var keyCode = ev.keyCode || ev.which;
-      if (keyCode == 13) {
-        if (_this.props.onEntry && typeof _this.props.onEntry === 'function') {
-          _this.props.onEntry(_this.state.text);
-
-          if (_this.props.clearOnSubmit) {
-            _this.setState({ text: "" });
-          }
-        }
-      }
-    };
-
-    _this._onChange = function (ev) {
-      _this.setState({ text: ev.target.value });
-
-      if (_this.props.onChange) {
-        _this.props.onChange(ev.target.value);
-      }
-    };
-
-    _this.state = { text: "" }; //a controlled component
-    return _this;
-  }
-
-  //add this to update input field (e.g clear it after submit)
-
-
-  _createClass(Input, [{
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
-      if (nextProps.value != undefined) {
-        this.setState({ text: nextProps.value });
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _props = this.props,
-          _props$placeholder = _props.placeholder,
-          placeholder = _props$placeholder === undefined ? '' : _props$placeholder,
-          _props$type = _props.type,
-          type = _props$type === undefined ? '' : _props$type,
-          _props$name = _props.name,
-          name = _props$name === undefined ? '' : _props$name,
-          _props$className = _props.className,
-          className = _props$className === undefined ? '' : _props$className,
-          _props$style = _props.style,
-          style = _props$style === undefined ? {} : _props$style,
-          _props$onClick = _props.onClick,
-          onClick = _props$onClick === undefined ? null : _props$onClick,
-          _props$readOnly = _props.readOnly,
-          readOnly = _props$readOnly === undefined ? false : _props$readOnly;
-
-
-      var localStyle = {
-        container: {
-          display: 'flex',
-          flexDirection: 'row'
-        },
-        input: {
-          flex: '1'
-        }
-      };
-
-      var concatStyle = Object.assign({}, style, localStyle.input);
-
-      return _react2.default.createElement(
-        "div",
-        { style: localStyle.container },
-        _react2.default.createElement("input", {
-          placeholder: placeholder,
-          type: type,
-          name: name,
-          className: className,
-          style: concatStyle,
-          ref: "inputRef" //use ref if not capture state change
-          , onChange: this._onChange,
-          onKeyUp: this._onSubmit,
-          onClick: onClick,
-          readOnly: readOnly,
-          value: readOnly ? this.props.value : this.state.text //if passed a value then it should be read-only
-        })
-      );
-    }
-  }]);
-
-  return Input;
-}(_react.Component);
-
-// Default props for custom attributes
-
-
-Input.defaultProps = { clearOnSubmit: true };
-
-exports.default = Input;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Input = __webpack_require__(19);
-
-var _Input2 = _interopRequireDefault(_Input);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var LabeledInput = function (_Component) {
-  _inherits(LabeledInput, _Component);
-
-  function LabeledInput() {
-    _classCallCheck(this, LabeledInput);
-
-    return _possibleConstructorReturn(this, (LabeledInput.__proto__ || Object.getPrototypeOf(LabeledInput)).apply(this, arguments));
-  }
-
-  _createClass(LabeledInput, [{
-    key: "render",
-    value: function render() {
-      var localStyle = {
-        container: {
-          display: 'flex',
-          flexDirection: 'row'
-        }
-      };
-
-      return _react2.default.createElement(
-        "div",
-        { style: localStyle.container },
-        _react2.default.createElement(
-          _NormalText2.default,
-          null,
-          this.props.label,
-          ":"
-        ),
-        _react2.default.createElement(_Input2.default, _extends({
-          type: "text"
-        }, this.props))
-      );
-    }
-  }]);
-
-  return LabeledInput;
-}(_react.Component);
-
-exports.default = LabeledInput;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Snackbar = function (_Component) {
-  _inherits(Snackbar, _Component);
-
-  function Snackbar() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Snackbar);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Snackbar.__proto__ || Object.getPrototypeOf(Snackbar)).call.apply(_ref, [this].concat(args))), _this), _this._handleClick = function () {
-      _this.props.handleClick();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Snackbar, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      console.log('snackbar will unmount');
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _style = {
-        display: this.props.display ? 'block' : 'none'
-      };
-
-      return _react2.default.createElement(
-        'div',
-        { id: 'snackbar', style: _style, onClick: this._handleClick },
-        this.props.children
-      );
-    }
-  }]);
-
-  return Snackbar;
-}(_react.Component);
-
-Snackbar.defaultProps = { dwellTime: 1000 };
-
-exports.default = Snackbar;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _md = __webpack_require__(4);
-
-var _md2 = _interopRequireDefault(_md);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Card = function () {
-  function Card(front, back, deckID) {
-    _classCallCheck(this, Card);
-
-    this.front = front;
-    this.back = back;
-    this.deckID = deckID;
-    this.id = (0, _md2.default)(front + back + deckID);
-  }
-
-  _createClass(Card, [{
-    key: "setFromObject",
-    value: function setFromObject(ob) {
-      this.front = ob.front;
-      this.back = ob.back;
-      this.deckID = ob.deckID;
-      this.id = ob.id;
-    }
-  }, {
-    key: "isOneSideEmpty",
-    value: function isOneSideEmpty() {
-      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
-      return emptyStringPattern.test(this.front) || emptyStringPattern.test(this.back);
-    }
-  }], [{
-    key: "createInstance",
-    value: function createInstance(ob) {
-      //to save lines of code when creating a new card
-      var c = new Card(ob.front, ob.back, ob.deckID);
-      c.setFromObject(ob);
-      return c;
-    }
-  }]);
-
-  return Card;
-}();
-
-exports.default = Card;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _md = __webpack_require__(4);
-
-var _md2 = _interopRequireDefault(_md);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Deck = function () {
-  function Deck(name) {
-    _classCallCheck(this, Deck);
-
-    this.name = name;
-    this.id = (0, _md2.default)("deck:" + name);
-    this.cards = [];
-  }
-
-  _createClass(Deck, [{
-    key: "setFromObject",
-    value: function setFromObject(ob) {
-      this.name = ob.name;
-      this.cards = ob.cards;
-      this.id = ob.id;
-    }
-  }, {
-    key: "findCard",
-    value: function findCard(cardID) {
-      return this.cards.find(function (card) {
-        return card.id === cardID;
-      });
-    }
-  }, {
-    key: "addCard",
-    value: function addCard(card) {
-      if (this.findCard(card.id)) {
-        throw "card already exists";
-      }
-      if (card.isOneSideEmpty()) {
-        throw "one side of the card is empty";
-      }
-      this.cards = this.cards.concat(card);
-    }
-  }, {
-    key: "isDeckNameEmpty",
-    value: function isDeckNameEmpty() {
-      var emptyStringPattern = /^\s*$/; // has zero or more space and has only space
-      return emptyStringPattern.test(this.name);
-    }
-  }], [{
-    key: "createInstance",
-    value: function createInstance(ob) {
-      var d = new Deck(ob.name);
-      d.setFromObject(ob);
-      return d;
-    }
-  }]);
-
-  return Deck;
-}();
-
-exports.default = Deck;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _allRoutes = __webpack_require__(31);
-
-var _allRoutes2 = _interopRequireDefault(_allRoutes);
-
-var _reactRedux = __webpack_require__(5);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Layout = __webpack_require__(30);
-
-var _Layout2 = _interopRequireDefault(_Layout);
-
-var _DeckPage = __webpack_require__(17);
-
-var _DeckPage2 = _interopRequireDefault(_DeckPage);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//import {React, Component} from 'react';//wrong
-
-
-// const reduxRoutes = (store, Router, pathname, context) => {
-// const reduxRoutes = (store, Router, more) => {
-//     <Provider store={store}>
-//         {/* <Router location={pathname} context={context}> */}
-//         <Router {...more}>
-//             {routes}
-//         </Router>
-//     </Provider>
-// }
-
-var _require = __webpack_require__(28),
-    withRouter = _require.withRouter;
-
-var _require2 = __webpack_require__(6),
-    Route = _require2.Route,
-    Switch = _require2.Switch;
-
-var withRoutes = function withRoutes(Router, store) {
-    // class extends Component {
-    return function (_Component) {
-        _inherits(_class, _Component);
-
-        function _class() {
-            _classCallCheck(this, _class);
-
-            return _possibleConstructorReturn(this, (_class.__proto__ || Object.getPrototypeOf(_class)).apply(this, arguments));
-        }
-
-        _createClass(_class, [{
-            key: 'render',
-            // don't forget return
-            value: function render() {
-                return _react2.default.createElement(
-                    _reactRedux.Provider,
-                    { store: store },
-                    _react2.default.createElement(
-                        Router,
-                        this.props,
-                        _allRoutes2.default
-                    )
-                );
-            }
-        }]);
-
-        return _class;
-    }(_react.Component);
-};
-
-module.exports = withRoutes;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// import { fetchCards } from './api/cards-api';
-var DeckPage = __webpack_require__(17);
-var NewCardPage = __webpack_require__(42);
-var StudyPage = __webpack_require__(47);
-var ReviewPage = __webpack_require__(46);
-
-var switchRoutes = [{
-  path: '/',
-  exact: true,
-  component: DeckPage
-  // fetchInitialData: (path = '') => fetchCards(path.split('/').pop()),
-}, {
-  path: '/createCard/:deckID',
-  component: NewCardPage
-}, {
-  path: '/study',
-  component: StudyPage
-}, {
-  path: '/review',
-  component: ReviewPage
-}];
-
-exports.default = switchRoutes;
-
-/***/ }),
-/* 26 */
+/***/ "react-redux":
+/*!******************************!*\
+  !*** external "react-redux" ***!
+  \******************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("babel-register");
+eval("module.exports = require(\"react-redux\");\n\n//# sourceURL=webpack:///external_%22react-redux%22?");
 
 /***/ }),
-/* 27 */
+
+/***/ "react-router":
+/*!*******************************!*\
+  !*** external "react-router" ***!
+  \*******************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("react-dom/server");
+eval("module.exports = require(\"react-router\");\n\n//# sourceURL=webpack:///external_%22react-router%22?");
 
 /***/ }),
-/* 28 */
+
+/***/ "react-router-config":
+/*!**************************************!*\
+  !*** external "react-router-config" ***!
+  \**************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("react-router");
+eval("module.exports = require(\"react-router-config\");\n\n//# sourceURL=webpack:///external_%22react-router-config%22?");
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Logo = function (_Component) {
-  _inherits(Logo, _Component);
-
-  function Logo() {
-    _classCallCheck(this, Logo);
-
-    return _possibleConstructorReturn(this, (Logo.__proto__ || Object.getPrototypeOf(Logo)).apply(this, arguments));
-  }
-
-  _createClass(Logo, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "svg",
-        {
-          width: "200",
-          height: "100",
-          viewBox: "0 0 200 350",
-          id: "svgLogo"
-        },
-        _react2.default.createElement(
-          "g",
-          null,
-          _react2.default.createElement("rect", {
-            style: {
-              fill: 'lightblue',
-              fillOpacity: 1,
-              stroke: '',
-              strokeWidth: 2,
-              strokeMiterlimit: 4,
-              strokeDasharray: 'none',
-              strokeOpacity: 1
-            },
-            id: "OL",
-            width: "211.28172",
-            height: "199.94244",
-            x: "5.4841413",
-            y: "37" }),
-          _react2.default.createElement("rect", {
-            id: "LV",
-            width: "41.577381",
-            height: "153.45834",
-            x: "24.190477",
-            y: "61.898811",
-            style: {
-              strokeWidth: 0.37226507,
-              fill: 'red'
-            } }),
-          _react2.default.createElement("rect", {
-            id: "LH",
-            width: "146.65477",
-            height: "19.654755",
-            x: "24.190462",
-            y: "195.70238",
-            style: {
-              strokeWidth: 0.31524804,
-              fill: 'red'
-            } }),
-          _react2.default.createElement("rect", {
-            id: "QH",
-            width: "99.029762",
-            height: "18.142857",
-            x: "71.815475",
-            y: "61.898819",
-            style: {
-              strokeWidth: 0.25593761
-            } }),
-          _react2.default.createElement("rect", {
-            id: "QV",
-            width: "20.410706",
-            height: "130",
-            x: "150.43452",
-            y: "61.898819",
-            style: {
-              strokeWidth: 0.23363407
-            } }),
-          _react2.default.createElement("path", {
-            id: "QA",
-            style: {
-              fill: 'none',
-              fillOpacity: 1,
-              stroke: 'yellow',
-              strokeWidth: 19.21442986,
-              strokeMiterlimit: 4,
-              strokeDasharray: 'none',
-              strokeOpacity: 1
-            },
-            type: "arc",
-            cx: "159.50595",
-            cy: "131.14861",
-            rx: "35.289242",
-            ry: "33.480274",
-            d: "m 194.79519,131.14861 a 35.289242,33.480274 0 0 1 -17.7583,29.05677 35.289242,33.480274 0 0 1 -35.4022,-0.18722 35.289242,33.480274 0 0 1 -17.41579,-29.24278"
-          })
-        )
-      );
-    }
-  }]);
-
-  return Logo;
-}(_react.Component);
-
-Logo.displayName = "Logo";
-exports.default = Logo;
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Logo = __webpack_require__(29);
-
-var _Logo2 = _interopRequireDefault(_Logo);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Navbar = function (_Component) {
-  _inherits(Navbar, _Component);
-
-  function Navbar(props) {
-    _classCallCheck(this, Navbar);
-
-    var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
-
-    _this._handleScroll = function (evt) {
-      //console.log('window.scrollTop ', window.pageYOffset);
-      var currentScrollY = window.pageYOffset; //get scroll top position
-      //compare current scroll position with previous (differ by 1)
-      if (currentScrollY > _this.prevScrollY) {
-        _this.setState({ navbarClass: "hide" });
-      } else {
-        _this.setState({ navbarClass: "navbar" });
-      }
-
-      _this.prevScrollY = currentScrollY;
-    };
-
-    _this.state = {
-      navbarClass: "navbar"
-    };
-    _this.prevScrollY = 0;
-    return _this;
-  }
-
-  _createClass(Navbar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      //scroll event on window
-      window.addEventListener('scroll', this._handleScroll);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener('scroll', this._handleScroll);
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: this.state.navbarClass },
-        this.props.children
-      );
-    }
-  }]);
-
-  return Navbar;
-}(_react.Component);
-
-var Footer = function (_Component2) {
-  _inherits(Footer, _Component2);
-
-  function Footer() {
-    var _ref;
-
-    var _temp, _this2, _ret;
-
-    _classCallCheck(this, Footer);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Footer.__proto__ || Object.getPrototypeOf(Footer)).call.apply(_ref, [this].concat(args))), _this2), _this2._displayCopyRight = function () {
-      return _react2.default.createElement(
-        "span",
-        { style: { display: 'inline-block', paddingRight: '5px' } },
-        "2019 - " + new Date().getFullYear()
-      );
-    }, _temp), _possibleConstructorReturn(_this2, _ret);
-  }
-
-  _createClass(Footer, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "footer",
-        { style: { display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' } },
-        _react2.default.createElement(
-          "div",
-          { style: { color: 'white', fontSize: '20px' } },
-          "\xA9 ",
-          this._displayCopyRight(),
-          _react2.default.createElement(
-            "a",
-            { href: "javascript:void();", target: "_blank", style: { textDecoration: 'none', color: 'white' }, className: "top_tooltip" },
-            "Q.M. Long"
-          )
-        ),
-        _react2.default.createElement(
-          "h1",
-          null,
-          "Footer Grid"
-        )
-      );
-    }
-  }]);
-
-  return Footer;
-}(_react.Component);
-
-var Layout = function (_Component3) {
-  _inherits(Layout, _Component3);
-
-  function Layout() {
-    _classCallCheck(this, Layout);
-
-    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
-  }
-
-  _createClass(Layout, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: "layout" },
-        _react2.default.createElement(
-          Navbar,
-          null,
-          _react2.default.createElement(_Logo2.default, null),
-          _react2.default.createElement(
-            "ul",
-            null,
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Home"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "About"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Games"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Portfolio"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Contact"
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          "section",
-          null,
-          this.props.children
-        ),
-        _react2.default.createElement(Footer, null)
-      );
-    }
-  }]);
-
-  return Layout;
-}(_react.Component);
-
-Layout.displayName = "Layout";
-
-
-module.exports = Layout;
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _switchRoutes = __webpack_require__(25);
-
-var _switchRoutes2 = _interopRequireDefault(_switchRoutes);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import Navbar from './components/Navbar';
-// import NoMatch from './components/NoMatch';
-
-var _require = __webpack_require__(28),
-    withRouter = _require.withRouter;
-
-var _require2 = __webpack_require__(6),
-    Route = _require2.Route,
-    Switch = _require2.Switch;
-
-//const Layout = withRouter(require('../components/Layout/index.jsx'));
-
-
-var Layout = withRouter(__webpack_require__(30));
-
-var DeckPage = __webpack_require__(17); //test
-
-var routes = _react2.default.createElement(
-  Layout,
-  null,
-  _react2.default.createElement(
-    Switch,
-    null,
-    _switchRoutes2.default.map(
-    // // ( { path, exact, component: Component, ...rest } ) => ( // param = props, call with ...props spread expension
-    // ( { path, exact, component: Component, rest } ) => (
-    //   <Route key={path} path={path} exact={exact} component={(props) => (<Component {...props} {...rest} />)} />
-    // )
-
-    function (_ref) {
-      var path = _ref.path,
-          exact = _ref.exact,
-          Component = _ref.component;
-      return _react2.default.createElement(Route, { key: path, path: path, exact: exact, component: function component(props) {
-          return _react2.default.createElement(Component, props);
-        } });
-    }
-
-    // ( { path, exact, component } ) => ( //--wrong
-    //   <Route key={path} path={path} exact={exact} component={(props) => (<component {...props} />)} />
-    // )
-    )
-  )
-);
-
-exports.default = routes;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.QuizCardView = exports.mkReviews = undefined;
-
-var _lodash = __webpack_require__(39);
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var QuizCardView = function QuizCardView(orientation, cardID, prompt, correctAnswer, answers) {
-  _classCallCheck(this, QuizCardView);
-
-  this.orientation = orientation;
-  this.cardID = cardID;
-  this.prompt = prompt;
-  this.correctAnswer = correctAnswer;
-  this.answers = answers;
-};
-
-function mkReviews(cards) {
-  var makeReviews = function makeReviews(sideOne, sideTwo) {
-    return cards.map(function (card) {
-      var others = cards.filter(function (other) {
-        return other.id !== card.id;
-      });
-
-      var answers = _lodash2.default.shuffle([card[sideTwo]].concat(_lodash2.default.sampleSize(_lodash2.default.map(others, sideTwo), 3)));
-
-      return new QuizCardView(sideOne, card.id, card[sideOne], card[sideTwo], answers);
-    });
-  };
-
-  var reviews = makeReviews("front", "back").concat(makeReviews("back", "front"));
-  return _lodash2.default.shuffle(reviews);
-}
-
-exports.mkReviews = mkReviews;
-exports.QuizCardView = QuizCardView;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MockDeck = exports.MockDecks = exports.MockCard = exports.MockCards = exports.MockReviews = undefined;
-
-var _Card = __webpack_require__(22);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-var _Deck = __webpack_require__(23);
-
-var _Deck2 = _interopRequireDefault(_Deck);
-
-var _QuizCardView = __webpack_require__(32);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var MockCards = [new _Card2.default("der Hund", "the dog", "fakeDeckID"), new _Card2.default("das Kind", "the child", "fakeDeckID"), new _Card2.default("die Frau", "the woman", "fakeDeckID"), new _Card2.default("die Katze", "the cat", "fakeDeckID")];
-
-var MockCard = MockCards[0];
-var MockReviews = (0, _QuizCardView.mkReviews)(MockCards);
-
-var MockDecks0 = [new _Deck2.default("Chinese")];
-var MockDecks1 = [new _Deck2.default("French")];
-var MockDecks2 = [new _Deck2.default("German1"), new _Deck2.default("German2")];
-var MockDecks3 = [new _Deck2.default("Spanish1"), new _Deck2.default("Spanish2"), new _Deck2.default("Spanish3")];
-
-MockDecks0.map(function (deck) {
-  deck.addCard(new _Card2.default("nihou", "how are you", deck.id));
-  return deck;
-});
-
-MockDecks1.map(function (deck) {
-  deck.addCard(new _Card2.default("chien", "Dog", deck.id));
-  deck.addCard(new _Card2.default("chat", "Cat", deck.id));
-  deck.addCard(new _Card2.default("pain", "Bread", deck.id));
-  return deck;
-});
-
-MockDecks2.map(function (deck) {
-  deck.addCard(new _Card2.default("der Hund", "the dog", deck.id));
-  deck.addCard(new _Card2.default("die Katze", "the cat", deck.id));
-  deck.addCard(new _Card2.default("das Brot", "the bread", deck.id));
-  deck.addCard(new _Card2.default("die Frau", "the woman", deck.id));
-  return deck;
-});
-
-MockDecks2[0].addCard(new _Card2.default("Auf Wiedersehen", "goodbye", MockDecks2[0].id));
-MockDecks2[0].addCard(new _Card2.default("danken", "thank", MockDecks2[0].id));
-
-MockDecks3.map(function (deck) {
-  deck.addCard(new _Card2.default("el rey", "the king", deck.id));
-  deck.addCard(new _Card2.default("la reina", "the queen", deck.id));
-  return deck;
-});
-
-var MockDecks = [].concat(MockDecks0, MockDecks1, MockDecks2, MockDecks3);
-
-var MockDeck = MockDecks[0];
-
-exports.MockReviews = MockReviews;
-exports.MockCards = MockCards;
-exports.MockCard = MockCard;
-exports.MockDecks = MockDecks;
-exports.MockDeck = MockDeck;
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _types = __webpack_require__(13);
-
-function findDeck(decks, id) {
-    return decks.find(function (d) {
-        return d.id === id;
-    });
-}
-
-var reducer = function reducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-    var action = arguments[1];
-    var decks = arguments[2];
-
-    switch (action.type) {
-        case _types.STUDY_DECK:
-            return findDeck(decks, action.data.deckID).cards;
-    }
-    return state;
-};
-
-exports.default = reducer;
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _types = __webpack_require__(13);
-
-var _decks = __webpack_require__(38);
-
-function decksWithNewCard(oldDecks, card) {
-  var newState = oldDecks.map(function (deck) {
-    if (deck.id === card.deckID) {
-      try {
-        deck.addCard(card);
-        return deck;
-      } catch (e) {
-        throw e;
-      }
-    } else {
-      return deck;
-    }
-  });
-  saveDecks(newState); //save to localStorage for now
-  return newState;
-}
-
-function saveDecks(state) {
-  (0, _decks.writeDecks)(state);
-  return state;
-}
-
-function findDeck(decks, id) {
-  //also used in reducer/reviews.js and cards.js
-  return decks.find(function (d) {
-    return d.id === id;
-  });
-}
-
-var reducer = function reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case _types.LOAD_DATA:
-      return action.data;
-    case _types.ADD_DECK:
-      if (findDeck(state, action.data.id)) {
-        throw "deck already exists";
-      }
-      if (action.data.isDeckNameEmpty()) {
-        throw "deck name is empty";
-      }
-      var newState = state.concat(action.data);
-      saveDecks(newState);
-      return newState;
-    case _types.DELETE_DECK:
-      {
-        var _newState = state.filter(function (deck) {
-          return deck.id !== action.data.deckID;
-        });
-        saveDecks(_newState);
-        return _newState;
-      }
-    case _types.ADD_CARD:
-      return decksWithNewCard(state, action.data);
-
-  }
-  return state;
-};
-
-exports.default = reducer;
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Mocks = __webpack_require__(33);
-
-var _decks = __webpack_require__(35);
-
-var _decks2 = _interopRequireDefault(_decks);
-
-var _cards = __webpack_require__(34);
-
-var _cards2 = _interopRequireDefault(_cards);
-
-var _reviews = __webpack_require__(37);
-
-var _reviews2 = _interopRequireDefault(_reviews);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var initialState = function initialState() {
-  return { decks: _Mocks.MockDecks, currentReview: (0, _reviews.mkReviewState)(), currentCards: [] };
-};
-
-module.exports = function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState();
-  var action = arguments[1];
-
-  var decks = (0, _decks2.default)(state.decks, action);
-  var cards = (0, _cards2.default)(state.currentCards, action, decks);
-
-  return {
-    decks: decks,
-    currentReview: (0, _reviews2.default)(state.currentReview, action, decks),
-    currentCards: cards
-  };
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.mkReviewState = undefined;
-
-var _QuizCardView = __webpack_require__(32);
-
-var _types = __webpack_require__(13);
-
-var mkReviewState = exports.mkReviewState = function mkReviewState() {
-  var deckID = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-  var questions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-  var currentQuestionIndex = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-  return { deckID: deckID, questions: questions, currentQuestionIndex: currentQuestionIndex };
-};
-
-function findDeck(decks, id) {
-  return decks.find(function (d) {
-    return d.id === id;
-  });
-}
-
-function generateReviews(deck) {
-  return mkReviewState(deck.id, (0, _QuizCardView.mkReviews)(deck.cards), 0);
-}
-
-function nextReview(state) {
-  return mkReviewState(state.deckID, state.questions, state.currentQuestionIndex + 1);
-}
-
-var reducer = function reducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : mkReviewState();
-  var action = arguments[1];
-  var decks = arguments[2];
-
-  switch (action.type) {
-    case _types.REVIEW_DECK:
-      return generateReviews(findDeck(decks, action.data.deckID));
-    case _types.NEXT_REVIEW:
-      return nextReview(state);
-    case _types.STOP_REVIEW:
-      return mkReviewState(); //reset review
-  }
-  return state;
-};
-
-exports.default = reducer;
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.writeDecks = exports.readDecks = exports.DECK_KEY = undefined;
-
-var _Deck = __webpack_require__(23);
-
-var _Deck2 = _interopRequireDefault(_Deck);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var DECK_KEY = exports.DECK_KEY = "cardgame:decks";
-
-async function read(key, deserializer) {
-  try {
-    var val = await localStorage.getItem(key);
-    if (val !== null) {
-      var readValue = JSON.parse(val).map(function (serialized) {
-        return deserializer(serialized);
-      });
-      return readValue;
-    } else {
-      console.info(key + " not found on disk.");
-      return [];
-    }
-  } catch (error) {
-    console.warn("localStorage error: ", error.message);
-  }
-}
-
-async function write(key, item) {
-  try {
-    await localStorage.setItem(key, JSON.stringify(item));
-  } catch (error) {
-    console.error("localStorage error: ", error.message);
-  }
-}
-
-var readDecks = exports.readDecks = function readDecks() {
-  return read(DECK_KEY, _Deck2.default.createInstance);
-};
-
-var writeDecks = exports.writeDecks = function writeDecks(decks) {
-  return write(DECK_KEY, decks);
-};
-
-/***/ }),
-/* 39 */
+/***/ "react-router-dom":
+/*!***********************************!*\
+  !*** external "react-router-dom" ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("lodash");
+eval("module.exports = require(\"react-router-dom\");\n\n//# sourceURL=webpack:///external_%22react-router-dom%22?");
 
 /***/ }),
-/* 40 */
+
+/***/ "redux":
+/*!************************!*\
+  !*** external "redux" ***!
+  \************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = require("redux");
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _styles = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var HeadingText = function (_Component) {
-  _inherits(HeadingText, _Component);
-
-  function HeadingText() {
-    _classCallCheck(this, HeadingText);
-
-    return _possibleConstructorReturn(this, (HeadingText.__proto__ || Object.getPrototypeOf(HeadingText)).apply(this, arguments));
-  }
-
-  _createClass(HeadingText, [{
-    key: "render",
-    value: function render() {
-      var width = window.screen.width;
-      var concatStyles = Object.assign({}, this.props.style, { fontSize: width / _styles.scalingFactors.big });
-
-      return _react2.default.createElement(
-        "span",
-        {
-          style: concatStyles
-        },
-        this.props.children
-      );
-    }
-  }]);
-
-  return HeadingText;
-}(_react.Component);
-
-HeadingText.displayName = "HeadingText";
-exports.default = HeadingText;
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _creators = __webpack_require__(12);
-
-var _reactRedux = __webpack_require__(5);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _LabeledInput = __webpack_require__(20);
-
-var _LabeledInput2 = _interopRequireDefault(_LabeledInput);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-var _Input = __webpack_require__(19);
-
-var _Input2 = _interopRequireDefault(_Input);
-
-var _styles = __webpack_require__(2);
-
-var _Snackbar = __webpack_require__(21);
-
-var _Snackbar2 = _interopRequireDefault(_Snackbar);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NewCard = function (_Component) {
-  _inherits(NewCard, _Component);
-
-  function NewCard(props) {
-    _classCallCheck(this, NewCard);
-
-    var _this = _possibleConstructorReturn(this, (NewCard.__proto__ || Object.getPrototypeOf(NewCard)).call(this, props));
-
-    _this._deckID = function () {
-      return _this.props.match.params.deckID;
-    };
-
-    _this._handleFront = function (value) {
-      _this.setState({ front: value });
-    };
-
-    _this._handleBack = function (value) {
-      _this.setState({ back: value });
-    };
-
-    _this._createCard = function () {
-      //if card exists, throw exception and catch it
-      try {
-        _this.props.createCard(_this.state.front, _this.state.back, _this._deckID());
-
-        //clear front back input fields after adding card 
-        _this.setState({ front: '', back: '', error: null, showMsg: false });
-
-        if (!_this.props.history.location.pathname === "/createCard/" + _this._deckID()) {
-          _this.props.history.push("/createCard/" + _this._deckID());
-        }
-      } catch (e) {
-        _this.setState({ error: e, showMsg: true });
-      }
-    };
-
-    _this._closeMsg = function () {
-      _this.setState({ showMsg: false });
-    };
-
-    _this._reviewDeck = function () {
-      _this.props.reviewDeck(_this._deckID());
-      _this.props.history.push('/review');
-    };
-
-    _this._doneCreating = function () {
-      _this.props.history.push('/');
-    };
-
-    _this.state = { front: "", back: "", error: null, showMsg: false };
-    return _this;
-  }
-
-  _createClass(NewCard, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { id: "newCardPage" },
-        _react2.default.createElement(
-          "h1",
-          null,
-          "New Card Page"
-        ),
-        _react2.default.createElement(
-          "form",
-          { id: "createCard" },
-          _react2.default.createElement(_LabeledInput2.default, {
-            label: "Front",
-            onChange: this._handleFront,
-            value: this.state.front,
-            className: "nameField wideButton fontNormal"
-          }),
-          _react2.default.createElement(_LabeledInput2.default, {
-            label: "Back",
-            onChange: this._handleBack,
-            value: this.state.back,
-            className: "nameField wideButton fontNormal"
-          }),
-          _react2.default.createElement(_Input2.default, { type: "button",
-            style: _styles.inputButtonStyle //in-line style to override bootstrap.css
-            , onClick: this._createCard,
-            value: "Create Card",
-            readOnly: true //button value
-          }),
-          this.state.error ? _react2.default.createElement(
-            _Snackbar2.default,
-            { display: this.state.error && this.state.showMsg, handleClick: this._closeMsg, dwellTime: 1000 },
-            this.state.error
-          ) : null
-        ),
-        _react2.default.createElement(
-          "div",
-          { style: { flexDirection: "row" } },
-          _react2.default.createElement(
-            _Button2.default,
-            { onClick: this._doneCreating },
-            _react2.default.createElement(
-              _NormalText2.default,
-              null,
-              "Done"
-            )
-          ),
-          _react2.default.createElement(
-            _Button2.default,
-            { onClick: this._reviewDeck },
-            _react2.default.createElement(
-              _NormalText2.default,
-              null,
-              "Review Deck"
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return NewCard;
-}(_react.Component);
-
-var mapStateToProps = function mapStateToProps(state) {
-  return { decks: state.decks };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createCard: function createCard(front, back, deckID) {
-      dispatch((0, _creators.addCard)(front, back, deckID));
-    },
-    reviewDeck: function reviewDeck(deckID) {
-      dispatch((0, _creators.reviewDeck)(deckID));
-    }
-  };
-};
-
-module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(NewCard);
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _HeadingText = __webpack_require__(41);
-
-var _HeadingText2 = _interopRequireDefault(_HeadingText);
-
-var _ReviewButtons = __webpack_require__(44);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var QuizView = function (_Component) {
-  _inherits(QuizView, _Component);
-
-  _createClass(QuizView, [{
-    key: "_getInitialState",
-    value: function _getInitialState() {
-      return { wasReviewed: false, wasCorrect: false, id: null };
-    }
-  }]);
-
-  function QuizView(props) {
-    _classCallCheck(this, QuizView);
-
-    var _this = _possibleConstructorReturn(this, (QuizView.__proto__ || Object.getPrototypeOf(QuizView)).call(this, props));
-
-    _this._continue = function () {
-      _this.setState(_this._getInitialState());
-      _this.props.continue();
-    };
-
-    _this._selectAnswer = function (correct, id) {
-      _this.props.onReview(correct);
-      _this.setState({ wasReviewed: true, wasCorrect: correct, wasClicked: id });
-    };
-
-    _this.state = _this._getInitialState();
-    return _this;
-  }
-
-  _createClass(QuizView, [{
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        null,
-        _react2.default.createElement(
-          "div",
-          { className: "quizView" },
-          _react2.default.createElement(
-            _HeadingText2.default,
-            null,
-            "Question: ",
-            this.props.prompt
-          )
-        ),
-        (0, _ReviewButtons.mkAnswerButtons)(this.props.answers, this.props.correctAnswer, this.state.wasReviewed, this.state.wasCorrect, this._selectAnswer, this.state.wasClicked),
-        (0, _ReviewButtons.mkContinueQuitButtons)(this.state.wasReviewed, this.state.wasCorrect, this._continue, this.props.quit)
-      );
-    }
-  }]);
-
-  return QuizView;
-}(_react.Component);
-
-QuizView.displayName = "QuizView";
-
-
-module.exports = QuizView;
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-var _styles = __webpack_require__(2);
-
-var _md = __webpack_require__(4);
-
-var _md2 = _interopRequireDefault(_md);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ContinueButton = function (_Component) {
-  _inherits(ContinueButton, _Component);
-
-  function ContinueButton() {
-    _classCallCheck(this, ContinueButton);
-
-    return _possibleConstructorReturn(this, (ContinueButton.__proto__ || Object.getPrototypeOf(ContinueButton)).apply(this, arguments));
-  }
-
-  _createClass(ContinueButton, [{
-    key: "render",
-    value: function render() {
-      var text = this.props.wasCorrect ? "Correct! Next card?" : "Oops, not quite. Next card?";
-      return _react2.default.createElement(
-        _Button2.default,
-        { onClick: this.props.onClick, style: { backgroundColor: _styles.colors.pink } },
-        _react2.default.createElement(
-          _NormalText2.default,
-          null,
-          text
-        )
-      );
-    }
-  }]);
-
-  return ContinueButton;
-}(_react.Component);
-
-function mkContinueQuitButtons(wasReviewed, wasCorrect, continueFunc, quitFunc) {
-  if (wasReviewed) {
-    return _react2.default.createElement(ContinueButton, { onClick: continueFunc, wasCorrect: wasCorrect });
-  } else {
-    return _react2.default.createElement(
-      _Button2.default,
-      { onClick: quitFunc, style: { backgroundColor: _styles.colors.yellow } },
-      _react2.default.createElement(
-        _NormalText2.default,
-        null,
-        "Stop Quiz"
-      )
-    );
-  }
-}
-
-function mkAnswerButtons(answers, correctAnswer, wasReviewed, wasCorrect, selectAnswerFunc, wasClicked) {
-  if (!answers) return null;
-
-  return answers.map(function (a, aIndex) {
-    var isCorrectAnswer = a === correctAnswer;
-    var buttonStyle = styles.options;
-
-    var myID = '_' + (0, _md2.default)(a);
-    if (wasReviewed && wasClicked === myID) {
-      if (wasCorrect) {
-        buttonStyle = Object.assign({}, buttonStyle, styles.rightAnswer);
-      } else {
-        buttonStyle = Object.assign({}, buttonStyle, styles.wrongAnswer);
-      }
-    }
-
-    return _react2.default.createElement(
-      "div",
-      { key: a, className: "answerOptions" },
-      _react2.default.createElement(
-        _Button2.default,
-        {
-          disabled: wasReviewed,
-          style: buttonStyle,
-          id: myID,
-          onClick: function onClick(thisID) {
-            selectAnswerFunc(isCorrectAnswer, thisID);
-          }
-        },
-        _react2.default.createElement(
-          _NormalText2.default,
-          null,
-          aIndex + 1,
-          ". ",
-          a
-        )
-      )
-    );
-  });
-}
-
-var styles = {
-  options: { backgroundColor: "#FFFFFF" },
-  continueButton: { backgroundColor: _styles.colors.tan },
-  rightAnswer: { backgroundColor: _styles.colors.green },
-  wrongAnswer: { backgroundColor: _styles.colors.pink }
-};
-
-module.exports = { mkContinueQuitButtons: mkContinueQuitButtons, mkAnswerButtons: mkAnswerButtons };
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.mkReviewSummary = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _HeadingText = __webpack_require__(41);
-
-var _HeadingText2 = _interopRequireDefault(_HeadingText);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _styles = __webpack_require__(2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function mkReviewSummary(percentCorrect, quitFunc) {
-  return _react2.default.createElement(
-    "div",
-    { style: styles.done },
-    _react2.default.createElement(
-      _HeadingText2.default,
-      { style: styles.alternate },
-      "Reviews cleared!"
-    ),
-    _react2.default.createElement(
-      _NormalText2.default,
-      { style: styles.alternate },
-      Math.round(percentCorrect * 100),
-      "% correct"
-    ),
-    _react2.default.createElement(
-      _Button2.default,
-      { onClick: quitFunc, style: styles.doneButton },
-      _react2.default.createElement(
-        _NormalText2.default,
-        null,
-        "Done"
-      )
-    )
-  );
-}
-
-var styles = {
-  alternate: { color: "#FFFFFF" },
-  done: { display: 'flex', flexDirection: 'column', alignItems: "center" },
-  doneButton: { backgroundColor: _styles.colors.tan }
-};
-
-exports.mkReviewSummary = mkReviewSummary;
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(5);
-
-var _ReviewSummary = __webpack_require__(45);
-
-var _styles = __webpack_require__(2);
-
-var _creators = __webpack_require__(12);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var QuizView = __webpack_require__(43);
-
-var ReviewScreen = function (_Component) {
-  _inherits(ReviewScreen, _Component);
-
-  function ReviewScreen(props) {
-    _classCallCheck(this, ReviewScreen);
-
-    var _this = _possibleConstructorReturn(this, (ReviewScreen.__proto__ || Object.getPrototypeOf(ReviewScreen)).call(this, props));
-
-    _this._onReview = function (correct) {
-      if (correct) {
-        _this.setState({ numCorrect: _this.state.numCorrect + 1 });
-      }
-      _this.setState({ numReviewed: _this.state.numReviewed + 1 });
-    };
-
-    _this._nextReview = function () {
-      _this.props.nextReview();
-    };
-
-    _this._quitReviewing = function () {
-      _this.props.stopReview();
-      _this.props.history.goBack();
-    };
-
-    _this.state = { numReviewed: 0, numCorrect: 0 };
-    return _this;
-  }
-
-  _createClass(ReviewScreen, [{
-    key: "_contents",
-    value: function _contents() {
-      if (!this.props.reviews || this.props.reviews.length === 0) {
-        return null;
-      }
-
-      if (this.props.currentReview < this.props.reviews.length) {
-        return _react2.default.createElement(QuizView, _extends({
-          onReview: this._onReview,
-          "continue": this._nextReview,
-          quit: this._quitReviewing
-        }, this.props.reviews[this.props.currentReview]));
-      } else {
-        var percent = this.state.numCorrect / this.state.numReviewed;
-        return (0, _ReviewSummary.mkReviewSummary)(percent, this._quitReviewing);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { style: styles.container },
-        this._contents()
-      );
-    }
-  }]);
-
-  return ReviewScreen;
-}(_react.Component);
-
-ReviewScreen.displayName = "ReviewScreen";
-
-
-var styles = {
-  container: { backgroundColor: _styles.colors.blue, flex: 1, paddingTop: 24 }
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    nextReview: function nextReview() {
-      dispatch((0, _creators.nextReview)());
-    },
-    stopReview: function stopReview() {
-      dispatch((0, _creators.stopReview)());
-    }
-  };
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    reviews: state.currentReview.questions,
-    currentReview: state.currentReview.currentQuestionIndex
-  };
-};
-
-module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ReviewScreen);
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(5);
-
-var _creators = __webpack_require__(12);
-
-var _Card = __webpack_require__(18);
-
-var _Card2 = _interopRequireDefault(_Card);
-
-var _Button = __webpack_require__(3);
-
-var _Button2 = _interopRequireDefault(_Button);
-
-var _NormalText = __webpack_require__(1);
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CardsScreen = function (_Component) {
-  _inherits(CardsScreen, _Component);
-
-  function CardsScreen(props) {
-    _classCallCheck(this, CardsScreen);
-
-    var _this = _possibleConstructorReturn(this, (CardsScreen.__proto__ || Object.getPrototypeOf(CardsScreen)).call(this, props));
-
-    _this._review = function () {
-      _this.props.reviewDeck(_this.props.location.state.deckID);
-      _this.props.history.push('review');
-    };
-
-    _this.state = { cardFigWidth: 0, cardFigHeight: 0 };
-    _this._updatePosition = _this._updatePosition.bind(_this);
-    _this.cardFigRef = _react2.default.createRef(); //just for current card
-    return _this;
-  }
-
-  _createClass(CardsScreen, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this._updatePosition();
-      //to make responsive
-      window.addEventListener('resize', this._updatePosition);
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      window.removeEventListener('resize', this._updatePosition);
-    }
-  }, {
-    key: "_updatePosition",
-    value: function _updatePosition(e) {
-      var cardFig = this.cardFigRef.current;
-      //update card figure container size
-      this.setState({
-        cardFigWidth: cardFig.offsetWidth,
-        cardFigHeight: cardFig.offsetHeight
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      return _react2.default.createElement(
-        "div",
-        { id: "studyPage" },
-        _react2.default.createElement(
-          "div",
-          { id: "cards" },
-          this.props.cards.map(function (card) {
-            return _react2.default.createElement(
-              "figure",
-              { key: card.id, ref: _this2.cardFigRef },
-              _react2.default.createElement(_Card2.default, {
-                card: card,
-                id: '_' + card.id //JS variable for querySelector can't start with a number
-                , containerWidth: _this2.state.cardFigWidth,
-                containerHeight: _this2.state.cardFigHeight,
-                uncover: true //show front and back
-              })
-            );
-          })
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "" },
-          _react2.default.createElement(
-            _Button2.default,
-            { className: "editButton", onClick: this._review },
-            _react2.default.createElement(
-              _NormalText2.default,
-              null,
-              "Start Quiz"
-            )
-          )
-        )
-      );
-    }
-  }]);
-
-  return CardsScreen;
-}(_react.Component);
-
-CardsScreen.displayName = "CardsScreen";
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    reviewDeck: function reviewDeck(deckID) {
-      dispatch((0, _creators.reviewDeck)(deckID));
-    }
-  };
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    cards: state.currentCards
-  };
-};
-
-module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CardsScreen);
+eval("module.exports = require(\"redux\");\n\n//# sourceURL=webpack:///external_%22redux%22?");
 
 /***/ })
-/******/ ]);
+
+/******/ });

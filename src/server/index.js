@@ -4,6 +4,35 @@
 // require('babel-register')({
 //     presets: [ 'react' ]
 // })
+import React from 'react';
+import switchRoutes from "../shared/routes/switchRoutes";
+import entryHTML from './entryHTML.js';
+// import withRoutes from "../shared/routes";
+// import allRoutes from "../shared/routes/allRoutes";
+const withAllRoutes = require('../shared/routes/withAllRoutes');
+import { StaticRouter, matchPath, Route, Switch } from 'react-router-dom';
+// import { StaticRouter, matchPath } from 'react-router';
+import { renderRoutes } from 'react-router-config';
+//import serialize from "serialize-javascript";
+// import ReactDOMServer, { renderToString } from 'react-dom/server';//ReactDOMServer
+import { renderToString } from 'react-dom/server';
+
+import Layout from '../shared/components/Layout';
+import DeckPage from '../shared/components/DeckPage/index.jsx';
+import NewCardPage from '../shared/components/NewCardPage/index.jsx';
+import StudyPage from '../shared/components/StudyPage/index.jsx';
+import ReviewPage from '../shared/components/ReviewPage/index.jsx';
+import {Provider} from 'react-redux';
+
+//server-side store
+const {createStore} = require('redux');
+const reducers = require('../shared/reducers');
+const store = createStore(reducers);
+
+//Use Babel to transform required files from JSX to JS
+// require('babel-register')({
+//     presets: [ 'react' ]
+// });
 
 const express = require('express'), 
     app = express(), 
@@ -32,6 +61,8 @@ const express = require('express'),
 //set the title for this application
 app.set('title', 'React Card Game');
 
+// app.set('view engine', 'hbs');//'handlerbars' template engine
+
 // set up our express application
 //app.use(express.static('../../public')); 
 app.use(express.static('public'));  
@@ -49,8 +80,6 @@ app.use(bodyParser.urlencoded({ extended: true }));//---- parse application/x-ww
 //If {extended:false}, you can not post nested objects!
 
 app.use(bodyParser.json());
-
-//app.set('view engine', 'ejs'); 
 
 //methodOverride is for simulating DELETE and PUT. Otherwise they are treated the same as <input ...method='GET'>.
 //in HTML <input... name='method' value='PUT'> --> app.put() in Node.js
@@ -119,8 +148,151 @@ app.use(bodyParser.json());
 //split the file
 //require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-require('./restful-api.js')(app);
+//require('./restful-api.js')(app);
+console.log('------------- called restful-api.js --------------------')
+app.get('*', (req, res, next) => { 
+    //console.log('restful-api req.url: ', req.url);//no
+
+    console.log('switch rotes ', switchRoutes);
+
+    const activeRoute = switchRoutes.find((route) => {
+        console.log('route ', route);
+        return matchPath(req.url, route)
+    }) || {};
+
+    console.log('activaeRoute ', activeRoute);
+
+    const ServerRoutes = withAllRoutes(StaticRouter, store);
+
+    // TypeError: Cannot read property 'parsePath' of undefined -- history/PathUtil
+    // const content = renderToString(  
+    //     <Provider store={store}>
+    //         <StaticRouter location={req.url} context={{}}>
+    //             <Layout>
+    //             </Layout>
+    //         </StaticRouter>
+    //     </Provider>
+
+    //     // <div>
+    //     // <Provider store={store}>
+    //     //     <StaticRouter location={req.url} context={{}}>
+    //     //         <Layout>
+    //     //         </Layout>
+    //     //     </StaticRouter>
+    //     // </Provider>
+    //     // </div>
+
+    //     // <Provider store={store}>
+    //     //     <BrowserRouter location={req.url} context={{}}>
+    //     //         <Layout>
+    //     //         </Layout>
+    //     //     </BrowserRouter>
+    //     // </Provider>
+    // );
+
+    // const content = renderToString(  // no error
+    //     <h1>SHITTTTT</h1>
+    // );
+    
+    // res.send( entryHTML(content, `window.INITIAL_DATA = 0`));
+    res.send(
+        // `<!DOCTYPE html>
+        // <html>
+        //     <head>
+        //         <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"> 
+        //         <meta name="viewport" content="width=device-width, initial-scale=1">
+        //     </head>
+        //     <body>
+        //         <div class="container-fluid" id="content">${content}</div>
+        //         <script src="/js/bundle.js"></script>
+        //     </body>
+        // </html>
+        // `
+
+        // `<!DOCTYPE html>
+        // <html>
+        //     <head>
+        //         <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"> 
+        //         <meta name="viewport" content="width=device-width, initial-scale=1">
+        //     </head>
+        //     <body>
+        //         <div class="container-fluid" id="content">This Works!!!</div>
+        //         <script src="/js/bundle.js"></script>
+        //     </body>
+        // </html>
+        // `
+
+        // `<!DOCTYPE html>
+        // <html>
+        //     <head>
+        //         <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"> 
+        //         <meta name="viewport" content="width=device-width, initial-scale=1">
+        //     </head>
+        //     <body>
+        //         <div class="container-fluid" id="content">
+        //         ${
+        //             renderToString(
+        //                 // <Provider store={store}>
+        //                 //     <StaticRouter location={req.url} context={{}}>
+        //                         {/* <div>{renderRoutes([
+        //                                 {
+        //                                     component: DeckPage,
+        //                                     path: '/',
+        //                                     exact: true
+        //                                 },
+        //                                 {
+        //                                     component: NewCardPage,
+        //                                     path: '/createCard/:deckID'
+        //                                 }
+        //                             ])}
+        //                         </div> */}
+
+        //                         {/* <Layout>
+        //                             <Switch>
+        //                                 <Route path="/" exact component={(props) => <DeckPage {...props}/>} /> */}
+        //                                 {/* <Route path='/createCard/:deckID' component={(props) => <NewCardPage {...props}/>} />
+        //                                 <Route path='/study' component={(props) => <StudyPage {...props}/>} />
+        //                                 <Route path='/review' component={(props) => <ReviewPage {...props}/>} /> */}
+        //                             {/* </Switch> */}
+        //                             {/* <Route path="/" exact component={(props) => <DeckPage {...props}/>} /> */}
+        //                         {/* </Layout> */}
+
+        //                         {/* {withRoutes()} */}
+        //                         {/* {allRoutes} */}
+        //                 //     </StaticRouter>
+        //                 // </Provider>
+        //             )
+        //         }
+        //         </div>
+        //         <script src="/js/bundle.js"></script>
+        //     </body>
+        // </html>
+        // `
+
+        `<!DOCTYPE html>
+        <html>
+            <head>
+                <link href="/css/bootstrap.css" type="text/css" rel="stylesheet"> 
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            </head>
+            <body>
+                <div class="container-fluid" id="content">
+                ${
+                    renderToString(
+                        <ServerRoutes location={req.url} context={{}}/>
+                    )
+                }
+                </div>
+                <script src="/js/bundle.js"></script>
+            </body>
+        </html>
+        `
+    )
+});
 
 app.listen(port, () => {
     console.log('Frontend Server is listening on port: ' + port);
+    if (process.env.NODE_ENV !== 'production') {
+        console.log('We are in development mode');
+    }
 });

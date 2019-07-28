@@ -1,14 +1,15 @@
 var path = require('path');
 var webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var browserConfig = {
+    mode: "development",
     entry: "./src/browser/index.jsx",
     output: {
-        // path: __dirname + '/public/js',
-        // filename: 'bundle.js'
-        path: path.resolve(__dirname, 'public/js'),//file path
+        path: __dirname + '/public/js',
+        // path: path.resolve(__dirname, 'public/js'),//file path
         filename: 'bundle.js',
-        publicPath: '/' //not file path
+        // publicPath: '/' //not file path
     },
     devtool: '#sourcemap',
     stats: {
@@ -16,10 +17,10 @@ var browserConfig = {
         reasons: true
     },
     module: {
-        loaders: [
+        rules: [
             { 
                 test: /\.css$/, 
-                loader: 'style-loader!css-loader' //execute order: right to left
+                use: 'style-loader!css-loader' //execute order: right to left
             },
             {
                 test: /\.scss$/,
@@ -33,22 +34,26 @@ var browserConfig = {
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
-                loader: ['babel-loader'],
+                use: 'babel-loader'
             }
         ]
     },
     resolve: {
         extensions: ['*', '.js', '.jsx', '.scss'] //webpack 2. can remove '' or '*'
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            isBrowser: "true"
-        })
-    ]
+    // plugins: [
+    //     new webpack.DefinePlugin({
+    //         isBrowser: "true"
+    //     }),
+    //     new HtmlWebpackPlugin({
+    //         template: 'home.html'
+    //     })
+    // ]
 };
 
 const webpackNodeExternals = require('webpack-node-externals');
 var serverConfig = {
+    mode: "development",
     entry: './src/server/index.js',
     target: 'node',//compile for usage in a “Node.js like environment” and also helps externals know what to ignore (built in node modules like path, fs, etc)
     externals: [webpackNodeExternals()],//so the servers node_modules aren’t bundled with it
@@ -58,14 +63,11 @@ var serverConfig = {
         publicPath: '/' 
     },
     module: {
-        // rules: [
-        //     { test: /\.(js)$/, use: 'babel-loader' }
-        // ]
-        loaders: [
+        rules: [
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
-                loader: 'babel-loader'
+                use: 'babel-loader'
             }
         ]
     },
