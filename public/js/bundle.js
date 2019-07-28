@@ -52699,6 +52699,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactDom = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 
+var _routes = __webpack_require__(/*! ../shared/routes */ "./src/shared/routes/index.js");
+
+var _routes2 = _interopRequireDefault(_routes);
+
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 __webpack_require__(/*! ../../public/css/cardgame.scss */ "./public/css/cardgame.scss");
@@ -52717,10 +52721,8 @@ var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/in
 
 var _require = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js"),
     Provider = _require.Provider;
-
-// import withRoutes from "../shared/routes";
 // import allRoutes from "../shared/routes/allRoutes";
-var withAllRoutes = __webpack_require__(/*! ../shared/routes/withAllRoutes */ "./src/shared/routes/withAllRoutes.js");
+
 
 var _require2 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js"),
     createStore = _require2.createStore;
@@ -52729,8 +52731,8 @@ var reducers = __webpack_require__(/*! ../shared/reducers */ "./src/shared/reduc
 var store = createStore(reducers);
 
 // const BrowserRoutes = withRoutes(BrowserRouter, store);
-// const BrowserRoutes = withAllRoutes(BrowserRouter, store);
-var BrowserRoutes = withAllRoutes(true, store);
+var BrowserRoutes = (0, _routes2.default)(_reactRouterDom.BrowserRouter, store);
+// const BrowserRoutes = withAllRoutes(true, store);
 
 //require('../../public/css/cardgame.scss'); 
 
@@ -55675,49 +55677,10 @@ exports.default = routes;
 
 /***/ }),
 
-/***/ "./src/shared/routes/switchRoutes.js":
-/*!*******************************************!*\
-  !*** ./src/shared/routes/switchRoutes.js ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// import { fetchCards } from './api/cards-api';
-var DeckPage = __webpack_require__(/*! ../components/DeckPage/index.jsx */ "./src/shared/components/DeckPage/index.jsx");
-var NewCardPage = __webpack_require__(/*! ../components/NewCardPage/index.jsx */ "./src/shared/components/NewCardPage/index.jsx");
-var StudyPage = __webpack_require__(/*! ../components/StudyPage/index.jsx */ "./src/shared/components/StudyPage/index.jsx");
-var ReviewPage = __webpack_require__(/*! ../components/ReviewPage/index.jsx */ "./src/shared/components/ReviewPage/index.jsx");
-
-var switchRoutes = [{
-  path: '/',
-  exact: true,
-  component: DeckPage
-  // fetchInitialData: (path = '') => fetchCards(path.split('/').pop()),
-}, {
-  path: '/createCard/:deckID',
-  component: NewCardPage
-}, {
-  path: '/study',
-  component: StudyPage
-}, {
-  path: '/review',
-  component: ReviewPage
-}];
-
-exports.default = switchRoutes;
-
-/***/ }),
-
-/***/ "./src/shared/routes/withAllRoutes.js":
-/*!********************************************!*\
-  !*** ./src/shared/routes/withAllRoutes.js ***!
-  \********************************************/
+/***/ "./src/shared/routes/index.js":
+/*!************************************!*\
+  !*** ./src/shared/routes/index.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -55874,7 +55837,31 @@ var Layout = __webpack_require__(/*! ../components/Layout */ "./src/shared/compo
 //   }
 // };
 
-var withAllRoutes = function withAllRoutes(isBrowser, store) {
+// const withAllRoutes = (isBrowser, store) => { //this works
+//   return class extends Component { 
+//     render() {
+//       console.log('------ is browser: ', isBrowser);
+//       if(isBrowser){
+//         return (
+//           <Provider store={store}>
+//             <BrowserRouter {...this.props}>
+//               {allRoutes}
+//             </BrowserRouter>
+//           </Provider> 
+//         );
+//       }
+//       return (
+//         <Provider store={store}>
+//           <StaticRouter {...this.props}>
+//             {allRoutes}
+//           </StaticRouter>
+//         </Provider>
+//       );
+//     }
+//   }
+// };
+
+var withAllRoutes = function withAllRoutes(DynamicRouter, store) {
   return function (_Component) {
     _inherits(_class, _Component);
 
@@ -55887,23 +55874,12 @@ var withAllRoutes = function withAllRoutes(isBrowser, store) {
     _createClass(_class, [{
       key: 'render',
       value: function render() {
-        console.log('------ is browser: ', isBrowser);
-        if (isBrowser) {
-          return _react2.default.createElement(
-            _reactRedux.Provider,
-            { store: store },
-            _react2.default.createElement(
-              _reactRouterDom.BrowserRouter,
-              this.props,
-              _allRoutes2.default
-            )
-          );
-        }
+        console.log('---------------- DynamicRouter: ', DynamicRouter);
         return _react2.default.createElement(
           _reactRedux.Provider,
           { store: store },
           _react2.default.createElement(
-            _reactRouterDom.StaticRouter,
+            DynamicRouter,
             this.props,
             _allRoutes2.default
           )
@@ -55916,6 +55892,45 @@ var withAllRoutes = function withAllRoutes(isBrowser, store) {
 };
 
 module.exports = withAllRoutes;
+
+/***/ }),
+
+/***/ "./src/shared/routes/switchRoutes.js":
+/*!*******************************************!*\
+  !*** ./src/shared/routes/switchRoutes.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// import { fetchCards } from './api/cards-api';
+var DeckPage = __webpack_require__(/*! ../components/DeckPage/index.jsx */ "./src/shared/components/DeckPage/index.jsx");
+var NewCardPage = __webpack_require__(/*! ../components/NewCardPage/index.jsx */ "./src/shared/components/NewCardPage/index.jsx");
+var StudyPage = __webpack_require__(/*! ../components/StudyPage/index.jsx */ "./src/shared/components/StudyPage/index.jsx");
+var ReviewPage = __webpack_require__(/*! ../components/ReviewPage/index.jsx */ "./src/shared/components/ReviewPage/index.jsx");
+
+var switchRoutes = [{
+  path: '/',
+  exact: true,
+  component: DeckPage
+  // fetchInitialData: (path = '') => fetchCards(path.split('/').pop()),
+}, {
+  path: '/createCard/:deckID',
+  component: NewCardPage
+}, {
+  path: '/study',
+  component: StudyPage
+}, {
+  path: '/review',
+  component: ReviewPage
+}];
+
+exports.default = switchRoutes;
 
 /***/ }),
 

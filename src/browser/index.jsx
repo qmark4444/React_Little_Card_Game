@@ -2,9 +2,8 @@ import React from 'react';
 const ReactDOM = require('react-dom');
 const {Provider} = require('react-redux');
 import { hydrate } from 'react-dom';
-// import withRoutes from "../shared/routes";
+import withAllRoutes from "../shared/routes";
 // import allRoutes from "../shared/routes/allRoutes";
-const withAllRoutes = require('../shared/routes/withAllRoutes');
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 const {createStore} = require('redux');
@@ -12,8 +11,8 @@ const reducers = require('../shared/reducers');
 let store = createStore(reducers);
 
 // const BrowserRoutes = withRoutes(BrowserRouter, store);
-// const BrowserRoutes = withAllRoutes(BrowserRouter, store);
-const BrowserRoutes = withAllRoutes(true, store);
+const BrowserRoutes = withAllRoutes(BrowserRouter, store);
+// const BrowserRoutes = withAllRoutes(true, store);
 
 //require('../../public/css/cardgame.scss'); 
 import '../../public/css/cardgame.scss';

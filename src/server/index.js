@@ -7,9 +7,8 @@
 import React from 'react';
 import switchRoutes from "../shared/routes/switchRoutes";
 import entryHTML from './entryHTML.js';
-// import withRoutes from "../shared/routes";
+import withAllRoutes from "../shared/routes";
 // import allRoutes from "../shared/routes/allRoutes";
-const withAllRoutes = require('../shared/routes/withAllRoutes');
 import { StaticRouter, matchPath, Route, Switch } from 'react-router-dom';
 // import { StaticRouter, matchPath } from 'react-router';
 import { renderRoutes } from 'react-router-config';
@@ -162,8 +161,8 @@ app.get('*', (req, res, next) => {
 
     console.log('activaeRoute ', activeRoute);
 
-    // const ServerRoutes = withAllRoutes(StaticRouter, store);
-    const ServerRoutes = withAllRoutes(false, store);
+    const ServerRoutes = withAllRoutes(StaticRouter, store);
+    // const ServerRoutes = withAllRoutes(false, store);
 
     // TypeError: Cannot read property 'parsePath' of undefined -- history/PathUtil
     // const content = renderToString(  
