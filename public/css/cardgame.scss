@@ -127,14 +127,19 @@ body {
 }
 #deckPage > button { /*direct child of deckPage*/
   width: 33%;
+  @media only screen and (max-width: 600px){
+    & {
+      width: 100%;
+    }
+  }
 }
 
 /* media queries */
-@media only screen and (max-width: 600px){
-  #deckPage > button {
-    width: 100%;
-  }
-}
+// @media only screen and (max-width: 600px){
+//   #deckPage > button {
+//     width: 100%;
+//   }
+// }
 .playTable {
   position: relative;
   display: grid;
@@ -252,14 +257,22 @@ body {
   padding-top: 24; 
 }
 .fontNormal { 
-  font-size: 24; 
+  // font-size: 24;
+  font-size: 40;
+  @media only screen and (max-width: 600px){
+    & {
+      font-size: 27;
+    }
+  }
 }
 .fontAlternate { 
   font-size: 50; 
   color: "#FFFFFF";
 }
-.fontBig { 
-  font-size: 32; 
+// .fontBig { 
+span.fontBig { //class to override bootstrap? NOOOO, must use inline style to override inherited ?????
+  // font-size: 32; 
+  font-size: 45;
   align-self: "center"; 
 }
 .createDeck { 

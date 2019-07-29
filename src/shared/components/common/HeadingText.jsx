@@ -1,16 +1,19 @@
 import React, { Component } from "react";
-import { scalingFactors } from "../../../../public/css/styles";
+// import { scalingFactors } from "../../../../public/css/styles";
 
 class HeadingText extends Component {
   static displayName = "HeadingText";
 
   render() {
-    let width = window.screen.width;
-    let concatStyles = Object.assign({}, this.props.style, { fontSize: width / scalingFactors.big });
+    // let width = window? window.screen.width : '';
+    // let fontSize = window? window.screen.width/scalingFactors.big: '';
+    // let concatStyles = Object.assign({}, this.props.style, { fontSize: width / scalingFactors.big });
+    // let concatStyles = Object.assign({}, this.props.style, { fontSize: fontSize });
 
     return (
-      <span 
-        style={concatStyles}
+      <span className="fontNormal"
+        // style={concatStyles}
+        style={this.props.style}
       >
         {this.props.children}
       </span>

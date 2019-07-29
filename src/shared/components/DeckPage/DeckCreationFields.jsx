@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 import Button from "../common/Button";
-import NormalText from "./../common/NormalText";
+// import NormalText from "./../common/NormalText";
+import Text, {withText} from "../common/Text";
+const NormalText = withText(Text, 'normal');
 import LabeledInput from "../common/LabeledInput";
 
 class CreateDeckButton extends Component { 

@@ -10,8 +10,10 @@ export const cardStyle = {
 }
 
 export const scalingFactors = { 
-    normal: 45, 
-    big: 30
+    // normal: 45, 
+    // big: 30
+    normal: {fontSize: 30}, 
+    big: {fontSize: 45}
 };
 
 export const colors = {

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 
 import Input from "./Input";
-import NormalText from "./NormalText";
+// import NormalText from "./NormalText";
+import Text, {withText} from "../common/Text";
+const NormalText = withText(Text, 'normal');
 
 class LabeledInput extends Component {
   render() {

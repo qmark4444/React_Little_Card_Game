@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 
-import HeadingText from "../common/HeadingText";
+// import HeadingText from "../common/HeadingText";
+import Text, {withText} from "../common/Text";
+// const HeadingText = withText(Text, 'Heading');
+const HeadingText = withText(Text, 'big');
+
 import { mkContinueQuitButtons, mkAnswerButtons } from "./ReviewButtons";
 
 class QuizView extends Component {

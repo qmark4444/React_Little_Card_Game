@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import { studyDeck, reviewDeck } from "./../../actions/creators";
 import Card from "../NewCardPage/Card.jsx";
 import Button from "../common/Button";
-import NormalText from "../common/NormalText";
+// import NormalText from "../common/NormalText";
+import Text, {withText} from "../common/Text";
+const NormalText = withText(Text, 'normal');
 
 class CardsScreen extends Component {
   static displayName = "CardsScreen";

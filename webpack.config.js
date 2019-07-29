@@ -44,6 +44,7 @@ var browserConfig = {
     // plugins: [
     //     new webpack.DefinePlugin({
     //         isBrowser: "true" //added to global namespace, can be called in any React component
+    //                              // I think should avoid this (in React component hard to know where it comes from???)
     //     }),
     //     new HtmlWebpackPlugin({
     //         template: 'home.html'

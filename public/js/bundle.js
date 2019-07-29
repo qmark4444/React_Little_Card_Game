@@ -358,7 +358,7 @@ module.exports = charenc;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/* layout */\n* ::before ::after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  margin: 0;\n  width: 100%;\n  height: 80px;\n  padding: 0;\n  box-sizing: border-box;\n  transition: 0.5s;\n  background: #20232a; }\n\n.navbar.hide {\n  transform: translateY(-100%); }\n\n.navbar .channel {\n  position: relative; }\n\n.navbar ul {\n  /*make li on one line*/\n  margin: 0;\n  padding: 0;\n  display: flex;\n  float: right; }\n\n.navbar ul li {\n  list-style: none;\n  line-height: 80px;\n  text-align: center; }\n\n.navbar ul li a {\n  display: block;\n  padding: 0 30px;\n  text-decoration: none;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 16px; }\n\n.navbar ul li a:hover,\n.navbar ul li a.active {\n  background: #fd2928;\n  color: #fff; }\n\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n\n/* media queries */\n@media only screen and (max-width: 600px) {\n  #deckPage > button {\n    width: 100%; } }\n\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 24; }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\n.fontBig {\n  font-size: 32;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
+exports.push([module.i, "/* layout */\n* ::before ::after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  margin: 0;\n  width: 100%;\n  height: 80px;\n  padding: 0;\n  box-sizing: border-box;\n  transition: 0.5s;\n  background: #20232a; }\n\n.navbar.hide {\n  transform: translateY(-100%); }\n\n.navbar .channel {\n  position: relative; }\n\n.navbar ul {\n  /*make li on one line*/\n  margin: 0;\n  padding: 0;\n  display: flex;\n  float: right; }\n\n.navbar ul li {\n  list-style: none;\n  line-height: 80px;\n  text-align: center; }\n\n.navbar ul li a {\n  display: block;\n  padding: 0 30px;\n  text-decoration: none;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 16px; }\n\n.navbar ul li a:hover,\n.navbar ul li a.active {\n  background: #fd2928;\n  color: #fff; }\n\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n  @media only screen and (max-width: 600px) {\n    #deckPage > button {\n      width: 100%; } }\n\n/* media queries */\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 40; }\n  @media only screen and (max-width: 600px) {\n    .fontNormal {\n      font-size: 27; } }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\nspan.fontBig {\n  font-size: 45;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
 
 
 /***/ }),
@@ -52644,8 +52644,10 @@ var cardStyle = exports.cardStyle = {
 };
 
 var scalingFactors = exports.scalingFactors = {
-    normal: 45,
-    big: 30
+    // normal: 45, 
+    // big: 30
+    normal: { fontSize: 30 },
+    big: { fontSize: 45 }
 };
 
 var colors = exports.colors = {
@@ -52707,56 +52709,17 @@ var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_module
 
 __webpack_require__(/*! ../../public/css/cardgame.scss */ "./public/css/cardgame.scss");
 
-var _Layout = __webpack_require__(/*! ../shared/components/Layout */ "./src/shared/components/Layout/index.jsx");
-
-var _Layout2 = _interopRequireDefault(_Layout);
-
-var _DeckPage = __webpack_require__(/*! ../shared/components/DeckPage */ "./src/shared/components/DeckPage/index.jsx");
-
-var _DeckPage2 = _interopRequireDefault(_DeckPage);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ReactDOM = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-
-var _require = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js"),
-    Provider = _require.Provider;
-// import allRoutes from "../shared/routes/allRoutes";
-
-
-var _require2 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js"),
-    createStore = _require2.createStore;
+var _require = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js"),
+    createStore = _require.createStore;
 
 var reducers = __webpack_require__(/*! ../shared/reducers */ "./src/shared/reducers/index.js");
 var store = createStore(reducers);
 
-// const BrowserRoutes = withRoutes(BrowserRouter, store);
 var BrowserRoutes = (0, _routes2.default)(_reactRouterDom.BrowserRouter, store);
-// const BrowserRoutes = withAllRoutes(true, store);
 
-//require('../../public/css/cardgame.scss'); 
-
-
-(0, _reactDom.hydrate)(_react2.default.createElement(BrowserRoutes, null)
-
-// <Provider store={store}>
-//     <BrowserRouter>
-//         <Layout>
-//             <Switch>
-//                 <Route path='/' exact component={(props) => (<DeckPage {...props} />)} />  
-//             </Switch>
-//         </Layout>
-//     </BrowserRouter>
-// </Provider>
-
-// <Provider store={store}>
-//     <BrowserRouter>
-//         {/* {withRoutes()} */}
-//         {allRoutes}
-//     </BrowserRouter>
-// </Provider>
-
-, document.getElementById('content'));
+(0, _reactDom.hydrate)(_react2.default.createElement(BrowserRoutes, null), document.getElementById('content'));
 
 /***/ }),
 
@@ -52869,9 +52832,9 @@ var _Button = __webpack_require__(/*! ../common/Button */ "./src/shared/componen
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _NormalText = __webpack_require__(/*! ../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _Card = __webpack_require__(/*! ../NewCardPage/Card.jsx */ "./src/shared/components/NewCardPage/Card.jsx");
 
@@ -52884,6 +52847,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "../common/NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var Deck = function (_Component) {
   _inherits(Deck, _Component);
@@ -52970,7 +52937,7 @@ var Deck = function (_Component) {
             _Button2.default,
             { className: "deckButton", onClick: this._deleteDeck },
             _react2.default.createElement(
-              _NormalText2.default,
+              NormalText,
               null,
               this.props.deck.name,
               ": Delete"
@@ -52980,7 +52947,7 @@ var Deck = function (_Component) {
             _Button2.default,
             { className: "editButton", onClick: this._addCards },
             _react2.default.createElement(
-              _NormalText2.default,
+              NormalText,
               null,
               this.props.count,
               " Cards: Add"
@@ -53103,9 +53070,9 @@ var _Button = __webpack_require__(/*! ../common/Button */ "./src/shared/componen
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _NormalText = __webpack_require__(/*! ./../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _LabeledInput = __webpack_require__(/*! ../common/LabeledInput */ "./src/shared/components/common/LabeledInput.jsx");
 
@@ -53118,6 +53085,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "./../common/NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var CreateDeckButton = function (_Component) {
   _inherits(CreateDeckButton, _Component);
@@ -53135,7 +53106,7 @@ var CreateDeckButton = function (_Component) {
         _Button2.default,
         { className: "createDeck", onClick: this.props.onClick },
         _react2.default.createElement(
-          _NormalText2.default,
+          NormalText,
           null,
           "Create Deck"
         )
@@ -53725,6 +53696,68 @@ module.exports = Layout;
 
 /***/ }),
 
+/***/ "./src/shared/components/Navbar/index.jsx":
+/*!************************************************!*\
+  !*** ./src/shared/components/Navbar/index.jsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Navbar;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Navbar() {
+  var decks = [{
+    name: 'All',
+    deckID: 'all'
+  }, {
+    name: 'JavaScript',
+    deckID: 'javascript'
+  }, {
+    name: 'Ruby',
+    deckID: 'ruby'
+  }, {
+    name: 'Python',
+    deckID: 'python'
+  }, {
+    name: 'Java',
+    deckID: 'java'
+  }];
+
+  return _react2.default.createElement(
+    'ul',
+    null,
+    decks.map(function (_ref) {
+      var name = _ref.name,
+          deckID = _ref.deckID;
+      return _react2.default.createElement(
+        'li',
+        { key: deckID },
+        _react2.default.createElement(
+          _reactRouterDom.NavLink,
+          { activeStyle: { fontWeight: 'bold' }, to: '/deck/' + deckID },
+          name
+        )
+      );
+    })
+  );
+}
+
+/***/ }),
+
 /***/ "./src/shared/components/NewCardPage/Card.jsx":
 /*!****************************************************!*\
   !*** ./src/shared/components/NewCardPage/Card.jsx ***!
@@ -53854,9 +53887,9 @@ var _LabeledInput = __webpack_require__(/*! ../common/LabeledInput */ "./src/sha
 
 var _LabeledInput2 = _interopRequireDefault(_LabeledInput);
 
-var _NormalText = __webpack_require__(/*! ../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _Input = __webpack_require__(/*! ../common/Input */ "./src/shared/components/common/Input.jsx");
 
@@ -53875,6 +53908,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "../common/NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var NewCard = function (_Component) {
   _inherits(NewCard, _Component);
@@ -53974,7 +54011,7 @@ var NewCard = function (_Component) {
             _Button2.default,
             { onClick: this._doneCreating },
             _react2.default.createElement(
-              _NormalText2.default,
+              NormalText,
               null,
               "Done"
             )
@@ -53983,7 +54020,7 @@ var NewCard = function (_Component) {
             _Button2.default,
             { onClick: this._reviewDeck },
             _react2.default.createElement(
-              _NormalText2.default,
+              NormalText,
               null,
               "Review Deck"
             )
@@ -54015,6 +54052,37 @@ module.exports = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(N
 
 /***/ }),
 
+/***/ "./src/shared/components/NoMatchPage/index.jsx":
+/*!*****************************************************!*\
+  !*** ./src/shared/components/NoMatchPage/index.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = NoMatch;
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function NoMatch() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    '404: SHIT not found'
+  );
+}
+
+/***/ }),
+
 /***/ "./src/shared/components/ReviewPage/QuizView.jsx":
 /*!*******************************************************!*\
   !*** ./src/shared/components/ReviewPage/QuizView.jsx ***!
@@ -54031,9 +54099,9 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _HeadingText = __webpack_require__(/*! ../common/HeadingText */ "./src/shared/components/common/HeadingText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _HeadingText2 = _interopRequireDefault(_HeadingText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _ReviewButtons = __webpack_require__(/*! ./ReviewButtons */ "./src/shared/components/ReviewPage/ReviewButtons.jsx");
 
@@ -54044,6 +54112,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import HeadingText from "../common/HeadingText";
+
+
+// const HeadingText = withText(Text, 'Heading');
+var HeadingText = (0, _Text.withText)(_Text2.default, 'big');
 
 var QuizView = function (_Component) {
   _inherits(QuizView, _Component);
@@ -54084,7 +54158,7 @@ var QuizView = function (_Component) {
           "div",
           { className: "quizView" },
           _react2.default.createElement(
-            _HeadingText2.default,
+            HeadingText,
             null,
             "Question: ",
             this.props.prompt
@@ -54126,9 +54200,9 @@ var _Button = __webpack_require__(/*! ./../common/Button */ "./src/shared/compon
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _NormalText = __webpack_require__(/*! ./../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
 
@@ -54143,6 +54217,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "./../common/NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var ContinueButton = function (_Component) {
   _inherits(ContinueButton, _Component);
@@ -54161,7 +54239,7 @@ var ContinueButton = function (_Component) {
         _Button2.default,
         { onClick: this.props.onClick, style: { backgroundColor: _styles.colors.pink } },
         _react2.default.createElement(
-          _NormalText2.default,
+          NormalText,
           null,
           text
         )
@@ -54180,7 +54258,7 @@ function mkContinueQuitButtons(wasReviewed, wasCorrect, continueFunc, quitFunc) 
       _Button2.default,
       { onClick: quitFunc, style: { backgroundColor: _styles.colors.yellow } },
       _react2.default.createElement(
-        _NormalText2.default,
+        NormalText,
         null,
         "Stop Quiz"
       )
@@ -54218,7 +54296,7 @@ function mkAnswerButtons(answers, correctAnswer, wasReviewed, wasCorrect, select
           }
         },
         _react2.default.createElement(
-          _NormalText2.default,
+          NormalText,
           null,
           aIndex + 1,
           ". ",
@@ -54259,13 +54337,9 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _HeadingText = __webpack_require__(/*! ./../common/HeadingText */ "./src/shared/components/common/HeadingText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _HeadingText2 = _interopRequireDefault(_HeadingText);
-
-var _NormalText = __webpack_require__(/*! ../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
-
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 var _Button = __webpack_require__(/*! ../common/Button */ "./src/shared/components/common/Button.jsx");
 
@@ -54275,17 +54349,26 @@ var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// const HeadingText = withText(Text, 'Heading');
+var HeadingText = (0, _Text.withText)(_Text2.default, 'big');
+// import NormalText from "../common/NormalText";
+
+
+// import HeadingText from "./../common/HeadingText";
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
+
+
 function mkReviewSummary(percentCorrect, quitFunc) {
   return _react2.default.createElement(
     "div",
     { style: styles.done },
     _react2.default.createElement(
-      _HeadingText2.default,
+      HeadingText,
       { style: styles.alternate },
       "Reviews cleared!"
     ),
     _react2.default.createElement(
-      _NormalText2.default,
+      NormalText,
       { style: styles.alternate },
       Math.round(percentCorrect * 100),
       "% correct"
@@ -54294,7 +54377,7 @@ function mkReviewSummary(percentCorrect, quitFunc) {
       _Button2.default,
       { onClick: quitFunc, style: styles.doneButton },
       _react2.default.createElement(
-        _NormalText2.default,
+        NormalText,
         null,
         "Done"
       )
@@ -54465,9 +54548,9 @@ var _Button = __webpack_require__(/*! ../common/Button */ "./src/shared/componen
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _NormalText = __webpack_require__(/*! ../common/NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54476,6 +54559,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "../common/NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var CardsScreen = function (_Component) {
   _inherits(CardsScreen, _Component);
@@ -54550,7 +54637,7 @@ var CardsScreen = function (_Component) {
             _Button2.default,
             { className: "editButton", onClick: this._review },
             _react2.default.createElement(
-              _NormalText2.default,
+              NormalText,
               null,
               "Start Quiz"
             )
@@ -54659,69 +54746,6 @@ Button.displayName = "Button";
 Button.defaultProps = { disabled: false };
 
 exports.default = Button;
-
-/***/ }),
-
-/***/ "./src/shared/components/common/HeadingText.jsx":
-/*!******************************************************!*\
-  !*** ./src/shared/components/common/HeadingText.jsx ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var HeadingText = function (_Component) {
-  _inherits(HeadingText, _Component);
-
-  function HeadingText() {
-    _classCallCheck(this, HeadingText);
-
-    return _possibleConstructorReturn(this, (HeadingText.__proto__ || Object.getPrototypeOf(HeadingText)).apply(this, arguments));
-  }
-
-  _createClass(HeadingText, [{
-    key: "render",
-    value: function render() {
-      var width = window.screen.width;
-      var concatStyles = Object.assign({}, this.props.style, { fontSize: width / _styles.scalingFactors.big });
-
-      return _react2.default.createElement(
-        "span",
-        {
-          style: concatStyles
-        },
-        this.props.children
-      );
-    }
-  }]);
-
-  return HeadingText;
-}(_react.Component);
-
-HeadingText.displayName = "HeadingText";
-exports.default = HeadingText;
 
 /***/ }),
 
@@ -54886,9 +54910,9 @@ var _Input = __webpack_require__(/*! ./Input */ "./src/shared/components/common/
 
 var _Input2 = _interopRequireDefault(_Input);
 
-var _NormalText = __webpack_require__(/*! ./NormalText */ "./src/shared/components/common/NormalText.jsx");
+var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/common/Text.jsx");
 
-var _NormalText2 = _interopRequireDefault(_NormalText);
+var _Text2 = _interopRequireDefault(_Text);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -54897,6 +54921,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import NormalText from "./NormalText";
+
+
+var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 var LabeledInput = function (_Component) {
   _inherits(LabeledInput, _Component);
@@ -54921,7 +54949,7 @@ var LabeledInput = function (_Component) {
         "div",
         { style: localStyle.container },
         _react2.default.createElement(
-          _NormalText2.default,
+          NormalText,
           null,
           this.props.label,
           ":"
@@ -54937,70 +54965,6 @@ var LabeledInput = function (_Component) {
 }(_react.Component);
 
 exports.default = LabeledInput;
-
-/***/ }),
-
-/***/ "./src/shared/components/common/NormalText.jsx":
-/*!*****************************************************!*\
-  !*** ./src/shared/components/common/NormalText.jsx ***!
-  \*****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var NormalText = function (_Component) {
-  _inherits(NormalText, _Component);
-
-  function NormalText() {
-    _classCallCheck(this, NormalText);
-
-    return _possibleConstructorReturn(this, (NormalText.__proto__ || Object.getPrototypeOf(NormalText)).apply(this, arguments));
-  }
-
-  _createClass(NormalText, [{
-    key: "render",
-    value: function render() {
-      //let width = window.screen.width;
-      var width = 1200;
-      var concatStyles = Object.assign({}, this.props.style, { fontSize: width * 1.0 / _styles.scalingFactors.normal });
-
-      return _react2.default.createElement(
-        "span",
-        { className: "fontNormal",
-          style: concatStyles
-        },
-        this.props.children
-      );
-    }
-  }]);
-
-  return NormalText;
-}(_react.Component);
-
-NormalText.displayName = "NormalText";
-exports.default = NormalText;
 
 /***/ }),
 
@@ -55077,6 +55041,126 @@ var Snackbar = function (_Component) {
 Snackbar.defaultProps = { dwellTime: 1000 };
 
 exports.default = Snackbar;
+
+/***/ }),
+
+/***/ "./src/shared/components/common/Text.jsx":
+/*!***********************************************!*\
+  !*** ./src/shared/components/common/Text.jsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.withText = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Text = function (_Component) {
+    _inherits(Text, _Component);
+
+    function Text() {
+        _classCallCheck(this, Text);
+
+        return _possibleConstructorReturn(this, (Text.__proto__ || Object.getPrototypeOf(Text)).apply(this, arguments));
+    }
+
+    _createClass(Text, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "span",
+                { className: this.props.className,
+                    style: this.props.style
+                },
+                this.props.children
+            );
+        }
+    }]);
+
+    return Text;
+}(_react.Component);
+
+Text.displayName = "Text";
+exports.default = Text;
+var withText = exports.withText = function withText(Text, size) {
+    return function (_Component2) {
+        _inherits(_class2, _Component2);
+
+        function _class2() {
+            var _ref;
+
+            var _temp, _this2, _ret;
+
+            _classCallCheck(this, _class2);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = _class2.__proto__ || Object.getPrototypeOf(_class2)).call.apply(_ref, [this].concat(args))), _this2), _this2._getClass = function (size) {
+                switch (size) {
+                    case 'big':
+                        return "fontBig";
+                    case 'normal':
+                    default:
+                        return "fontNormal";
+                }
+            }, _temp), _possibleConstructorReturn(_this2, _ret);
+        }
+        //should avoid using switch-case or if-else!!!!
+        //HOW?????????
+        //use object/map: key/value!!!!: obj[size]--- and value can be a function too!!!!
+        //or use function as dynamic-param: function(size)
+
+
+        _createClass(_class2, [{
+            key: "render",
+
+
+            // _getStyle = size => {....};
+            // style = {
+            //     'Heading': {fontSize: 45},
+            //     'Normal': {fontSize: 40}
+            // }
+
+            value: function render() {
+                return (
+                    // <Text className={this._getClass(size)}/>
+                    // <Text className={this._getClass(size)} style={this.style[size]}>
+                    // <Text className={this._getClass(size)} style={scalingFactors[size]}>
+                    // className is overridden by inherited className
+                    _react2.default.createElement(
+                        Text,
+                        { style: _styles.scalingFactors[size] },
+                        this.props.children
+                    )
+                );
+            }
+        }]);
+
+        return _class2;
+    }(_react.Component);
+};
 
 /***/ }),
 
@@ -55608,10 +55692,15 @@ var _switchRoutes = __webpack_require__(/*! ./switchRoutes */ "./src/shared/rout
 
 var _switchRoutes2 = _interopRequireDefault(_switchRoutes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _Navbar = __webpack_require__(/*! ../components/Navbar */ "./src/shared/components/Navbar/index.jsx");
 
-// import Navbar from './components/Navbar';
-// import NoMatch from './components/NoMatch';
+var _Navbar2 = _interopRequireDefault(_Navbar);
+
+var _NoMatchPage = __webpack_require__(/*! ../components/NoMatchPage */ "./src/shared/components/NoMatchPage/index.jsx");
+
+var _NoMatchPage2 = _interopRequireDefault(_NoMatchPage);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _require = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js"),
     withRouter = _require.withRouter;
@@ -55620,58 +55709,36 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
     Route = _require2.Route,
     Switch = _require2.Switch;
 
-// const Layout = withRouter(require('../components/Layout'));
+// const Layout = withRouter(require('../components/Layout'));//Invariant Violation: You should not use <Route> or withRouter() outside a <Router>
 
 
 var Layout = __webpack_require__(/*! ../components/Layout */ "./src/shared/components/Layout/index.jsx");
 
-var DeckPage = __webpack_require__(/*! ../components/DeckPage/index.jsx */ "./src/shared/components/DeckPage/index.jsx"); //test
-
-// const routes = (
-//   //Invariant Violation: You should not use <Route> or withRouter() outside a <Router>
-//   //but https://tylermcginnis.com/react-router-server-rendering/ did the same????
-//   <Layout>
-//     <Switch>
-//       {switchRoutes.map(
-//         // // ( { path, exact, component: Component, ...rest } ) => ( // param = props, call with ...props spread expension
-//         // ( { path, exact, component: Component, rest } ) => (
-//         //   <Route key={path} path={path} exact={exact} component={(props) => (<Component {...props} {...rest} />)} />
-//         // )
-
-//         ( { path, exact, component: Component } ) => (
-//           <Route key={path} path={path} exact={exact} component={(props) => (<Component {...props} />)} />
-//         )
-
-//         // ( { path, exact, component } ) => ( //--wrong
-//         //   <Route key={path} path={path} exact={exact} component={(props) => (<component {...props} />)} />
-//         // )
-//       )}
-
-//       {/* <Route path='/' exact component={(props) => (<DeckPage {...props} />)} />   */}
-
-//       {/* <Route component={(props) => <NoMatch {...props} /> } /> */}
-//     </Switch>
-//   </Layout>
-// );
-
-var routes = _react2.default.createElement(Route, { component: function component(props) {
-    return _react2.default.createElement(
-      Layout,
-      props,
-      _react2.default.createElement(
-        Switch,
-        null,
-        _switchRoutes2.default.map(function (_ref) {
-          var path = _ref.path,
-              exact = _ref.exact,
-              Component = _ref.component;
-          return _react2.default.createElement(Route, { key: path, path: path, exact: exact, component: function component(props) {
-              return _react2.default.createElement(Component, props);
-            } });
-        })
-      )
-    );
-  } });
+var routes = _react2.default.createElement(
+  'div',
+  null,
+  _react2.default.createElement(Route, { component: function component(props) {
+      return _react2.default.createElement(
+        Layout,
+        props,
+        _react2.default.createElement(
+          Switch,
+          null,
+          _switchRoutes2.default.map(function (_ref) {
+            var path = _ref.path,
+                exact = _ref.exact,
+                Component = _ref.component;
+            return _react2.default.createElement(Route, { key: path, path: path, exact: exact, component: function component(props) {
+                return _react2.default.createElement(Component, props);
+              } });
+          })
+        )
+      );
+    } }),
+  _react2.default.createElement(Route, { component: function component(props) {
+      return _react2.default.createElement(_NoMatchPage2.default, props);
+    } })
+);
 
 exports.default = routes;
 
@@ -55693,17 +55760,11 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _switchRoutes = __webpack_require__(/*! ./switchRoutes */ "./src/shared/routes/switchRoutes.js");
-
-var _switchRoutes2 = _interopRequireDefault(_switchRoutes);
-
 var _allRoutes = __webpack_require__(/*! ./allRoutes */ "./src/shared/routes/allRoutes.js");
 
 var _allRoutes2 = _interopRequireDefault(_allRoutes);
 
 var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55713,9 +55774,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import Navbar from './components/Navbar';
-// import NoMatch from './components/NoMatch';
-
 var _require = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js"),
     withRouter = _require.withRouter;
 
@@ -55723,143 +55781,7 @@ var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/reac
     Route = _require2.Route,
     Switch = _require2.Switch;
 
-//const Layout = withRouter(require('../components/Layout/index.jsx'));
-// const Layout = withRouter(require('../components/Layout'));
-
-
 var Layout = __webpack_require__(/*! ../components/Layout */ "./src/shared/components/Layout/index.jsx");
-
-// const DeckPage = require('../components/DeckPage/index.jsx');//test
-
-// const withAllRoutes = (DynamicRouter, store) => {
-//   return class extends Component { 
-//     render() {
-//         return (
-//           <Provider store={store}>
-//             <DynamicRouter {...this.props}>
-//               <Layout>
-//                 <Switch>
-//                   {switchRoutes.map(
-//                     ( { path, exact, component: Component } ) => (
-//                       <Route key={path} path={path} exact={exact} component={(props) => (<Component {...props} />)} />
-//                     )
-//                   )}
-//                 </Switch>
-//               </Layout>
-//             </DynamicRouter>
-//           </Provider> 
-//         );
-//       }
-//     }
-//   };
-
-// const withAllRoutes = (isBrowser, store) => {
-//   return class extends Component { 
-//     render() {
-//       console.log('------ is browser: ', isBrowser);
-//       if(isBrowser){
-//         return (
-//           <Provider store={store}>
-//             <BrowserRouter {...this.props}>
-//               {/* {allRoutes} Invariant Violation: You should not use <Route> or withRouter() outside a <Router>*/}
-//               {/* <Layout></Layout> Invariant Violation: You should not use <Route> or withRouter() outside a <Router>*/}
-//               <h1>SHHIIITTTTT---WORKS</h1>
-//             </BrowserRouter>
-//           </Provider> 
-//         );
-//       }
-//       return (
-//         <Provider store={store}>
-//           <StaticRouter {...this.props}>
-//             {/* {allRoutes} Invariant Violation: You should not use <Route> or withRouter() outside a <Router>*/}
-//             {/* <Layout></Layout> Invariant Violation: You should not use <Route> or withRouter() outside a <Router>*/}
-//             <h1>SHHIIITTTTT---WORKS</h1>
-//           </StaticRouter>
-//         </Provider>
-//       );
-//     }
-//   }
-// };
-
-// const withAllRoutes = (isBrowser, store) => {
-//   return class extends Component { 
-//     render() {
-//       console.log('------ is browser: ', isBrowser);
-//       if(isBrowser){
-//         return (
-//           <Provider store={store}>
-//             <BrowserRouter {...this.props}>
-//               {/* {withRouter(require('../components/Layout'))} */}
-//               {/* Failed prop type: Invalid prop `children` supplied to `Router`, expected a ReactNode. */}
-
-//               <div>{withRouter(Layout)}</div>
-//             </BrowserRouter>
-//           </Provider> 
-//         );
-//       }
-//       return (
-//         <Provider store={store}>
-//           <StaticRouter {...this.props}>
-//             {/* {withRouter(require('../components/Layout'))} */}
-//             {/* Failed prop type: Invalid prop `children` supplied to `Router`, expected a ReactNode. */}
-
-//             <div>{withRouter(Layout)}</div>
-//           </StaticRouter>
-//         </Provider>
-//       );
-//     }
-//   }
-// };
-
-// const withAllRoutes = (isBrowser, store) => {
-//   return class extends Component { 
-//     render() {
-//       console.log('------ is browser: ', isBrowser);
-//       if(isBrowser){
-//         return (
-//           <Provider store={store}>
-//             <BrowserRouter {...this.props}>
-//               <Route component={(props) => (<Layout {...props} />)} />
-//               {/* this works: can't use withRouter() HOC */}
-//             </BrowserRouter>
-//           </Provider> 
-//         );
-//       }
-//       return (
-//         <Provider store={store}>
-//           <StaticRouter {...this.props}>
-//             <Route component={(props) => (<Layout {...props} />)} />
-//             {/* this works */}
-//           </StaticRouter>
-//         </Provider>
-//       );
-//     }
-//   }
-// };
-
-// const withAllRoutes = (isBrowser, store) => { //this works
-//   return class extends Component { 
-//     render() {
-//       console.log('------ is browser: ', isBrowser);
-//       if(isBrowser){
-//         return (
-//           <Provider store={store}>
-//             <BrowserRouter {...this.props}>
-//               {allRoutes}
-//             </BrowserRouter>
-//           </Provider> 
-//         );
-//       }
-//       return (
-//         <Provider store={store}>
-//           <StaticRouter {...this.props}>
-//             {allRoutes}
-//           </StaticRouter>
-//         </Provider>
-//       );
-//     }
-//   }
-// };
 
 var withAllRoutes = function withAllRoutes(DynamicRouter, store) {
   return function (_Component) {
@@ -55874,7 +55796,6 @@ var withAllRoutes = function withAllRoutes(DynamicRouter, store) {
     _createClass(_class, [{
       key: 'render',
       value: function render() {
-        console.log('---------------- DynamicRouter: ', DynamicRouter);
         return _react2.default.createElement(
           _reactRedux.Provider,
           { store: store },
