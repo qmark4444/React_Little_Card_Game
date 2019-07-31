@@ -53627,6 +53627,10 @@ var Layout = function (_Component3) {
 
     // this.navbarRef = React.createRef();
     // this.hamburgBarRef = React.createRef();
+    // this.state = {
+    //   navbarClassName: 'navbar',
+    //   menuClass: ''
+    // };
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this3._handleHamburgBarClick = function (e) {
@@ -53673,15 +53677,18 @@ var Layout = function (_Component3) {
       // :
       // this.setState({navbarClassName: 'navbar'});
 
-      var currentMenuClass = _this3.state.menuClass;
-      console.log('menu class');
-      currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
+      // let currentMenuClass = this.state.menuClass;
+      // console.log('menu class')
+      // currentMenuClass.indexOf('responsive') < 0?
+      // this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+      // :
+      // this.setState({menuClass: ''});
+
+      console.log(_this3.menuRef.current);
+      _this3.menuRef.current.classList.toggle('responsive');
     };
 
-    _this3.state = {
-      navbarClassName: 'navbar',
-      menuClass: ''
-    };
+    _this3.menuRef = _react2.default.createRef();
     return _this3;
   }
 
@@ -53725,7 +53732,7 @@ var Layout = function (_Component3) {
         { className: "layout" },
         _react2.default.createElement(
           Navbar,
-          { id: "topNavbar", className: this.state.navbarClassName },
+          { id: "topNavbar", className: "navbar" },
           _react2.default.createElement(_Logo2.default, null),
           _react2.default.createElement(
             "div",
@@ -53736,12 +53743,12 @@ var Layout = function (_Component3) {
               _react2.default.createElement(
                 _reactRouterDom.NavLink,
                 { to: "", className: "hamburgBar" },
-                _react2.default.createElement("i", { className: "fa fa-2x fa-bars", style: { verticalAlign: 'middle' } })
+                _react2.default.createElement("i", { className: "fa fa-4x fa-bars", style: { verticalAlign: 'middle' } })
               )
             ),
             _react2.default.createElement(
               "ul",
-              { id: "navMenu", className: this.state.menuClass },
+              { id: "navMenu", ref: this.menuRef },
               navs.map(function (_ref2) {
                 var name = _ref2.name,
                     location = _ref2.location;

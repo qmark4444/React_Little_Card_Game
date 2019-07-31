@@ -80,10 +80,11 @@ class Layout extends Component {
     super(props);
     // this.navbarRef = React.createRef();
     // this.hamburgBarRef = React.createRef();
-    this.state = {
-      navbarClassName: 'navbar',
-      menuClass: ''
-    };
+    // this.state = {
+    //   navbarClassName: 'navbar',
+    //   menuClass: ''
+    // };
+    this.menuRef = React.createRef();
   }
 
   componentDidMount(){
@@ -143,12 +144,15 @@ class Layout extends Component {
     // :
     // this.setState({navbarClassName: 'navbar'});
 
-    let currentMenuClass = this.state.menuClass;
-    console.log('menu class')
-    currentMenuClass.indexOf('responsive') < 0?
-    this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-    :
-    this.setState({menuClass: ''});
+    // let currentMenuClass = this.state.menuClass;
+    // console.log('menu class')
+    // currentMenuClass.indexOf('responsive') < 0?
+    // this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+    // :
+    // this.setState({menuClass: ''});
+
+    console.log(this.menuRef.current);
+    this.menuRef.current.classList.toggle('responsive');
   }
 
   render() {
@@ -178,8 +182,8 @@ class Layout extends Component {
     return (
       <div className="layout">
         {/* <Navbar id="topNavbar" ref={this.navbarRef}> */}
-        {/* <Navbar id="topNavbar" > */}
-        <Navbar id="topNavbar" className={this.state.navbarClassName}>
+        <Navbar id="topNavbar" className="navbar">
+        {/* <Navbar id="topNavbar" className={this.state.navbarClassName}> */}
           <Logo />
           <div id="barContainer">
             {/* <div id="hamburgBar"> */}
@@ -192,10 +196,11 @@ class Layout extends Component {
                 {/* <NavLink to="javascript:void(0);" className="hamburgBar"> */}
                 {/* <NavLink to="" className="hamburgBar" onClick={this._handleHamburgBarClick}> */}
                 <NavLink to="" className="hamburgBar">
-                  <i className="fa fa-2x fa-bars" style={{verticalAlign: 'middle'}}></i>
+                  <i className="fa fa-4x fa-bars" style={{verticalAlign: 'middle'}}></i>
                 </NavLink>
             </div>
-            <ul id="navMenu" className={this.state.menuClass}>
+            {/* <ul id="navMenu" className={this.state.menuClass} > */}
+            <ul id="navMenu" ref={this.menuRef}>
               {/* TODO: <a> should be replaced by <Link> later
               all ul, li should be replaced by React components later */}
                 {/* <li><a href="#">Home</a></li>
