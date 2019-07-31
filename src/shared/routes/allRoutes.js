@@ -30,7 +30,8 @@ const routes = (
         </Switch>
       </Layout>
     )}/>
-    <Route component={(props) => (<NoMatch {...props} />)} />
+    {/* <Route component={(props) => (<NoMatch {...props} />)} /> */}
+    <Route path='/error' component={(props) => (<NoMatch {...props} />)} />
   </div>
 );
 

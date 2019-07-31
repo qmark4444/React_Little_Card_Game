@@ -53543,12 +53543,13 @@ var Navbar = function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       //scroll event on window
-      window.addEventListener('scroll', this._handleScroll);
+      // window.addEventListener('scroll', this._handleScroll);
+      //constantly toggle class, when mouse scroll at the bottom, it even can't scroll up if scroll force is little
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('scroll', this._handleScroll);
+      // window.removeEventListener('scroll', this._handleScroll);
     }
   }, {
     key: "render",
@@ -53627,88 +53628,24 @@ var Layout = function (_Component3) {
   function Layout(props) {
     _classCallCheck(this, Layout);
 
-    // this.navbarRef = React.createRef();
-    // this.hamburgBarRef = React.createRef();
-    // this.state = {
-    //   navbarClassName: 'navbar',
-    //   menuClass: ''
-    // };
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this3._handleHamburgBarClick = function (e) {
       e.preventDefault();
-      //console.log('handleHamburgBarClick ', e.target);//can be <i> or <a> depends on where mouse clicked
-      // e.target.classList.add('responsive');
-      // console.log(this.hamburgBarRef.current);
-      // console.log(this.hamburgBarRef.current.children[0].classList);
-      // let hamburgBar = this.hamburgBarRef.current.children[0]; 
-      // if (hamburgBar.className === "hamburgBar") {
-      //   hamburgBar.className += " responsive";
-      // } else {
-      //   hamburgBar.className = "hamburgBar";
-      // }
+      var currentMenuClass = _this3.state.menuClass;
+      currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
 
-      // console.log(this.navbarRef.current);
-      // console.log(this.navbarRef.current.id);//undefined
-      // console.log(this.navbarRef.current.className);//undefined
-      // console.log(this.navbarRef.current.classList);//undefined
-      // console.log(this.navbarRef.current.props.id);
-      // console.log(this.navbarRef.current.props.children);//two child: <Logo>, <ul>
-      // console.log(this.navbarRef.current.props.children[1].classList);
-      // // let navBar = this.navbarRef.current.props.children[1]; 
-      // // if (navBar.className === "navbar") {
-      // //   console.log('navbar add class')
-      // //   // navBar.className += " responsive";
-      // //   navBar.classList.add("responsive");
-      // // } else {
-      // //   navBar.className = "navbar";
-      // // }
-      // let ul = this.navbarRef.current.props.children[1]; 
-      // if (ul.className === "") {
-      //   console.log('ul add class')
-      //   // navBar.className += " responsive";
-      //   ul.classList.add("responsive");
-      // } else {
-      //   ul.className = "";
-      // }
-
-      // use local this.state, not Ref!!!
-      // let currentNavbarClass = this.state.navbarClassName;
-      // currentNavbarClass.indexOf('responsive') < 0?
-      // this.setState({navbarClassName: [currentNavbarClass,'responsive'].join(' ')})
-      // :
-      // this.setState({navbarClassName: 'navbar'});
-
-      // let currentMenuClass = this.state.menuClass;
-      // console.log('menu class')
-      // currentMenuClass.indexOf('responsive') < 0?
-      // this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-      // :
-      // this.setState({menuClass: ''});
-
-      _this3.menuRef.current.classList.toggle('responsive');
+      // this.menuRef.current.classList.toggle('responsive');
     };
 
-    _this3.menuRef = _react2.default.createRef();
+    _this3.state = {
+      menuClass: ''
+    };
+    // this.menuRef = React.createRef();
     return _this3;
   }
 
   _createClass(Layout, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      // this.hamburgBarRef.current.addEventListener('click', this._handleHamburgBarClick, true);
-      // window.addEventListener('click', this._handleHamburgBarClick, true);
-      // this.navbarRef.current.addEventListener('click', this._handleHamburgBarClick, true);//Navbar not a real DOM element
-      //error: this.navbarRef.current.addEventListener is not a function
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      // this.hamburgBarRef.current.removeEventListener('click', this._handleHamburgBarClick);
-      // window.removeEventListener('click', this._handleHamburgBarClick);
-      // this.navbarRef.removeEventListener('click', this._handleHamburgBarClick);
-    }
-  }, {
     key: "render",
     value: function render() {
       var navs = [{
@@ -53733,7 +53670,7 @@ var Layout = function (_Component3) {
         { className: "layout" },
         _react2.default.createElement(
           Navbar,
-          { id: "topNavbar", className: "navbar" },
+          { id: "topNavbar", className: "topNavbar" },
           _react2.default.createElement(_Logo2.default, null),
           _react2.default.createElement(
             "div",
@@ -53749,7 +53686,7 @@ var Layout = function (_Component3) {
             ),
             _react2.default.createElement(
               "ul",
-              { id: "navMenu", ref: this.menuRef },
+              { id: "navMenu", className: this.state.menuClass },
               navs.map(function (_ref2) {
                 var name = _ref2.name,
                     location = _ref2.location;
@@ -55782,7 +55719,7 @@ var routes = _react2.default.createElement(
         )
       );
     } }),
-  _react2.default.createElement(Route, { component: function component(props) {
+  _react2.default.createElement(Route, { path: '/error', component: function component(props) {
       return _react2.default.createElement(_NoMatchPage2.default, props);
     } })
 );
