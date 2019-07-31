@@ -1,0 +1,187 @@
+/* navbar */
+/* .navbar{ */
+#topNavbar{
+  /* position: fixed; */
+  /* position: relative; */
+  /* top:0; */
+  /* left:0; */
+  /* margin: 0; */
+  width: 100%;
+  /* width: auto; */
+  /* width: initial; */
+  height: 80px;
+  /* padding:0; */
+  /* box-sizing: border-box; */
+  transition: 0.5s;
+  background: black;
+  border-radius: 0; /*override bootstrap inherited class navbar ! avoid using the same name class as bootstrap?*/
+
+  /* overflow: hidden; */
+  /* overflow: auto; */
+
+  /* display:flex;
+  align-items: center; */
+
+  display: grid;
+  /* display: inline-grid; */
+  /* grid-template-columns: minmax(200px, 1fr), minmax(200px,1fr); */
+  /* grid-template-columns: auto auto; */
+  grid-template-columns: 200px, 1fr;
+  /* align-content: center; */
+  /* align-content: space-evenly; */
+  /* align-content: space-around; */
+  /* align-content: start; */
+  /* align-content: end; */
+
+  /* grid-template-rows: 1fr; */
+
+  /* grid-template-areas: 'svg .' */
+}
+/* svg{
+  grid-area: svg;
+} */
+.navbar.hide{
+  transform: translateY(-100%);
+}
+/* .navbar .channel{
+  position: relative;           
+} */
+/* .navbar ul{ */
+/* .navbar:not(:first-child) { */
+.navbar #barContainer{
+/* #topNavbar #barContainer{ */
+  /* margin:0;
+  padding:0; */
+  display: flex;
+  float: right;
+
+  /* width:100%; */
+
+  /* justify-content: center;
+    align-items: center;
+  background: green; */
+
+  /* position: relative; */
+  position: absolute;
+  /* for dropdown position <ul> absolute  */
+  /* or by .responsive added */
+
+  right:0;
+  /* top:50%; */
+
+  /* vertical-align: middle; */
+}
+/* .navbar #barContainer .hamburgBar{
+  vertical-align: middle;
+} */
+/* .navbar #barContainer ul{ */
+.navbar #barContainer #navMenu{
+  /* margin:0;
+  padding:0; */
+  display: flex;
+  float: right;
+
+  /* justify-content: center;
+    align-items: center; */
+
+  /* position: relative;  */
+}
+.navbar ul li{
+  list-style: none;
+  line-height: 80px;
+  text-align: center;
+}
+/* .navbar ul li a{
+  display: block;
+  padding: 0 30px;
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+} */
+/* .navbar ul li a:hover,
+.navbar ul li a.active
+{
+  background: #fd2928;
+  color: #fff;
+} */
+
+.navbar li a {
+  /* float: right; */
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  /* padding: 14px 16px; */
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar #hamburgBar {
+/* .navbar .hamburgBar { */
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  /* .navbar li a:not(:first-child) { */
+  /* .navbar li a:not(.hamburgBar) { */
+  .navbar #barContainer #navMenu{ 
+    display: none;
+    position: absolute;
+    /* top:80; */
+    top:80px;
+    right:0;
+    z-index: 10;
+    /* width:100%; */
+    background: grey;
+  }
+
+  /* .navbar div a.hamburgBar { */
+  /* .navbar .hamburgBar { */
+  .navbar #hamburgBar {
+    /* float: right; */
+    display: block;
+    background: yellow;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  /* #barContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  } */
+  /* .navbar.responsive { */
+  /* .navbar.responsive #barContainer{ */
+  .navbar #barContainer #navMenu.responsive{
+      /* position: relative; */
+      display:block;
+  }
+  /* .navbar.responsive li a.hamburgBar { */
+  /* .navbar.responsive #barContainer a.hamburgBar {
+    position: absolute;
+    right: 0;
+    top: 0;
+  } */
+  /* .navbar.responsive ul { */
+  /* .navbar.responsive #barContainer ul {
+    position: absolute;
+    min-width: 160px;
+  } */
+  /* .navbar.responsive li a { not working */
+  /* .navbar.responsive a { */
+  /* .navbar.responsive li a:not(.hamburgBar) { to override existing style, must use the same exact selector and attributes */
+  /* .navbar.responsive ul li a{ */
+  /* .navbar.responsive #barContainer ul li a{ */
+  .navbar #barContainer ul.responsive li a{  
+    /* float: none; */
+    /* flex: 1; */
+    /* display: block; */
+    text-align: left;
+    /* z-index:100000; */
+  }
+}
+/* end of navbar */

@@ -358,7 +358,7 @@ module.exports = charenc;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/* layout */\n* ::before ::after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n.navbar {\n  position: fixed;\n  top: 0;\n  left: 0;\n  margin: 0;\n  width: 100%;\n  height: 80px;\n  padding: 0;\n  box-sizing: border-box;\n  transition: 0.5s;\n  background: #20232a; }\n\n.navbar.hide {\n  transform: translateY(-100%); }\n\n.navbar .channel {\n  position: relative; }\n\n.navbar ul {\n  /*make li on one line*/\n  margin: 0;\n  padding: 0;\n  display: flex;\n  float: right; }\n\n.navbar ul li {\n  list-style: none;\n  line-height: 80px;\n  text-align: center; }\n\n.navbar ul li a {\n  display: block;\n  padding: 0 30px;\n  text-decoration: none;\n  color: white;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 16px; }\n\n.navbar ul li a:hover,\n.navbar ul li a.active {\n  background: #fd2928;\n  color: #fff; }\n\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n  @media only screen and (max-width: 600px) {\n    #deckPage > button {\n      width: 100%; } }\n\n/* media queries */\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 40; }\n  @media only screen and (max-width: 600px) {\n    .fontNormal {\n      font-size: 27; } }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\nspan.fontBig {\n  font-size: 45;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
+exports.push([module.i, "/* layout */\n* :before :after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n  @media only screen and (max-width: 600px) {\n    #deckPage > button {\n      width: 100%; } }\n\n/* media queries */\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 40; }\n  @media only screen and (max-width: 600px) {\n    .fontNormal {\n      font-size: 27; } }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\nspan.fontBig {\n  font-size: 45;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
 
 
 /***/ }),
@@ -52897,7 +52897,7 @@ var Deck = function (_Component) {
   }, {
     key: "_updatePosition",
     value: function _updatePosition(e) {
-      var deck = this.deckRef.current;
+      // let deck = this.deckRef.current;
       var deckFig = this.deckFigRef.current;
       this.setState({
         deckWidth: deckFig.offsetWidth,
@@ -52909,6 +52909,10 @@ var Deck = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      // console.log(this.state.deckWidth, this.state.deckHeight);
+      //  from server-side rendering they are all 0, but browser not.
+      // console.log(parseFloat(window.getComputedStyle(this).height)); // window not defined
+      // console.log(parseFloat(document.parentWindow.getComputedStyle(this).height)); // document not defined
       return _react2.default.createElement(
         "div",
         { className: "deckContainer", id: this.props.id, ref: this.deckRef },
@@ -53490,6 +53494,8 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 var _Logo = __webpack_require__(/*! ./Logo */ "./src/shared/components/Layout/Logo.jsx");
 
 var _Logo2 = _interopRequireDefault(_Logo);
@@ -53501,6 +53507,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import "../../../../public/css/styles";
+// import "../../../../public/css/cardgame.scss"; // error: window in style-loader is not defined
 
 var Navbar = function (_Component) {
   _inherits(Navbar, _Component);
@@ -53515,16 +53524,16 @@ var Navbar = function (_Component) {
       var currentScrollY = window.pageYOffset; //get scroll top position
       //compare current scroll position with previous (differ by 1)
       if (currentScrollY > _this.prevScrollY) {
-        _this.setState({ navbarClass: "hide" });
+        _this.setState({ extraNavbarClass: "hide" });
       } else {
-        _this.setState({ navbarClass: "navbar" });
+        _this.setState({ extraNavbarClass: "" });
       }
 
       _this.prevScrollY = currentScrollY;
     };
 
     _this.state = {
-      navbarClass: "navbar"
+      extraNavbarClass: ""
     };
     _this.prevScrollY = 0;
     return _this;
@@ -53544,10 +53553,13 @@ var Navbar = function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react2.default.createElement(
-        "div",
-        { className: this.state.navbarClass },
-        this.props.children
+      return (
+        // <div className={this.props.className+' ' +this.state.extraNavbarClass} id={this.props.id}>
+        _react2.default.createElement(
+          "div",
+          { className: [this.props.className, this.state.extraNavbarClass].join(' '), id: this.props.id },
+          this.props.children
+        )
       );
     }
   }]);
@@ -53610,69 +53622,139 @@ var Footer = function (_Component2) {
 var Layout = function (_Component3) {
   _inherits(Layout, _Component3);
 
-  function Layout() {
+  function Layout(props) {
     _classCallCheck(this, Layout);
 
-    return _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).apply(this, arguments));
+    // this.navbarRef = React.createRef();
+    // this.hamburgBarRef = React.createRef();
+    var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
+
+    _this3._handleHamburgBarClick = function (e) {
+      e.preventDefault();
+      //console.log('handleHamburgBarClick ', e.target);//can be <i> or <a> depends on where mouse clicked
+      // e.target.classList.add('responsive');
+      // console.log(this.hamburgBarRef.current);
+      // console.log(this.hamburgBarRef.current.children[0].classList);
+      // let hamburgBar = this.hamburgBarRef.current.children[0]; 
+      // if (hamburgBar.className === "hamburgBar") {
+      //   hamburgBar.className += " responsive";
+      // } else {
+      //   hamburgBar.className = "hamburgBar";
+      // }
+
+      // console.log(this.navbarRef.current);
+      // console.log(this.navbarRef.current.id);//undefined
+      // console.log(this.navbarRef.current.className);//undefined
+      // console.log(this.navbarRef.current.classList);//undefined
+      // console.log(this.navbarRef.current.props.id);
+      // console.log(this.navbarRef.current.props.children);//two child: <Logo>, <ul>
+      // console.log(this.navbarRef.current.props.children[1].classList);
+      // // let navBar = this.navbarRef.current.props.children[1]; 
+      // // if (navBar.className === "navbar") {
+      // //   console.log('navbar add class')
+      // //   // navBar.className += " responsive";
+      // //   navBar.classList.add("responsive");
+      // // } else {
+      // //   navBar.className = "navbar";
+      // // }
+      // let ul = this.navbarRef.current.props.children[1]; 
+      // if (ul.className === "") {
+      //   console.log('ul add class')
+      //   // navBar.className += " responsive";
+      //   ul.classList.add("responsive");
+      // } else {
+      //   ul.className = "";
+      // }
+
+      // use local this.state, not Ref!!!
+      // let currentNavbarClass = this.state.navbarClassName;
+      // currentNavbarClass.indexOf('responsive') < 0?
+      // this.setState({navbarClassName: [currentNavbarClass,'responsive'].join(' ')})
+      // :
+      // this.setState({navbarClassName: 'navbar'});
+
+      var currentMenuClass = _this3.state.menuClass;
+      console.log('menu class');
+      currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
+    };
+
+    _this3.state = {
+      navbarClassName: 'navbar',
+      menuClass: ''
+    };
+    return _this3;
   }
 
   _createClass(Layout, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // this.hamburgBarRef.current.addEventListener('click', this._handleHamburgBarClick, true);
+      // window.addEventListener('click', this._handleHamburgBarClick, true);
+      // this.navbarRef.current.addEventListener('click', this._handleHamburgBarClick, true);//Navbar not a real DOM element
+      //error: this.navbarRef.current.addEventListener is not a function
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      // this.hamburgBarRef.current.removeEventListener('click', this._handleHamburgBarClick);
+      // window.removeEventListener('click', this._handleHamburgBarClick);
+      // this.navbarRef.removeEventListener('click', this._handleHamburgBarClick);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var navs = [{
+        name: 'Home',
+        location: '#'
+      }, {
+        name: 'About',
+        location: '#'
+      }, {
+        name: 'Games',
+        location: '#'
+      }, {
+        name: 'Portfolio',
+        location: '#'
+      }, {
+        name: 'Contact',
+        location: '#'
+      }];
+
       return _react2.default.createElement(
         "div",
         { className: "layout" },
         _react2.default.createElement(
           Navbar,
-          null,
+          { id: "topNavbar", className: this.state.navbarClassName },
           _react2.default.createElement(_Logo2.default, null),
           _react2.default.createElement(
-            "ul",
-            null,
+            "div",
+            { id: "barContainer" },
             _react2.default.createElement(
-              "li",
-              null,
+              "div",
+              { id: "hamburgBar", onClick: this._handleHamburgBarClick },
               _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Home"
+                _reactRouterDom.NavLink,
+                { to: "", className: "hamburgBar" },
+                _react2.default.createElement("i", { className: "fa fa-2x fa-bars", style: { verticalAlign: 'middle' } })
               )
             ),
             _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "About"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Games"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Portfolio"
-              )
-            ),
-            _react2.default.createElement(
-              "li",
-              null,
-              _react2.default.createElement(
-                "a",
-                { href: "#" },
-                "Contact"
-              )
+              "ul",
+              { id: "navMenu", className: this.state.menuClass },
+              navs.map(function (_ref2) {
+                var name = _ref2.name,
+                    location = _ref2.location;
+                return _react2.default.createElement(
+                  "li",
+                  { key: name },
+                  _react2.default.createElement(
+                    _reactRouterDom.NavLink,
+                    { activeStyle: { fontWeight: 'bold' }, to: location },
+                    name
+                  )
+                );
+              })
             )
           )
         ),
@@ -53693,68 +53775,6 @@ Layout.displayName = "Layout";
 
 
 module.exports = Layout;
-
-/***/ }),
-
-/***/ "./src/shared/components/Navbar/index.jsx":
-/*!************************************************!*\
-  !*** ./src/shared/components/Navbar/index.jsx ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = Navbar;
-
-var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function Navbar() {
-  var decks = [{
-    name: 'All',
-    deckID: 'all'
-  }, {
-    name: 'JavaScript',
-    deckID: 'javascript'
-  }, {
-    name: 'Ruby',
-    deckID: 'ruby'
-  }, {
-    name: 'Python',
-    deckID: 'python'
-  }, {
-    name: 'Java',
-    deckID: 'java'
-  }];
-
-  return _react2.default.createElement(
-    'ul',
-    null,
-    decks.map(function (_ref) {
-      var name = _ref.name,
-          deckID = _ref.deckID;
-      return _react2.default.createElement(
-        'li',
-        { key: deckID },
-        _react2.default.createElement(
-          _reactRouterDom.NavLink,
-          { activeStyle: { fontWeight: 'bold' }, to: '/deck/' + deckID },
-          name
-        )
-      );
-    })
-  );
-}
 
 /***/ }),
 
@@ -54349,12 +54369,7 @@ var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// const HeadingText = withText(Text, 'Heading');
 var HeadingText = (0, _Text.withText)(_Text2.default, 'big');
-// import NormalText from "../common/NormalText";
-
-
-// import HeadingText from "./../common/HeadingText";
 var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
 
@@ -54559,8 +54574,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import NormalText from "../common/NormalText";
-
 
 var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
@@ -55086,6 +55099,7 @@ var Text = function (_Component) {
 
     _createClass(Text, [{
         key: "render",
+        // displayName for debugging
         value: function render() {
             return _react2.default.createElement(
                 "span",
@@ -55100,24 +55114,33 @@ var Text = function (_Component) {
     return Text;
 }(_react.Component);
 
-Text.displayName = "Text";
+Text.displayName = "Text-Base-Component";
 exports.default = Text;
-var withText = exports.withText = function withText(Text, size) {
-    return function (_Component2) {
-        _inherits(_class2, _Component2);
 
-        function _class2() {
+//when using HOC, static property (displayName) needs to add explicitly, otherwise will be lost
+
+function getDisplayName(WrappedComponent) {
+    //copied from HOC React official website
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+
+var withText = exports.withText = function withText(Text, size) {
+    // return class extends Component {
+    var WithText = function (_Component2) {
+        _inherits(WithText, _Component2);
+
+        function WithText() {
             var _ref;
 
             var _temp, _this2, _ret;
 
-            _classCallCheck(this, _class2);
+            _classCallCheck(this, WithText);
 
             for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
             }
 
-            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = _class2.__proto__ || Object.getPrototypeOf(_class2)).call.apply(_ref, [this].concat(args))), _this2), _this2._getClass = function (size) {
+            return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = WithText.__proto__ || Object.getPrototypeOf(WithText)).call.apply(_ref, [this].concat(args))), _this2), _this2._getClass = function (size) {
                 switch (size) {
                     case 'big':
                         return "fontBig";
@@ -55133,7 +55156,7 @@ var withText = exports.withText = function withText(Text, size) {
         //or use function as dynamic-param: function(size)
 
 
-        _createClass(_class2, [{
+        _createClass(WithText, [{
             key: "render",
 
 
@@ -55144,22 +55167,39 @@ var withText = exports.withText = function withText(Text, size) {
             // }
 
             value: function render() {
+                // let width = window? window.screen.width : '';//how to made fontsize adaptive to window width?
+                // //still complain window is not defined!!! why?
+                // let fontSize = width / scalingFactors.normal;//????
+
+                var concatStyles = Object.assign({}, this.props.style, _styles.scalingFactors[size]);
+
                 return (
                     // <Text className={this._getClass(size)}/>
                     // <Text className={this._getClass(size)} style={this.style[size]}>
                     // <Text className={this._getClass(size)} style={scalingFactors[size]}>
                     // className is overridden by inherited className
+                    // <Text style={scalingFactors[size]}>
                     _react2.default.createElement(
                         Text,
-                        { style: _styles.scalingFactors[size] },
+                        { style: concatStyles },
                         this.props.children
                     )
                 );
             }
         }]);
 
-        return _class2;
+        return WithText;
     }(_react.Component);
+
+    //static property
+
+
+    WithText.displayName = "withText(" + getDisplayName(Text) + ")";
+    //or use 'hoist-non-react-statics' module
+    //import hoistNonReactStatic from 'hoist-non-react-statics';
+    //hoistNonReactStatic(WithText, Text);
+
+    return WithText;
 };
 
 /***/ }),
@@ -55692,10 +55732,6 @@ var _switchRoutes = __webpack_require__(/*! ./switchRoutes */ "./src/shared/rout
 
 var _switchRoutes2 = _interopRequireDefault(_switchRoutes);
 
-var _Navbar = __webpack_require__(/*! ../components/Navbar */ "./src/shared/components/Navbar/index.jsx");
-
-var _Navbar2 = _interopRequireDefault(_Navbar);
-
 var _NoMatchPage = __webpack_require__(/*! ../components/NoMatchPage */ "./src/shared/components/NoMatchPage/index.jsx");
 
 var _NoMatchPage2 = _interopRequireDefault(_NoMatchPage);
@@ -55704,6 +55740,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _require = __webpack_require__(/*! react-router */ "./node_modules/react-router/es/index.js"),
     withRouter = _require.withRouter;
+
+// import Navbar from '../components/Navbar';
+
 
 var _require2 = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js"),
     Route = _require2.Route,

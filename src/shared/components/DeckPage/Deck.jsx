@@ -28,7 +28,7 @@ class Deck extends Component {
   }
 
   _updatePosition(e){
-    let deck = this.deckRef.current;
+    // let deck = this.deckRef.current;
     let deckFig = this.deckFigRef.current;
     this.setState({
       deckWidth: deckFig.offsetWidth,
@@ -53,6 +53,10 @@ class Deck extends Component {
   }
 
   render() {
+    // console.log(this.state.deckWidth, this.state.deckHeight);
+    //  from server-side rendering they are all 0, but browser not.
+    // console.log(parseFloat(window.getComputedStyle(this).height)); // window not defined
+    // console.log(parseFloat(document.parentWindow.getComputedStyle(this).height)); // document not defined
     return (
       <div className="deckContainer" id={this.props.id} ref={this.deckRef}>
         <figure 
@@ -70,8 +74,7 @@ class Deck extends Component {
                       zIndex={cardIndex+1} 
                       id={card.id} 
                       uncover={false}
-                >
-                </Card>
+                />
               )
             })
           }

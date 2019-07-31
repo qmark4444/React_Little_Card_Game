@@ -20,7 +20,9 @@ var browserConfig = {
         rules: [
             { 
                 test: /\.css$/, 
-                use: 'style-loader!css-loader' //execute order: right to left
+                loader: 'style-loader!css-loader'
+                // use: 'style-loader!css-loader' //execute order: right to left
+                // use: ['isomorphic-style-loader', {loader: 'style-loader!css-loader'}]
             },
             {
                 test: /\.scss$/,
@@ -65,6 +67,26 @@ var serverConfig = {
     },
     module: {
         rules: [
+            //add  --- doesn't help to render css from server side
+            // { 
+            //     test: /\.css$/, 
+            //     loader: 'style-loader!css-loader'
+            //     // use: 'style-loader!css-loader' //execute order: right to left
+            //     // use: ['isomorphic-style-loader', {loader: 'style-loader!css-loader'}]
+            // },
+            // {
+            //     test: /\.scss$/,
+            //     use: [
+            //         //execute order: bottom to top
+            //         'style-loader', // creates style nodes from JS strings
+            //         'css-loader', // translates CSS into CommonJS
+            //         'sass-loader' // compiles Sass to CSS, using Node Sass by default
+            //     ]
+            // },
+            // {
+            //     test: /\.(scss|css)$/, 
+            //     loader: "ignore-loader"
+            // },
             {
                 test: /\.jsx?$/,
                 exclude: /(node_modules)/,
@@ -74,6 +96,7 @@ var serverConfig = {
     },
     resolve: { //must have this, otherwise webpack can't find the module without extension (.jsx implicitly)
         extensions: ['*', '.js', '.jsx'] //webpack 2. can remove '' or '*'
+        // extensions: ['.js', '.jsx', '.css', '.scss'] //doesn't help render css from server side
     },
     plugins: [
         new webpack.DefinePlugin({
