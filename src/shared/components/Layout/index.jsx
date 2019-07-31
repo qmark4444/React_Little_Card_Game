@@ -62,29 +62,42 @@ class Layout extends Component {
   }
 
   componentDidMount(){
-    window.addEventListener('click', this._closeHamburgClick, true);
+    window.addEventListener('click', this._handleHamburgClick, true);
   }
 
   componentWillUnmount(){
-    window.removeEventListener('click', this._closeHamburgClick);
+    window.removeEventListener('click', this._handleHamburgClick);
   }
 
-  _closeHamburgClick = e => {
-    if(e.target.id !== 'hamburgBar'){
-      this.setState({menuClass: ''});
-    }
-  }
+  _handleHamburgClick = e => {
+    // if(e.target.id !== 'hamburgBarIcon'){
+    //   this.setState({menuClass: ''});
+    // }
+    // else{
+    //   let currentMenuClass = this.state.menuClass;
+    //   currentMenuClass.indexOf('responsive') < 0?
+    //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+    //   :
+    //   this.setState({menuClass: ''});
+    // }
 
-  _handleHamburgBarClick = (e) => {
-    e.preventDefault();
     let currentMenuClass = this.state.menuClass;
-    currentMenuClass.indexOf('responsive') < 0?
-    this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-    :
-    this.setState({menuClass: ''});
-
-    // this.menuRef.current.classList.toggle('responsive');
+    (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
+      this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+      :
+      this.setState({menuClass: ''});
   }
+
+  // _handleHamburgBarClick = (e) => {
+  //   e.preventDefault();
+  //   let currentMenuClass = this.state.menuClass;
+  //   currentMenuClass.indexOf('responsive') < 0?
+  //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+  //   :
+  //   this.setState({menuClass: ''});
+
+  //   // this.menuRef.current.classList.toggle('responsive');
+  // }
 
   render() {
     const navs = [
@@ -115,8 +128,9 @@ class Layout extends Component {
         <Navbar id="topNavbar" className="topNavbar">
           <Logo />
           <div id="barContainer">
-            <div id="hamburgBar" onClick={this._handleHamburgBarClick}>
-                  <i className="fa fa-4x fa-bars"></i>
+            {/* <div id="hamburgBar" onClick={this._handleHamburgBarClick}> */}
+            <div id="hamburgBar">
+                  <i className="fa fa-4x fa-bars" id="hamburgBarIcon"></i>
             </div>
             {/* <ul id="navMenu" ref={this.menuRef}> */}
             <ul id="navMenu" className={this.state.menuClass}>

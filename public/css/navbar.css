@@ -70,6 +70,7 @@
 }
 .topNavbar #barContainer #hamburgBar i {
   vertical-align: middle;
+  cursor: pointer;
 }
 
 /* .topNavbar #barContainer .hamburgBar{

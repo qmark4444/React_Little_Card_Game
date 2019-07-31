@@ -53601,18 +53601,20 @@ var Layout = function (_Component3) {
 
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
-    _this3._closeHamburgClick = function (e) {
-      if (e.target.id !== 'hamburgBar') {
-        _this3.setState({ menuClass: '' });
-      }
-    };
+    _this3._handleHamburgClick = function (e) {
+      // if(e.target.id !== 'hamburgBarIcon'){
+      //   this.setState({menuClass: ''});
+      // }
+      // else{
+      //   let currentMenuClass = this.state.menuClass;
+      //   currentMenuClass.indexOf('responsive') < 0?
+      //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+      //   :
+      //   this.setState({menuClass: ''});
+      // }
 
-    _this3._handleHamburgBarClick = function (e) {
-      e.preventDefault();
       var currentMenuClass = _this3.state.menuClass;
-      currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
-
-      // this.menuRef.current.classList.toggle('responsive');
+      e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
     };
 
     _this3.state = {
@@ -53625,15 +53627,28 @@ var Layout = function (_Component3) {
   _createClass(Layout, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      window.addEventListener('click', this._closeHamburgClick, true);
+      window.addEventListener('click', this._handleHamburgClick, true);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('click', this._closeHamburgClick);
+      window.removeEventListener('click', this._handleHamburgClick);
     }
   }, {
     key: "render",
+
+
+    // _handleHamburgBarClick = (e) => {
+    //   e.preventDefault();
+    //   let currentMenuClass = this.state.menuClass;
+    //   currentMenuClass.indexOf('responsive') < 0?
+    //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
+    //   :
+    //   this.setState({menuClass: ''});
+
+    //   // this.menuRef.current.classList.toggle('responsive');
+    // }
+
     value: function render() {
       var navs = [{
         name: 'Home',
@@ -53664,8 +53679,8 @@ var Layout = function (_Component3) {
             { id: "barContainer" },
             _react2.default.createElement(
               "div",
-              { id: "hamburgBar", onClick: this._handleHamburgBarClick },
-              _react2.default.createElement("i", { className: "fa fa-4x fa-bars" })
+              { id: "hamburgBar" },
+              _react2.default.createElement("i", { className: "fa fa-4x fa-bars", id: "hamburgBarIcon" })
             ),
             _react2.default.createElement(
               "ul",
