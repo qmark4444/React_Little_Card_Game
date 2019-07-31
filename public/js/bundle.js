@@ -53519,50 +53519,21 @@ var Navbar = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).call(this, props));
 
-    _this._handleScroll = function (evt) {
-      //console.log('window.scrollTop ', window.pageYOffset);
-      var currentScrollY = window.pageYOffset; //get scroll top position
-      //compare current scroll position with previous (differ by 1)
-      if (currentScrollY > _this.prevScrollY) {
-        _this.setState({ extraNavbarClass: "hide" });
-      } else {
-        _this.setState({ extraNavbarClass: "" });
-      }
-
-      _this.prevScrollY = currentScrollY;
-    };
-
     _this.state = {
       extraNavbarClass: ""
     };
-    _this.prevScrollY = 0;
     return _this;
   }
 
   _createClass(Navbar, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      //scroll event on window
-      // window.addEventListener('scroll', this._handleScroll);
-      //constantly toggle class, when mouse scroll at the bottom, it even can't scroll up if scroll force is little
-    }
-  }, {
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      // window.removeEventListener('scroll', this._handleScroll);
-    }
-  }, {
     key: "render",
     value: function render() {
-      return (
-        // <div className={this.props.className+' ' +this.state.extraNavbarClass} id={this.props.id}>
-        _react2.default.createElement(
-          "div",
-          { className: [this.props.className, this.state.extraNavbarClass].join(' '),
-            id: this.props.id
-          },
-          this.props.children
-        )
+      return _react2.default.createElement(
+        "div",
+        { className: [this.props.className, this.state.extraNavbarClass].join(' '),
+          id: this.props.id
+        },
+        this.props.children
       );
     }
   }]);
@@ -53630,6 +53601,12 @@ var Layout = function (_Component3) {
 
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
+    _this3._closeHamburgClick = function (e) {
+      if (e.target.id !== 'hamburgBar') {
+        _this3.setState({ menuClass: '' });
+      }
+    };
+
     _this3._handleHamburgBarClick = function (e) {
       e.preventDefault();
       var currentMenuClass = _this3.state.menuClass;
@@ -53646,6 +53623,16 @@ var Layout = function (_Component3) {
   }
 
   _createClass(Layout, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      window.addEventListener('click', this._closeHamburgClick, true);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('click', this._closeHamburgClick);
+    }
+  }, {
     key: "render",
     value: function render() {
       var navs = [{
@@ -53678,11 +53665,7 @@ var Layout = function (_Component3) {
             _react2.default.createElement(
               "div",
               { id: "hamburgBar", onClick: this._handleHamburgBarClick },
-              _react2.default.createElement(
-                "div",
-                { className: "hamburgBar" },
-                _react2.default.createElement("i", { className: "fa fa-4x fa-bars", style: { verticalAlign: 'middle' } })
-              )
+              _react2.default.createElement("i", { className: "fa fa-4x fa-bars" })
             ),
             _react2.default.createElement(
               "ul",

@@ -1,8 +1,6 @@
 /* topNavbar */
 .topNavbar{
-/* #topNavbar{ */
-  /* position: fixed; */
-  /* position: relative; */
+  position: relative;/*needed for barContainer absolute position*/
   /* top:0; */
   /* left:0; */
   /* margin: 0; */
@@ -42,27 +40,22 @@
 /* svg{
   grid-area: svg;
 } */
-.topNavbar.hide{
-  /* transform: translateY(-100%); */
-  display:none;
-}
+
 /* .topNavbar .channel{
   position: relative;           
 } */
-/* .topNavbar ul{ */
-/* .topNavbar:not(:first-child) { */
+
 .topNavbar #barContainer{
-/* #topNavbar #barContainer{ */
   /* margin:0;
   padding:0; */
   display: flex;
-  float: right;
+  /* float: right; */
 
   /* width:100%; */
 
-  /* justify-content: center;
-    align-items: center;
-  background: green; */
+  /* justify-content: center; */
+  align-items: center;
+  /* background: green; */
 
   /* position: relative; */
   position: absolute;
@@ -70,15 +63,20 @@
   /* or by .responsive added */
 
   right:0;
+  height:100%; /*needed for vertical align hamburgbar icon*/
   /* top:50%; */
 
   /* vertical-align: middle; */
 }
+.topNavbar #barContainer #hamburgBar i {
+  vertical-align: middle;
+}
+
 /* .topNavbar #barContainer .hamburgBar{
   vertical-align: middle;
 } */
-/* .topNavbar #barContainer ul{ */
-.topNavbar #barContainer #navMenu{
+.topNavbar #barContainer ul{
+/* .topNavbar #barContainer #navMenu{ */
   /* margin:0;
   padding:0; */
   display: flex;
@@ -124,29 +122,26 @@
 }
 
 .topNavbar #hamburgBar {
-/* .topNavbar .hamburgBar { */
   display: none;
 }
 
 @media screen and (max-width: 900px) {
-  /* .topNavbar li a:not(:first-child) { */
-  /* .topNavbar li a:not(.hamburgBar) { */
+  /* .topNavbar #barContainer{
+    display: block;
+  } */
   .topNavbar #barContainer #navMenu{ 
     display: none;
     position: absolute;
-    /* top:80; */
     top:80px;
     right:0;
-    z-index: 10;
+    z-index: 1000;
     /* width:100%; */
-    background: grey;
+    background: black;
   }
 
-  /* .topNavbar div a.hamburgBar { */
-  /* .topNavbar .hamburgBar { */
   .topNavbar #hamburgBar {
-    /* float: right; */
     display: block;
+    margin-right: 20px;
   }
 }
 
@@ -173,17 +168,12 @@
     position: absolute;
     min-width: 160px;
   } */
-  /* .topNavbar.responsive li a { not working */
-  /* .topNavbar.responsive a { */
-  /* .topNavbar.responsive li a:not(.hamburgBar) { to override existing style, must use the same exact selector and attributes */
-  /* .topNavbar.responsive ul li a{ */
-  /* .topNavbar.responsive #barContainer ul li a{ */
+  
   .topNavbar #barContainer ul.responsive li a{  
     /* float: none; */
     /* flex: 1; */
     /* display: block; */
     text-align: left;
-    /* z-index:100000; */
   }
 }
 /* end of topNavbar */

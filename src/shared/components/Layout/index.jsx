@@ -10,36 +10,10 @@ class Navbar extends Component {
     this.state = {
       extraNavbarClass: "",
     }
-    this.prevScrollY = 0;
-  }
-
-  componentDidMount(){
-    //scroll event on window
-    // window.addEventListener('scroll', this._handleScroll);
-    //constantly toggle class, when mouse scroll at the bottom, it even can't scroll up if scroll force is little
-  }
-
-  componentWillUnmount(){
-    // window.removeEventListener('scroll', this._handleScroll);
-  }
-
-  _handleScroll = evt => {
-    //console.log('window.scrollTop ', window.pageYOffset);
-    let currentScrollY = window.pageYOffset;//get scroll top position
-    //compare current scroll position with previous (differ by 1)
-    if(currentScrollY > this.prevScrollY){ 
-      this.setState({extraNavbarClass: "hide"});
-    }
-    else{
-      this.setState({extraNavbarClass: ""});
-    }
-
-    this.prevScrollY = currentScrollY;
   }
   
   render(){
     return (
-      // <div className={this.props.className+' ' +this.state.extraNavbarClass} id={this.props.id}>
       <div className={[this.props.className,this.state.extraNavbarClass].join(' ')} 
         id={this.props.id}
       >
@@ -87,6 +61,20 @@ class Layout extends Component {
     // this.menuRef = React.createRef();
   }
 
+  componentDidMount(){
+    window.addEventListener('click', this._closeHamburgClick, true);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener('click', this._closeHamburgClick);
+  }
+
+  _closeHamburgClick = e => {
+    if(e.target.id !== 'hamburgBar'){
+      this.setState({menuClass: ''});
+    }
+  }
+
   _handleHamburgBarClick = (e) => {
     e.preventDefault();
     let currentMenuClass = this.state.menuClass;
@@ -128,9 +116,7 @@ class Layout extends Component {
           <Logo />
           <div id="barContainer">
             <div id="hamburgBar" onClick={this._handleHamburgBarClick}>
-                <div className="hamburgBar">
-                  <i className="fa fa-4x fa-bars" style={{verticalAlign: 'middle'}}></i>
-                </div>
+                  <i className="fa fa-4x fa-bars"></i>
             </div>
             {/* <ul id="navMenu" ref={this.menuRef}> */}
             <ul id="navMenu" className={this.state.menuClass}>
