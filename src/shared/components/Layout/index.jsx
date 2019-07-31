@@ -39,7 +39,9 @@ class Navbar extends Component {
   render(){
     return (
       // <div className={this.props.className+' ' +this.state.extraNavbarClass} id={this.props.id}>
-      <div className={[this.props.className,this.state.extraNavbarClass].join(' ')} id={this.props.id}>
+      <div className={[this.props.className,this.state.extraNavbarClass].join(' ')} 
+        id={this.props.id}
+      >
         {this.props.children}
       </div>
     )
@@ -151,7 +153,6 @@ class Layout extends Component {
     // :
     // this.setState({menuClass: ''});
 
-    console.log(this.menuRef.current);
     this.menuRef.current.classList.toggle('responsive');
   }
 
@@ -195,9 +196,12 @@ class Layout extends Component {
                 {/* error: Function components cannot be given refs.... do you mean React.forwaardRef()???? */}
                 {/* <NavLink to="javascript:void(0);" className="hamburgBar"> */}
                 {/* <NavLink to="" className="hamburgBar" onClick={this._handleHamburgBarClick}> */}
-                <NavLink to="" className="hamburgBar">
+                {/* <NavLink to="" className="hamburgBar">
                   <i className="fa fa-4x fa-bars" style={{verticalAlign: 'middle'}}></i>
-                </NavLink>
+                </NavLink> */}
+                <div className="hamburgBar">
+                  <i className="fa fa-4x fa-bars" style={{verticalAlign: 'middle'}}></i>
+                </div>
             </div>
             {/* <ul id="navMenu" className={this.state.menuClass} > */}
             <ul id="navMenu" ref={this.menuRef}>

@@ -53557,7 +53557,9 @@ var Navbar = function (_Component) {
         // <div className={this.props.className+' ' +this.state.extraNavbarClass} id={this.props.id}>
         _react2.default.createElement(
           "div",
-          { className: [this.props.className, this.state.extraNavbarClass].join(' '), id: this.props.id },
+          { className: [this.props.className, this.state.extraNavbarClass].join(' '),
+            id: this.props.id
+          },
           this.props.children
         )
       );
@@ -53684,7 +53686,6 @@ var Layout = function (_Component3) {
       // :
       // this.setState({menuClass: ''});
 
-      console.log(_this3.menuRef.current);
       _this3.menuRef.current.classList.toggle('responsive');
     };
 
@@ -53741,8 +53742,8 @@ var Layout = function (_Component3) {
               "div",
               { id: "hamburgBar", onClick: this._handleHamburgBarClick },
               _react2.default.createElement(
-                _reactRouterDom.NavLink,
-                { to: "", className: "hamburgBar" },
+                "div",
+                { className: "hamburgBar" },
                 _react2.default.createElement("i", { className: "fa fa-4x fa-bars", style: { verticalAlign: 'middle' } })
               )
             ),
