@@ -1,3 +1,7 @@
+:root {
+  --navbarHeight: 80px;
+  /* $line-height: 80px; */
+}
 /* topNavbar */
 .topNavbar{
   position: relative;/*needed for barContainer absolute position*/
@@ -7,7 +11,10 @@
   width: 100%;
   /* width: auto; */
   /* width: initial; */
-  height: 80px;
+
+  /* height: 80px; */
+  height: var(--navbarHeight);
+
   /* padding:0; */
   /* box-sizing: border-box; */
 
@@ -71,6 +78,7 @@
 .topNavbar #barContainer #hamburgBar i {
   vertical-align: middle;
   cursor: pointer;
+  color: white;
 }
 
 /* .topNavbar #barContainer .hamburgBar{
@@ -90,7 +98,7 @@
 }
 .topNavbar ul li{
   list-style: none;
-  line-height: 80px;
+  line-height: var(--navbarHeight);/*2;/*100%;/*80px;*/
   text-align: center;
 }
 /* .topNavbar ul li a{

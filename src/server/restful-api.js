@@ -17,9 +17,8 @@ require('babel-register')({
 });
 
 module.exports = function (app) {
-    app.get('*', (req, res, next) => { //dynamic path '*' or '/*'??????
-        const activeRoute = switchRoutes.find((route) => { //allRoutes.js not an array?
-            console.log('route ', route);
+    app.get('*', (req, res, next) => { 
+        const activeRoute = switchRoutes.find((route) => { 
             return matchPath(req.url, route)
         }) || {};
     

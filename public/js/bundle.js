@@ -358,7 +358,7 @@ module.exports = charenc;
 
 exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
 // Module
-exports.push([module.i, "/* layout */\n* :before :after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n  @media only screen and (max-width: 600px) {\n    #deckPage > button {\n      width: 100%; } }\n\n/* media queries */\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 40; }\n  @media only screen and (max-width: 600px) {\n    .fontNormal {\n      font-size: 27; } }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\nspan.fontBig {\n  font-size: 45;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
+exports.push([module.i, "/* layout */\n*, *::before, *::after {\n  box-sizing: border-box; }\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  font-family: sans-serif; }\n\n.layout {\n  min-height: 100vh;\n  /*keep app occupy whole window*/\n  display: grid;\n  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);\n  grid-gap: 10px 0;\n  margin: 0; }\n\n.layout > section {\n  position: relative;\n  top: 80px; }\n\n.layout > footer {\n  background: #20232a;\n  /* apply to itself and all decendants*/\n  top: 80px;\n  position: relative; }\n\n/* end of layout */\n/* navbar */\n/* end of navbar */\n/* snackbar */\n[id^='snackbar'] {\n  min-width: 250px;\n  /* Set a default minimum width */\n  margin-left: -125px;\n  /* Divide value of min-width by 2 */\n  background-color: #333;\n  color: #fff;\n  text-align: center;\n  border-radius: 2px;\n  padding: 16px;\n  position: fixed;\n  /* Sit on top of the screen */\n  z-index: 10000;\n  left: 50%;\n  /* Center the snackbar */\n  bottom: 30px;\n  font-size: 17px; }\n\n[id^='snackbar'].animate {\n  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  animation: fadein 0.5s, fadeout 0.5s 2.5s;\n  /* delay the fade out process for 2.5 seconds */ }\n\n@-webkit-keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@keyframes fadein {\n  from {\n    bottom: 0;\n    opacity: 0; }\n  to {\n    bottom: 30px;\n    opacity: 1; } }\n\n@-webkit-keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n@keyframes fadeout {\n  from {\n    bottom: 30px;\n    opacity: 1; }\n  to {\n    bottom: 0;\n    opacity: 0; } }\n\n/* end of snackbar */\n#deckPage {\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(20px, 50px) 1fr;\n  grid-gap: 10px; }\n\n#deckPage > button {\n  /*direct child of deckPage*/\n  width: 33%; }\n  @media only screen and (max-width: 600px) {\n    #deckPage > button {\n      width: 100%; } }\n\n/* media queries */\n.playTable {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));\n  align-items: center;\n  grid-gap: 1rem; }\n\n#studyPage {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 400px) 1fr;\n  grid-gap: 10px; }\n\n#cards {\n  position: relative;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  grid-gap: 20px;\n  background-color: green; }\n\n#cards > figure {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  padding: 0;\n  margin: 0;\n  background-color: lightgreen; }\n\n/* card flip animation */\n.flip-animation {\n  animation-duration: 0.2s;\n  animation-name: flip; }\n\n@keyframes flip {\n  0% {\n    transform: rotateY(0deg); }\n  50% {\n    transform: rotateY(90deg); }\n  100% {\n    transform: rotateY(180deg); } }\n\n/* Deck Creation */\n#deckCreation {\n  display: flex;\n  flex-direction: row; }\n\n.deckContainer {\n  margin: 0;\n  padding: 0;\n  position: relative;\n  display: grid;\n  grid-template-rows: minmax(100px, 200px) 1fr;\n  grid-gap: 0; }\n\n.deckContainer figure {\n  width: 150;\n  height: 150;\n  margin: 0;\n  position: relative;\n  /*absolute;*/\n  background-color: lightgreen; }\n\n.deckContainer figure figcaption {\n  position: absolute;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.5);\n  color: white;\n  text-align: center;\n  width: 100%; }\n\n.deckGroup {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  padding: 10;\n  margin-bottom: 5; }\n\n.deckButton {\n  background-color: pink;\n  padding: 10;\n  margin: 0;\n  flex: 1; }\n\n.editButton {\n  width: 60;\n  background-color: #d35d90;\n  /*pink2*/\n  justify-content: \"center\";\n  align-items: \"center\";\n  align-self: \"center\";\n  padding: 0;\n  padding-top: 10;\n  padding-bottom: 10;\n  margin: 0;\n  flex: 0; }\n\n.createButton {\n  background-color: green; }\n\n.secondaryButton {\n  background-color: blue; }\n\n.buttonRow {\n  flex-direction: \"row\"; }\n\n.container {\n  background-color: blue;\n  flex: 1;\n  padding-top: 24; }\n\n.fontNormal {\n  font-size: 40; }\n  @media only screen and (max-width: 600px) {\n    .fontNormal {\n      font-size: 27; } }\n\n.fontAlternate {\n  font-size: 50;\n  color: \"#FFFFFF\"; }\n\nspan.fontBig {\n  font-size: 45;\n  align-self: \"center\"; }\n\n.createDeck {\n  background-color: green; }\n\n.nameField {\n  height: 60; }\n\n.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10; }\n\nbutton.wideButton {\n  justify-content: \"center\";\n  padding: 10;\n  margin: 10;\n  align-items: \"center\";\n  background-color: pink; }\n\n.answerOptions {\n  padding-left: 50px; }\n\n.quizView {\n  padding: 5px;\n  border-radius: 20px;\n  background: yellow; }\n", ""]);
 
 
 /***/ }),
@@ -52847,8 +52847,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import NormalText from "../common/NormalText";
-
 
 var NormalText = (0, _Text.withText)(_Text2.default, 'normal');
 
@@ -52909,10 +52907,6 @@ var Deck = function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      // console.log(this.state.deckWidth, this.state.deckHeight);
-      //  from server-side rendering they are all 0, but browser not.
-      // console.log(parseFloat(window.getComputedStyle(this).height)); // window not defined
-      // console.log(parseFloat(document.parentWindow.getComputedStyle(this).height)); // document not defined
       return _react2.default.createElement(
         "div",
         { className: "deckContainer", id: this.props.id, ref: this.deckRef },
@@ -53500,6 +53494,12 @@ var _Logo = __webpack_require__(/*! ./Logo */ "./src/shared/components/Layout/Lo
 
 var _Logo2 = _interopRequireDefault(_Logo);
 
+var _Dropdown = __webpack_require__(/*! ../common/Dropdown */ "./src/shared/components/common/Dropdown.jsx");
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
+var _TopNavMenu = __webpack_require__(/*! ../../data_models/TopNavMenu */ "./src/shared/data_models/TopNavMenu.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53507,7 +53507,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 // import "../../../../public/css/styles";
 // import "../../../../public/css/cardgame.scss"; // error: window in style-loader is not defined
 
@@ -53602,17 +53601,6 @@ var Layout = function (_Component3) {
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this3._handleHamburgClick = function (e) {
-      // if(e.target.id !== 'hamburgBarIcon'){
-      //   this.setState({menuClass: ''});
-      // }
-      // else{
-      //   let currentMenuClass = this.state.menuClass;
-      //   currentMenuClass.indexOf('responsive') < 0?
-      //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-      //   :
-      //   this.setState({menuClass: ''});
-      // }
-
       var currentMenuClass = _this3.state.menuClass;
       e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
     };
@@ -53620,7 +53608,6 @@ var Layout = function (_Component3) {
     _this3.state = {
       menuClass: ''
     };
-    // this.menuRef = React.createRef();
     return _this3;
   }
 
@@ -53636,36 +53623,8 @@ var Layout = function (_Component3) {
     }
   }, {
     key: "render",
-
-
-    // _handleHamburgBarClick = (e) => {
-    //   e.preventDefault();
-    //   let currentMenuClass = this.state.menuClass;
-    //   currentMenuClass.indexOf('responsive') < 0?
-    //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-    //   :
-    //   this.setState({menuClass: ''});
-
-    //   // this.menuRef.current.classList.toggle('responsive');
-    // }
-
     value: function render() {
-      var navs = [{
-        name: 'Home',
-        location: '#'
-      }, {
-        name: 'About',
-        location: '#'
-      }, {
-        name: 'Games',
-        location: '#'
-      }, {
-        name: 'Portfolio',
-        location: '#'
-      }, {
-        name: 'Contact',
-        location: '#'
-      }];
+      var navs = _TopNavMenu.TopNavMenu;
 
       return _react2.default.createElement(
         "div",
@@ -54705,6 +54664,71 @@ exports.default = Button;
 
 /***/ }),
 
+/***/ "./src/shared/components/common/Dropdown.jsx":
+/*!***************************************************!*\
+  !*** ./src/shared/components/common/Dropdown.jsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import Menu from './Menu';
+
+var Dropdown = function (_Component) {
+    _inherits(Dropdown, _Component);
+
+    function Dropdown() {
+        _classCallCheck(this, Dropdown);
+
+        return _possibleConstructorReturn(this, (Dropdown.__proto__ || Object.getPrototypeOf(Dropdown)).apply(this, arguments));
+    }
+
+    _createClass(Dropdown, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                name = _props.name,
+                containerClass = _props.containerClass,
+                iconContainerClass = _props.iconContainerClass,
+                iconClass = _props.iconClass;
+
+            return _react2.default.createElement(
+                'div',
+                { className: containerClass },
+                _react2.default.createElement(
+                    'div',
+                    { className: iconContainerClass },
+                    name && name,
+                    _react2.default.createElement('i', { className: iconClass })
+                ),
+                this.props.children
+            );
+        }
+    }]);
+
+    return Dropdown;
+}(_react.Component);
+
+module.exports = Dropdown;
+
+/***/ }),
+
 /***/ "./src/shared/components/common/Input.jsx":
 /*!************************************************!*\
   !*** ./src/shared/components/common/Input.jsx ***!
@@ -55422,6 +55446,53 @@ function mkReviews(cards) {
 
 exports.mkReviews = mkReviews;
 exports.QuizCardView = QuizCardView;
+
+/***/ }),
+
+/***/ "./src/shared/data_models/TopNavMenu.js":
+/*!**********************************************!*\
+  !*** ./src/shared/data_models/TopNavMenu.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var TopNavMenu = [{
+  name: 'Home',
+  location: '#',
+  list: []
+}, {
+  name: 'About',
+  location: '#',
+  list: []
+}, {
+  name: 'Games',
+  location: '#',
+  list: [{
+    name: 'Card Game',
+    location: '#',
+    list: []
+  }, {
+    name: 'TicTacToe',
+    location: '#',
+    list: []
+  }]
+}, {
+  name: 'Portfolio',
+  location: '#',
+  list: []
+}, {
+  name: 'Contact',
+  location: '#',
+  list: []
+}];
+
+exports.TopNavMenu = TopNavMenu;
 
 /***/ }),
 

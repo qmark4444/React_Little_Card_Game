@@ -4,6 +4,9 @@ import Logo from "./Logo";
 // import "../../../../public/css/styles";
 // import "../../../../public/css/cardgame.scss"; // error: window in style-loader is not defined
 
+import Dropdown from '../common/Dropdown';
+import {TopNavMenu} from '../../data_models/TopNavMenu';
+
 class Navbar extends Component {
   constructor(props){
     super(props);
@@ -58,7 +61,6 @@ class Layout extends Component {
     this.state = {
       menuClass: ''
     };
-    // this.menuRef = React.createRef();
   }
 
   componentDidMount(){
@@ -70,17 +72,6 @@ class Layout extends Component {
   }
 
   _handleHamburgClick = e => {
-    // if(e.target.id !== 'hamburgBarIcon'){
-    //   this.setState({menuClass: ''});
-    // }
-    // else{
-    //   let currentMenuClass = this.state.menuClass;
-    //   currentMenuClass.indexOf('responsive') < 0?
-    //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-    //   :
-    //   this.setState({menuClass: ''});
-    // }
-
     let currentMenuClass = this.state.menuClass;
     (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
       this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
@@ -88,51 +79,17 @@ class Layout extends Component {
       this.setState({menuClass: ''});
   }
 
-  // _handleHamburgBarClick = (e) => {
-  //   e.preventDefault();
-  //   let currentMenuClass = this.state.menuClass;
-  //   currentMenuClass.indexOf('responsive') < 0?
-  //   this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
-  //   :
-  //   this.setState({menuClass: ''});
-
-  //   // this.menuRef.current.classList.toggle('responsive');
-  // }
-
   render() {
-    const navs = [
-      {
-        name: 'Home',
-        location: '#'
-      }, 
-      {
-        name: 'About',
-        location: '#',
-      }, 
-      {
-        name: 'Games',
-        location: '#',
-      },
-      {
-        name: 'Portfolio',
-        location: '#',
-      },
-      {
-        name: 'Contact',
-        location: '#',
-      }
-    ];
+    const navs = TopNavMenu;
 
     return (
       <div className="layout">
         <Navbar id="topNavbar" className="topNavbar">
           <Logo />
           <div id="barContainer">
-            {/* <div id="hamburgBar" onClick={this._handleHamburgBarClick}> */}
             <div id="hamburgBar">
                   <i className="fa fa-4x fa-bars" id="hamburgBarIcon"></i>
             </div>
-            {/* <ul id="navMenu" ref={this.menuRef}> */}
             <ul id="navMenu" className={this.state.menuClass}>
               {navs.map( ({ name, location }) => (
                 <li key={name}>

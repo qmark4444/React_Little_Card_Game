@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import Button from "../common/Button";
-// import NormalText from "../common/NormalText";
 import Text, {withText} from "../common/Text";
 const NormalText = withText(Text, 'normal');
 
@@ -53,10 +52,6 @@ class Deck extends Component {
   }
 
   render() {
-    // console.log(this.state.deckWidth, this.state.deckHeight);
-    //  from server-side rendering they are all 0, but browser not.
-    // console.log(parseFloat(window.getComputedStyle(this).height)); // window not defined
-    // console.log(parseFloat(document.parentWindow.getComputedStyle(this).height)); // document not defined
     return (
       <div className="deckContainer" id={this.props.id} ref={this.deckRef}>
         <figure 
