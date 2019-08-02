@@ -53498,6 +53498,10 @@ var _Dropdown = __webpack_require__(/*! ../common/Dropdown */ "./src/shared/comp
 
 var _Dropdown2 = _interopRequireDefault(_Dropdown);
 
+var _Menu = __webpack_require__(/*! ../common/Menu */ "./src/shared/components/common/Menu.jsx");
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
 var _TopNavMenu = __webpack_require__(/*! ../../data_models/TopNavMenu */ "./src/shared/data_models/TopNavMenu.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -53507,8 +53511,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-// import "../../../../public/css/styles";
-// import "../../../../public/css/cardgame.scss"; // error: window in style-loader is not defined
 
 var Navbar = function (_Component) {
   _inherits(Navbar, _Component);
@@ -53529,8 +53531,8 @@ var Navbar = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         "div",
-        { className: [this.props.className, this.state.extraNavbarClass].join(' '),
-          id: this.props.id
+        { className: [this.props.className, this.state.extraNavbarClass].join(' ')
+          // id={this.props.id}
         },
         this.props.children
       );
@@ -53602,7 +53604,9 @@ var Layout = function (_Component3) {
 
     _this3._handleHamburgClick = function (e) {
       var currentMenuClass = _this3.state.menuClass;
-      e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
+      // (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
+      console.log(e.target.className);
+      e.target.className.indexOf('menu--dropdown-icon') > 0 && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
     };
 
     _this3.state = {
@@ -53631,33 +53635,19 @@ var Layout = function (_Component3) {
         { className: "layout" },
         _react2.default.createElement(
           Navbar,
-          { id: "topNavbar", className: "topNavbar" },
+          { className: "topNavbar" },
           _react2.default.createElement(_Logo2.default, null),
           _react2.default.createElement(
-            "div",
-            { id: "barContainer" },
-            _react2.default.createElement(
-              "div",
-              { id: "hamburgBar" },
-              _react2.default.createElement("i", { className: "fa fa-4x fa-bars", id: "hamburgBarIcon" })
-            ),
-            _react2.default.createElement(
-              "ul",
-              { id: "navMenu", className: this.state.menuClass },
-              navs.map(function (_ref2) {
-                var name = _ref2.name,
-                    location = _ref2.location;
-                return _react2.default.createElement(
-                  "li",
-                  { key: name },
-                  _react2.default.createElement(
-                    _reactRouterDom.NavLink,
-                    { activeStyle: { fontWeight: 'bold' }, to: location },
-                    name
-                  )
-                );
-              })
-            )
+            _Dropdown2.default,
+            {
+              containerClass: "menu--dropdown",
+              iconContainerClass: "menu--dropdown-icon-container",
+              iconClass: "fa fa-4x fa-bars menu--dropdown-icon"
+            },
+            _react2.default.createElement(_Menu2.default, {
+              list: navs,
+              listClass: "menu--dropdown-content " + this.state.menuClass
+            })
           )
         ),
         _react2.default.createElement(
@@ -54948,6 +54938,104 @@ exports.default = LabeledInput;
 
 /***/ }),
 
+/***/ "./src/shared/components/common/Menu.jsx":
+/*!***********************************************!*\
+  !*** ./src/shared/components/common/Menu.jsx ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+var _Dropdown = __webpack_require__(/*! ./Dropdown */ "./src/shared/components/common/Dropdown.jsx");
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Menu = function (_Component) {
+    _inherits(Menu, _Component);
+
+    function Menu() {
+        _classCallCheck(this, Menu);
+
+        return _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).apply(this, arguments));
+    }
+
+    _createClass(Menu, [{
+        key: 'render',
+        value: function render() {
+            var list = Array.isArray(this.props.list) ? this.props.list : [this.props.list];
+            // if(list.length == 0){
+            //     return (
+            //         <NavLink activeStyle={{fontWeight: 'bold'}} to={location}>
+            //             {name}
+            //         </NavLink>
+            //     )
+            // }
+            return (
+                // <div id={this.props.listID} className={this.props.listClass}>
+                // <ul className={this.props.listClass}>
+                _react2.default.createElement(
+                    'div',
+                    { className: this.props.listClass },
+                    list.map(function (_ref) {
+                        var name = _ref.name,
+                            location = _ref.location,
+                            list = _ref.list;
+                        return Array.isArray(list) && list.length > 0 ? _react2.default.createElement(
+                            _Dropdown2.default,
+                            {
+                                key: name,
+                                name: name,
+                                containerClass: 'menu-' + name + '-dropdown',
+                                iconContainerClass: 'menu-' + name + '-dropdown-icon-container',
+                                iconClass: 'menu-' + name + '-dropdown-icon'
+                            },
+                            _react2.default.createElement(Menu, { list: list, listClass: 'menu-' + name + '-dropdown-content' })
+                        ) :
+                        // <li key={name}>
+                        _react2.default.createElement(
+                            'div',
+                            { key: name },
+                            _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { activeStyle: { fontWeight: 'bold' }, to: location },
+                                name
+                            )
+                        )
+                        // </li>
+                        ;
+                    })
+                )
+                // </ul>
+
+            );
+        }
+    }]);
+
+    return Menu;
+}(_react.Component);
+
+module.exports = Menu;
+
+/***/ }),
+
 /***/ "./src/shared/components/common/Snackbar.jsx":
 /*!***************************************************!*\
   !*** ./src/shared/components/common/Snackbar.jsx ***!
@@ -55473,15 +55561,18 @@ var TopNavMenu = [{
 }, {
   name: 'Games',
   location: '#',
-  list: [{
-    name: 'Card Game',
-    location: '#',
-    list: []
-  }, {
-    name: 'TicTacToe',
-    location: '#',
-    list: []
-  }]
+  list: [
+    // {
+    //     name: 'Card Game',
+    //     location: '#',
+    //     list: []
+    // },
+    // {
+    //     name: 'TicTacToe',
+    //     location: '#',
+    //     list: []
+    // }
+  ]
 }, {
   name: 'Portfolio',
   location: '#',

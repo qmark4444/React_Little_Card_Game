@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from 'react-router-dom';
 import Logo from "./Logo";
-// import "../../../../public/css/styles";
-// import "../../../../public/css/cardgame.scss"; // error: window in style-loader is not defined
 
 import Dropdown from '../common/Dropdown';
+import Menu from '../common/Menu';
 import {TopNavMenu} from '../../data_models/TopNavMenu';
 
 class Navbar extends Component {
@@ -18,7 +17,7 @@ class Navbar extends Component {
   render(){
     return (
       <div className={[this.props.className,this.state.extraNavbarClass].join(' ')} 
-        id={this.props.id}
+        // id={this.props.id}
       >
         {this.props.children}
       </div>
@@ -73,7 +72,9 @@ class Layout extends Component {
 
   _handleHamburgClick = e => {
     let currentMenuClass = this.state.menuClass;
-    (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
+    // (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
+    console.log(e.target.className);
+    (e.target.className.indexOf('menu--dropdown-icon') > 0  && currentMenuClass.indexOf('responsive') < 0) ?
       this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
       :
       this.setState({menuClass: ''});
@@ -84,9 +85,10 @@ class Layout extends Component {
 
     return (
       <div className="layout">
-        <Navbar id="topNavbar" className="topNavbar">
+        {/* <Navbar id="topNavbar" className="topNavbar"> */}
+        <Navbar className="topNavbar">
           <Logo />
-          <div id="barContainer">
+          {/* <div id="barContainer">
             <div id="hamburgBar">
                   <i className="fa fa-4x fa-bars" id="hamburgBarIcon"></i>
             </div>
@@ -99,7 +101,17 @@ class Layout extends Component {
                 </li>
               ))}
             </ul>
-          </div> 
+          </div>  */}
+          <Dropdown
+            containerClass="menu--dropdown"
+            iconContainerClass="menu--dropdown-icon-container"
+            iconClass="fa fa-4x fa-bars menu--dropdown-icon"
+          >
+            <Menu
+              list={navs}
+              listClass={"menu--dropdown-content "+this.state.menuClass}
+            />
+          </Dropdown>
         </Navbar>
 
         <section>

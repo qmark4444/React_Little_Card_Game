@@ -1,144 +1,68 @@
 :root {
   --navbarHeight: 80px;
-  /* $line-height: 80px; */
 }
 /* topNavbar */
 .topNavbar{
   position: relative;/*needed for barContainer absolute position*/
-  /* top:0; */
-  /* left:0; */
-  /* margin: 0; */
   width: 100%;
-  /* width: auto; */
-  /* width: initial; */
-
-  /* height: 80px; */
   height: var(--navbarHeight);
-
-  /* padding:0; */
-  /* box-sizing: border-box; */
-
-  /* transition: 0.5s; */
-
   background: black;
-  /* border-radius: 0; override bootstrap inherited class topNavbar ! avoid using the same name class as bootstrap? */
-
-  /* overflow: hidden; */
-  /* overflow: auto; */
-
-  /* display:flex;
-  align-items: center; */
-
   display: grid;
-  /* display: inline-grid; */
-  /* grid-template-columns: minmax(200px, 1fr), minmax(200px,1fr); */
-  /* grid-template-columns: auto auto; */
   grid-template-columns: 200px, 1fr;
-  /* align-content: center; */
-  /* align-content: space-evenly; */
-  /* align-content: space-around; */
-  /* align-content: start; */
-  /* align-content: end; */
-
-  /* grid-template-rows: 1fr; */
-
-  /* grid-template-areas: 'svg .' */
 }
-/* svg{
-  grid-area: svg;
-} */
 
-/* .topNavbar .channel{
-  position: relative;           
-} */
-
-.topNavbar #barContainer{
-  /* margin:0;
-  padding:0; */
+/* .topNavbar #barContainer{ */
+.topNavbar .menu--dropdown{
   display: flex;
-  /* float: right; */
-
-  /* width:100%; */
-
-  /* justify-content: center; */
   align-items: center;
-  /* background: green; */
 
-  /* position: relative; */
   position: absolute;
-  /* for dropdown position <ul> absolute  */
-  /* or by .responsive added */
-
   right:0;
   height:100%; /*needed for vertical align hamburgbar icon*/
-  /* top:50%; */
-
-  /* vertical-align: middle; */
 }
-.topNavbar #barContainer #hamburgBar i {
+/* .topNavbar #barContainer #hamburgBar i { */
+.topNavbar .menu--dropdown .menu--dropdown-icon-container i {
   vertical-align: middle;
   cursor: pointer;
   color: white;
 }
 
-/* .topNavbar #barContainer .hamburgBar{
-  vertical-align: middle;
-} */
-.topNavbar #barContainer ul{
-/* .topNavbar #barContainer #navMenu{ */
-  /* margin:0;
-  padding:0; */
+/* .topNavbar #barContainer ul{ */
+/* .topNavbar .menu--dropdown .menu--dropdown-content{ */
+/* .topNavbar .menu--dropdown ul{ */
+div.menu--dropdown-content{
   display: flex;
   float: right;
-
-  /* justify-content: center;
-    align-items: center; */
-
-  /* position: relative;  */
 }
-.topNavbar ul li{
+/* .topNavbar ul li{ */
+div.menu--dropdown-content > div{
   list-style: none;
-  line-height: var(--navbarHeight);/*2;/*100%;/*80px;*/
+  line-height: var(--navbarHeight);
   text-align: center;
 }
-/* .topNavbar ul li a{
-  display: block;
-  padding: 0 30px;
-  text-decoration: none;
-  color: white;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 16px;
-} */
-/* .topNavbar ul li a:hover,
-.topNavbar ul li a.active
-{
-  background: #fd2928;
-  color: #fff;
-} */
 
-.topNavbar li a {
-  /* float: right; */
+/* .topNavbar li a { */
+  div.menu--dropdown-content > div a {
   display: block;
   color: #f2f2f2;
   text-align: center;
   text-transform: uppercase;
   font-weight: bold;
-  /* padding: 14px 16px; */
   padding: 0 16px;
   text-decoration: none;
   font-size: 17px;
 }
 
-.topNavbar #hamburgBar {
+/* .topNavbar #hamburgBar { */
+/* .topNavbar .menu--dropdown-icon-container { */
+/* .topNavbar .menu-dropdown .menu--dropdown-icon-container { */
+div.menu--dropdown-icon-container {
   display: none;
 }
 
 @media screen and (max-width: 900px) {
-  /* .topNavbar #barContainer{
-    display: block;
-  } */
-  .topNavbar #barContainer #navMenu{ 
+  /* .topNavbar #barContainer #navMenu{  */
+  .topNavbar .menu--dropdown .menu--dropdown-content{   
     display: none;
     position: absolute;
     top:80px;
@@ -148,40 +72,25 @@
     background: black;
   }
 
-  .topNavbar #hamburgBar {
+  /* .topNavbar #hamburgBar { */
+  /* .topNavbar .menu--dropdown-icon-container { */
+  /* .topNavbar .menu-dropdown .menu--dropdown-icon-container { */
+  div.menu--dropdown-icon-container {
     display: block;
     margin-right: 20px;
   }
 }
 
 @media screen and (max-width: 900px) {
-  /* #barContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  } */
-  /* .topNavbar.responsive { */
-  /* .topNavbar.responsive #barContainer{ */
-  .topNavbar #barContainer #navMenu.responsive{
-      /* position: relative; */
+  /* .topNavbar #barContainer #navMenu.responsive{ */
+  .topNavbar .menu--dropdown .menu--dropdown-content.responsive{
       display:block;
   }
-  /* .topNavbar.responsive li a.hamburgBar { */
-  /* .topNavbar.responsive #barContainer a.hamburgBar {
-    position: absolute;
-    right: 0;
-    top: 0;
-  } */
-  /* .topNavbar.responsive ul { */
-  /* .topNavbar.responsive #barContainer ul {
-    position: absolute;
-    min-width: 160px;
-  } */
   
-  .topNavbar #barContainer ul.responsive li a{  
-    /* float: none; */
-    /* flex: 1; */
-    /* display: block; */
+  /* .topNavbar #barContainer ul.responsive li a{   */
+  /* .topNavbar .menu--dropdown .menu--dropdown-content a{   */
+  /* .topNavbar .menu--dropdown ul.responsive li a{   */
+  div.menu--dropdown-content.responsive > div a{  
     text-align: left;
   }
 }

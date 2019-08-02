@@ -13,16 +13,16 @@ let TopNavMenu = [
       name: 'Games',
       location: '#',
       list: [
-          {
-              name: 'Card Game',
-              location: '#',
-              list: []
-          },
-          {
-              name: 'TicTacToe',
-              location: '#',
-              list: []
-          }
+          // {
+          //     name: 'Card Game',
+          //     location: '#',
+          //     list: []
+          // },
+          // {
+          //     name: 'TicTacToe',
+          //     location: '#',
+          //     list: []
+          // }
       ]
     },
     {
