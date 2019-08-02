@@ -1,6 +1,7 @@
 :root {
   --navbarHeight: 80px;
 }
+/* topNavbar */
 .topNavbar{
   position: relative;/*needed for barContainer absolute position*/
   width: 100%;
@@ -10,28 +11,42 @@
   grid-template-columns: 200px, 1fr;
 }
 
-div.menu--dropdown{
+/* div.top-menu {
+  /* float: right; */
+  /* display: inline-block;
+} */
+
+/* .topNavbar #barContainer{ */
+.topNavbar .menu--dropdown{
   display: flex;
   align-items: center;
+
   position: absolute;
   right:0;
   height:100%; /*needed for vertical align hamburgbar icon*/
 }
-i.menu--dropdown-icon {
+/* .topNavbar #barContainer #hamburgBar i { */
+.topNavbar .menu--dropdown .menu--dropdown-icon-container i {
   vertical-align: middle;
   cursor: pointer;
   color: white;
 }
 
+/* .topNavbar #barContainer ul{ */
+/* .topNavbar .menu--dropdown .menu--dropdown-content{ */
+/* .topNavbar .menu--dropdown ul{ */
 div.menu--dropdown-content{
   display: flex;
+  /* float: right;---no need */
 }
+/* .topNavbar ul li{ */
 div.menu--dropdown-content > div{
   list-style: none;
   line-height: var(--navbarHeight);
   text-align: center;
 }
 
+/* .topNavbar li a { */
   div.menu--dropdown-content > div a {
   display: block;
   color: #f2f2f2;
@@ -43,20 +58,28 @@ div.menu--dropdown-content > div{
   font-size: 17px;
 }
 
+/* .topNavbar #hamburgBar { */
+/* .topNavbar .menu--dropdown-icon-container { */
+/* .topNavbar .menu-dropdown .menu--dropdown-icon-container { */
 div.menu--dropdown-icon-container {
   display: none;
 }
 
 @media screen and (max-width: 900px) {
-  div.menu--dropdown-content{   
+  /* .topNavbar #barContainer #navMenu{  */
+  .topNavbar .menu--dropdown .menu--dropdown-content{   
     display: none;
     position: absolute;
     top:80px;
     right:0;
     z-index: 1000;
+    /* width:100%; */
     background: black;
   }
 
+  /* .topNavbar #hamburgBar { */
+  /* .topNavbar .menu--dropdown-icon-container { */
+  /* .topNavbar .menu-dropdown .menu--dropdown-icon-container { */
   div.menu--dropdown-icon-container {
     display: block;
     margin-right: 20px;
@@ -64,10 +87,14 @@ div.menu--dropdown-icon-container {
 }
 
 @media screen and (max-width: 900px) {
-  div.menu--dropdown-content.responsive{
+  /* .topNavbar #barContainer #navMenu.responsive{ */
+  .topNavbar .menu--dropdown .menu--dropdown-content.responsive{
       display:block;
   }
   
+  /* .topNavbar #barContainer ul.responsive li a{   */
+  /* .topNavbar .menu--dropdown .menu--dropdown-content a{   */
+  /* .topNavbar .menu--dropdown ul.responsive li a{   */
   div.menu--dropdown-content.responsive > div a{  
     text-align: left;
   }

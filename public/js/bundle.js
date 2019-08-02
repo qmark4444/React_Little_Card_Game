@@ -53604,8 +53604,6 @@ var Layout = function (_Component3) {
 
     _this3._handleHamburgClick = function (e) {
       var currentMenuClass = _this3.state.menuClass;
-      // (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
-      console.log(e.target.className);
       e.target.className.indexOf('menu--dropdown-icon') > 0 && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
     };
 
@@ -54678,8 +54676,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import Menu from './Menu';
-
 var Dropdown = function (_Component) {
     _inherits(Dropdown, _Component);
 
@@ -54698,6 +54694,7 @@ var Dropdown = function (_Component) {
                 iconContainerClass = _props.iconContainerClass,
                 iconClass = _props.iconClass;
 
+            var list = Array.isArray(this.props.list) ? this.props.list : [this.props.list];
             return _react2.default.createElement(
                 'div',
                 { className: containerClass },
@@ -54980,51 +54977,36 @@ var Menu = function (_Component) {
     _createClass(Menu, [{
         key: 'render',
         value: function render() {
-            var list = Array.isArray(this.props.list) ? this.props.list : [this.props.list];
-            // if(list.length == 0){
-            //     return (
-            //         <NavLink activeStyle={{fontWeight: 'bold'}} to={location}>
-            //             {name}
-            //         </NavLink>
-            //     )
-            // }
-            return (
-                // <div id={this.props.listID} className={this.props.listClass}>
-                // <ul className={this.props.listClass}>
-                _react2.default.createElement(
-                    'div',
-                    { className: this.props.listClass },
-                    list.map(function (_ref) {
-                        var name = _ref.name,
-                            location = _ref.location,
-                            list = _ref.list;
-                        return Array.isArray(list) && list.length > 0 ? _react2.default.createElement(
-                            _Dropdown2.default,
-                            {
-                                key: name,
-                                name: name,
-                                containerClass: 'menu-' + name + '-dropdown',
-                                iconContainerClass: 'menu-' + name + '-dropdown-icon-container',
-                                iconClass: 'menu-' + name + '-dropdown-icon'
-                            },
-                            _react2.default.createElement(Menu, { list: list, listClass: 'menu-' + name + '-dropdown-content' })
-                        ) :
-                        // <li key={name}>
-                        _react2.default.createElement(
-                            'div',
-                            { key: name },
-                            _react2.default.createElement(
-                                _reactRouterDom.NavLink,
-                                { activeStyle: { fontWeight: 'bold' }, to: location },
-                                name
-                            )
-                        )
-                        // </li>
-                        ;
-                    })
-                )
-                // </ul>
+            var _this2 = this;
 
+            var list = Array.isArray(this.props.list) ? this.props.list : [this.props.list];
+            return _react2.default.createElement(
+                'div',
+                { className: this.props.listClass },
+                list.map(function (_ref) {
+                    var name = _ref.name,
+                        location = _ref.location,
+                        list = _ref.list;
+                    return Array.isArray(list) && list.length > 0 ? _react2.default.createElement(
+                        _Dropdown2.default,
+                        {
+                            key: name,
+                            name: name,
+                            containerClass: 'menu-' + name + '-dropdown',
+                            iconContainerClass: 'menu-' + name + '-dropdown-icon-container',
+                            iconClass: _this2.props.iconClass + ' menu-' + name + '-dropdown-icon'
+                        },
+                        _react2.default.createElement(Menu, { list: list, listClass: 'menu-' + name + '-dropdown-content' })
+                    ) : _react2.default.createElement(
+                        'div',
+                        { key: name },
+                        _react2.default.createElement(
+                            _reactRouterDom.NavLink,
+                            { activeStyle: { fontWeight: 'bold' }, to: location },
+                            name
+                        )
+                    );
+                })
             );
         }
     }]);

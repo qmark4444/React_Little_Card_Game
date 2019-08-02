@@ -72,8 +72,6 @@ class Layout extends Component {
 
   _handleHamburgClick = e => {
     let currentMenuClass = this.state.menuClass;
-    // (e.target.id === 'hamburgBarIcon' && currentMenuClass.indexOf('responsive') < 0) ?
-    console.log(e.target.className);
     (e.target.className.indexOf('menu--dropdown-icon') > 0  && currentMenuClass.indexOf('responsive') < 0) ?
       this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
       :
@@ -85,23 +83,8 @@ class Layout extends Component {
 
     return (
       <div className="layout">
-        {/* <Navbar id="topNavbar" className="topNavbar"> */}
         <Navbar className="topNavbar">
           <Logo />
-          {/* <div id="barContainer">
-            <div id="hamburgBar">
-                  <i className="fa fa-4x fa-bars" id="hamburgBarIcon"></i>
-            </div>
-            <ul id="navMenu" className={this.state.menuClass}>
-              {navs.map( ({ name, location }) => (
-                <li key={name}>
-                  <NavLink activeStyle={{fontWeight: 'bold'}} to={location}>
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </div>  */}
           <Dropdown
             containerClass="menu--dropdown"
             iconContainerClass="menu--dropdown-icon-container"
@@ -112,6 +95,18 @@ class Layout extends Component {
               listClass={"menu--dropdown-content "+this.state.menuClass}
             />
           </Dropdown>
+
+          {/* <Menu
+            list={{
+              name: '', 
+              location: '#',
+              list: navs
+            }}
+            listClass='top-menu'
+            iconClass='fa fa-4x fa-bars'
+          /> */}
+
+          
         </Navbar>
 
         <section>
