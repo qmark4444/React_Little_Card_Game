@@ -2,38 +2,49 @@ let TopNavMenu = [
     {
       name: 'Home',
       location: '#',
-      list: []
+      subMenus: []
     }, 
     {
       name: 'About',
-      location: '#',
-      list: []
+      location: null,
+      subMenus: [
+        {
+          name: 'Me',
+          location: '#',
+          subMenus: []
+        },
+        {
+          name: 'Team',
+          location: '#',
+          subMenus: []
+        }
+      ]
     }, 
     {
       name: 'Games',
-      location: '#',
-      list: [
-          // {
-          //     name: 'Card Game',
-          //     location: '#',
-          //     list: []
-          // },
-          // {
-          //     name: 'TicTacToe',
-          //     location: '#',
-          //     list: []
-          // }
+      location: null,
+      subMenus: [
+        {
+          name: 'Card Game',
+          location: '#',
+          subMenus: []
+        },
+        {
+          name: 'TicTacToe',
+          location: '#',
+          subMenus: []
+        }
       ]
     },
     {
       name: 'Portfolio',
       location: '#',
-      list: []
+      subMenus: []
     },
     {
       name: 'Contact',
       location: '#',
-      list: []
+      subMenus: []
     }
 ];
 

@@ -53502,6 +53502,10 @@ var _Menu = __webpack_require__(/*! ../common/Menu */ "./src/shared/components/c
 
 var _Menu2 = _interopRequireDefault(_Menu);
 
+var _Menus = __webpack_require__(/*! ../common/Menus */ "./src/shared/components/common/Menus.jsx");
+
+var _Menus2 = _interopRequireDefault(_Menus);
+
 var _TopNavMenu = __webpack_require__(/*! ../../data_models/TopNavMenu */ "./src/shared/data_models/TopNavMenu.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -53603,12 +53607,23 @@ var Layout = function (_Component3) {
     var _this3 = _possibleConstructorReturn(this, (Layout.__proto__ || Object.getPrototypeOf(Layout)).call(this, props));
 
     _this3._handleHamburgClick = function (e) {
+      // console.log('click hamburgbar called');
       var currentMenuClass = _this3.state.menuClass;
+      console.log(e.target);
       e.target.className.indexOf('menu--dropdown-icon') > 0 && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
+
+      e.target.parentNode.classList.toggle('responsive'); //Menus test
+    };
+
+    _this3._updateSelectedMenus = function (selectedMenus) {
+      // console.log('top level update selected menus called');
+      _this3.setState({ selectedMenus: selectedMenus });
     };
 
     _this3.state = {
-      menuClass: ''
+      menuClass: '',
+      // selectedMenus: {Home:{}},//debug
+      selectedMenus: {}
     };
     return _this3;
   }
@@ -53626,6 +53641,8 @@ var Layout = function (_Component3) {
   }, {
     key: "render",
     value: function render() {
+      var _this4 = this;
+
       var navs = _TopNavMenu.TopNavMenu;
 
       return _react2.default.createElement(
@@ -53635,18 +53652,22 @@ var Layout = function (_Component3) {
           Navbar,
           { className: "topNavbar" },
           _react2.default.createElement(_Logo2.default, null),
-          _react2.default.createElement(
-            _Dropdown2.default,
-            {
-              containerClass: "menu--dropdown",
-              iconContainerClass: "menu--dropdown-icon-container",
-              iconClass: "fa fa-4x fa-bars menu--dropdown-icon"
+          _react2.default.createElement(_Menus2.default
+          // containerClass="menu--dropdown"
+          // iconContainerClass="menu--dropdown-icon-container"
+          , { containerClass: "topNav-dropdown",
+            iconContainerClass: "topNav-dropdown-icon-container",
+            iconClass: "fa fa-4x fa-bars",
+            menus: {
+              name: '',
+              location: '#',
+              subMenus: navs
             },
-            _react2.default.createElement(_Menu2.default, {
-              list: navs,
-              listClass: "menu--dropdown-content " + this.state.menuClass
-            })
-          )
+            selectedMenus: this.state.selectedMenus,
+            onClick: function onClick(selectedMenus) {
+              return _this4._updateSelectedMenus(selectedMenus);
+            }
+          })
         ),
         _react2.default.createElement(
           "section",
@@ -54953,10 +54974,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
-var _Dropdown = __webpack_require__(/*! ./Dropdown */ "./src/shared/components/common/Dropdown.jsx");
-
-var _Dropdown2 = _interopRequireDefault(_Dropdown);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54979,34 +54996,37 @@ var Menu = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            var list = Array.isArray(this.props.list) ? this.props.list : [this.props.list];
+            var _props = this.props,
+                name = _props.name,
+                iconClass = _props.iconClass,
+                iconContainerClass = _props.iconContainerClass;
+
+            var style = this.props.selected ? { background: 'red' } : {};
+            // const to = this.props.to?this.props.to:'#';
+            var to = this.props.to;
+
             return _react2.default.createElement(
                 'div',
-                { className: this.props.listClass },
-                list.map(function (_ref) {
-                    var name = _ref.name,
-                        location = _ref.location,
-                        list = _ref.list;
-                    return Array.isArray(list) && list.length > 0 ? _react2.default.createElement(
-                        _Dropdown2.default,
-                        {
-                            key: name,
-                            name: name,
-                            containerClass: 'menu-' + name + '-dropdown',
-                            iconContainerClass: 'menu-' + name + '-dropdown-icon-container',
-                            iconClass: _this2.props.iconClass + ' menu-' + name + '-dropdown-icon'
-                        },
-                        _react2.default.createElement(Menu, { list: list, listClass: 'menu-' + name + '-dropdown-content' })
-                    ) : _react2.default.createElement(
-                        'div',
-                        { key: name },
-                        _react2.default.createElement(
-                            _reactRouterDom.NavLink,
-                            { activeStyle: { fontWeight: 'bold' }, to: location },
-                            name
-                        )
-                    );
-                })
+                {
+                    className: iconContainerClass,
+                    style: style
+                    // onClick={() => this.props.onClick} // wrong
+                    , onClick: function onClick() {
+                        return _this2.props.onClick();
+                    }
+                },
+                name && (to ? _react2.default.createElement(
+                    _reactRouterDom.NavLink,
+                    { activeStyle: { fontWeight: 'bold' }, to: to },
+                    name
+                ) : _react2.default.createElement(
+                    'a',
+                    { style: { fontWeight: 'bold' } },
+                    name
+                )),
+                iconClass && _react2.default.createElement('i', { className: iconClass + ' menu-dropdown-icon' })
+                // <i className={`${iconClass} ${name===''? 'topNav': `menu-${name}`}-dropdown-icon`}></i>     
+
             );
         }
     }]);
@@ -55015,6 +55035,136 @@ var Menu = function (_Component) {
 }(_react.Component);
 
 module.exports = Menu;
+
+/***/ }),
+
+/***/ "./src/shared/components/common/Menus.jsx":
+/*!************************************************!*\
+  !*** ./src/shared/components/common/Menus.jsx ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Menu = __webpack_require__(/*! ./Menu */ "./src/shared/components/common/Menu.jsx");
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// class Menus extends Component { // Menu collection component: recursive
+//     constructor(props){
+//         super(props);
+//         // this.state = {
+//         // };
+//         this.selectedMenus = props.selectedMenus;
+//         this.onClick = props.onClick;
+//     }
+var Menus = function Menus(_ref) {
+    var menus = _ref.menus,
+        selectedMenus = _ref.selectedMenus,
+        onClick = _ref.onClick,
+        containerClass = _ref.containerClass,
+        iconContainerClass = _ref.iconContainerClass,
+        iconClass = _ref.iconClass;
+
+    var _handleMenuClick = function _handleMenuClick(name) {
+        // console.log('called handle menu click')
+        //first, toggle selected
+        if (selectedMenus[name]) {
+            delete selectedMenus[name]; //delete the key
+        } else {
+            selectedMenus = {}; //first clear all other same-level selected menus
+            selectedMenus[name] = {}; //an object can nest more objects
+        }
+        //then, update selectedMenus
+        onClick(selectedMenus);
+    };
+
+    var _updateSelectedMenus = function _updateSelectedMenus(selectedSubMenus, menuName) {
+        // console.log('called update selected menus')
+        // this.props.selectedMenus[menuName] = selectedSubMenus;
+        // this.props.onClick(this.props.selectedMenus);
+        selectedMenus[menuName] = selectedSubMenus; //update selected-SUB-Menus
+        onClick(selectedMenus); //update selectedMenus
+    };
+
+    // render(){
+    // const {
+    //     // name,
+    //     containerClass, 
+    //     iconContainerClass, 
+    //     iconClass
+    // } = this.props;
+    var menuList = Array.isArray(menus) ? menus : [menus];
+    // console.log('menus ', menuList);
+    // console.log('selectedMenus ', selectedMenus)
+    return _react2.default.createElement(
+        'div',
+        { className: containerClass },
+        menuList.map(function (_ref2) {
+            var name = _ref2.name,
+                location = _ref2.location,
+                subMenus = _ref2.subMenus;
+
+            // TODO: simplify the following if-conditions
+            var containerClass = name === '' ? 'topNav-dropdown-content' : 'menu-dropdown-content';
+            // containerClass += (name !== '') && selectedMenus[name] && ' showContent';
+            if (name !== '' && selectedMenus[name]) {
+                containerClass += ' showContent';
+            }
+
+            return _react2.default.createElement(
+                'div',
+                { key: name, className: iconContainerClass },
+                _react2.default.createElement(_Menu2.default, {
+                    name: name,
+                    to: location
+                    // selected={this.selectedMenus[name]?this.selectedMenus[name]:undefined}
+                    // selected={selectedMenus[name]?selectedMenus[name]: undefined}
+                    , selected: selectedMenus[name]
+
+                    // onClick={this._handleMenuClick}
+                    , onClick: function onClick() {
+                        return _handleMenuClick(name);
+                    },
+                    iconClass: iconClass,
+                    iconContainerClass: iconContainerClass
+                }),
+                Array.isArray(subMenus) && subMenus.length > 0 && _react2.default.createElement(Menus, {
+                    key: name
+                    // containerClass={`menu-${name}-dropdown`}
+                    , containerClass: containerClass
+                    // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
+                    // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
+                    // iconContainerClass={`menu-${name}-dropdown-icon-container`} 
+                    , iconContainerClass: ''
+                    // iconClass={iconClass}
+
+                    // listClass={`menu-${name}-dropdown-content`}
+                    , menus: subMenus,
+                    selectedMenus: selectedMenus[name] ? selectedMenus[name] : {}
+                    // selectedMenus={selectedMenus[name]}
+
+                    // onClick={this._updateSelectedMenus}
+                    // onClick={(name---WRONG) => this._updateSelectedMenus(selectedMenus, name)}
+                    , onClick: function onClick(selectedMenus) {
+                        return _updateSelectedMenus(selectedMenus, name);
+                    }
+                })
+            );
+        })
+    );
+    // }
+};
+
+module.exports = Menus;
 
 /***/ }),
 
@@ -55535,34 +55685,39 @@ Object.defineProperty(exports, "__esModule", {
 var TopNavMenu = [{
   name: 'Home',
   location: '#',
-  list: []
+  subMenus: []
 }, {
   name: 'About',
-  location: '#',
-  list: []
+  location: null,
+  subMenus: [{
+    name: 'Me',
+    location: '#',
+    subMenus: []
+  }, {
+    name: 'Team',
+    location: '#',
+    subMenus: []
+  }]
 }, {
   name: 'Games',
-  location: '#',
-  list: [
-    // {
-    //     name: 'Card Game',
-    //     location: '#',
-    //     list: []
-    // },
-    // {
-    //     name: 'TicTacToe',
-    //     location: '#',
-    //     list: []
-    // }
-  ]
+  location: null,
+  subMenus: [{
+    name: 'Card Game',
+    location: '#',
+    subMenus: []
+  }, {
+    name: 'TicTacToe',
+    location: '#',
+    subMenus: []
+  }]
 }, {
   name: 'Portfolio',
   location: '#',
-  list: []
+  subMenus: []
 }, {
   name: 'Contact',
   location: '#',
-  list: []
+  subMenus: []
 }];
 
 exports.TopNavMenu = TopNavMenu;

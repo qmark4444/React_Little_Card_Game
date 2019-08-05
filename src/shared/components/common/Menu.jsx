@@ -1,30 +1,41 @@
 import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
-import Dropdown from './Dropdown';
 
 class Menu extends Component{
     render(){
-        let list = Array.isArray(this.props.list)? this.props.list : [this.props.list];
+        const {
+            name, 
+            iconClass, 
+            iconContainerClass
+        } = this.props;
+        const style = this.props.selected?
+            {background: 'red'}
+            : {};
+        // const to = this.props.to?this.props.to:'#';
+        const to = this.props.to;
+
         return (
-            <div className={this.props.listClass}>
-                {list.map( ({ name, location, list }) => (
-                    (Array.isArray(list) && list.length > 0)?
-                    <Dropdown 
-                        key={name} 
-                        name={name}
-                        containerClass={`menu-${name}-dropdown`}
-                        iconContainerClass={`menu-${name}-dropdown-icon-container`} 
-                        iconClass={`${this.props.iconClass} menu-${name}-dropdown-icon`}
-                    >
-                        <Menu list={list} listClass={`menu-${name}-dropdown-content`}/>
-                    </Dropdown>
+            <div 
+                className={iconContainerClass} 
+                style={style}
+                // onClick={() => this.props.onClick} // wrong
+                onClick={() => this.props.onClick()}
+            >
+                {
+                    name && (to?
+                    <NavLink activeStyle={{fontWeight: 'bold'}} to={to} >
+                        {name}
+                    </NavLink>
                     :
-                    <div key={name}>
-                        <NavLink activeStyle={{fontWeight: 'bold'}} to={location}>
-                            {name}
-                        </NavLink>
-                    </div>
-                ))}
+                    <a style={{fontWeight: 'bold'}}>
+                       {name} 
+                    </a>)
+                }
+                {
+                    iconClass &&
+                    <i className={`${iconClass} menu-dropdown-icon`}></i>     
+                    // <i className={`${iconClass} ${name===''? 'topNav': `menu-${name}`}-dropdown-icon`}></i>     
+                }
             </div>
         )
     }

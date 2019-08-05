@@ -4,6 +4,7 @@ import Logo from "./Logo";
 
 import Dropdown from '../common/Dropdown';
 import Menu from '../common/Menu';
+import Menus from '../common/Menus';
 import {TopNavMenu} from '../../data_models/TopNavMenu';
 
 class Navbar extends Component {
@@ -58,7 +59,9 @@ class Layout extends Component {
   constructor(props){
     super(props);
     this.state = {
-      menuClass: ''
+      menuClass: '',
+      // selectedMenus: {Home:{}},//debug
+      selectedMenus: {},
     };
   }
 
@@ -71,11 +74,20 @@ class Layout extends Component {
   }
 
   _handleHamburgClick = e => {
+    // console.log('click hamburgbar called');
     let currentMenuClass = this.state.menuClass;
+    console.log(e.target);
     (e.target.className.indexOf('menu--dropdown-icon') > 0  && currentMenuClass.indexOf('responsive') < 0) ?
       this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
       :
       this.setState({menuClass: ''});
+
+    e.target.parentNode.classList.toggle('responsive');//Menus test
+  }
+
+  _updateSelectedMenus = (selectedMenus) => {
+    // console.log('top level update selected menus called');
+    this.setState({selectedMenus});
   }
 
   render() {
@@ -85,7 +97,7 @@ class Layout extends Component {
       <div className="layout">
         <Navbar className="topNavbar">
           <Logo />
-          <Dropdown
+          {/* <Dropdown
             containerClass="menu--dropdown"
             iconContainerClass="menu--dropdown-icon-container"
             iconClass="fa fa-4x fa-bars menu--dropdown-icon"
@@ -94,7 +106,7 @@ class Layout extends Component {
               list={navs}
               listClass={"menu--dropdown-content "+this.state.menuClass}
             />
-          </Dropdown>
+          </Dropdown> */}
 
           {/* <Menu
             list={{
@@ -106,7 +118,20 @@ class Layout extends Component {
             iconClass='fa fa-4x fa-bars'
           /> */}
 
-          
+          <Menus
+            // containerClass="menu--dropdown"
+            // iconContainerClass="menu--dropdown-icon-container"
+            containerClass="topNav-dropdown"
+            iconContainerClass="topNav-dropdown-icon-container"
+            iconClass='fa fa-4x fa-bars'
+            menus={{
+              name: '', 
+              location: '#',
+              subMenus: navs
+            }}
+            selectedMenus={this.state.selectedMenus}
+            onClick={(selectedMenus) => this._updateSelectedMenus(selectedMenus)}
+          />
         </Navbar>
 
         <section>

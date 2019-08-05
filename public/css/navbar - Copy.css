@@ -1,0 +1,75 @@
+:root {
+  --navbarHeight: 80px;
+}
+.topNavbar{
+  position: relative;/*needed for barContainer absolute position*/
+  width: 100%;
+  height: var(--navbarHeight);
+  background: black;
+  display: grid;
+  grid-template-columns: 200px, 1fr;
+}
+
+div.menu--dropdown{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right:0;
+  height:100%; /*needed for vertical align hamburgbar icon*/
+}
+i.menu--dropdown-icon {
+  vertical-align: middle;
+  cursor: pointer;
+  color: white;
+}
+
+div.menu--dropdown-content{
+  display: flex;
+}
+div.menu--dropdown-content > div{
+  list-style: none;
+  line-height: var(--navbarHeight);
+  text-align: center;
+}
+
+  div.menu--dropdown-content > div a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+div.menu--dropdown-icon-container {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  div.menu--dropdown-content{   
+    display: none;
+    position: absolute;
+    top:80px;
+    right:0;
+    z-index: 1000;
+    background: black;
+  }
+
+  div.menu--dropdown-icon-container {
+    display: block;
+    margin-right: 20px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  div.menu--dropdown-content.responsive{
+      display:block;
+  }
+  
+  div.menu--dropdown-content.responsive > div a{  
+    text-align: left;
+  }
+}
+/* end of topNavbar */
