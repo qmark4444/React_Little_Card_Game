@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { NavLink } from 'react-router-dom';
 import Logo from "./Logo";
 
-import Dropdown from '../common/Dropdown';
-import Menu from '../common/Menu';
 import Menus from '../common/Menus';
 import {TopNavMenu} from '../../data_models/TopNavMenu';
 
@@ -97,30 +94,7 @@ class Layout extends Component {
       <div className="layout">
         <Navbar className="topNavbar">
           <Logo />
-          {/* <Dropdown
-            containerClass="menu--dropdown"
-            iconContainerClass="menu--dropdown-icon-container"
-            iconClass="fa fa-4x fa-bars menu--dropdown-icon"
-          >
-            <Menu
-              list={navs}
-              listClass={"menu--dropdown-content "+this.state.menuClass}
-            />
-          </Dropdown> */}
-
-          {/* <Menu
-            list={{
-              name: '', 
-              location: '#',
-              list: navs
-            }}
-            listClass='top-menu'
-            iconClass='fa fa-4x fa-bars'
-          /> */}
-
           <Menus
-            // containerClass="menu--dropdown"
-            // iconContainerClass="menu--dropdown-icon-container"
             containerClass="topNav-dropdown"
             iconContainerClass="topNav-dropdown-icon-container"
             iconClass='fa fa-4x fa-bars'

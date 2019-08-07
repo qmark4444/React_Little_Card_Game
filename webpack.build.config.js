@@ -4,9 +4,7 @@ var browserConfig = {
     mode: 'development',
     entry: "./src/browser/index.jsx",
     output: {
-        // path: __dirname + '/public/js',
-        // filename: 'bundle.js'
-        path: path.resolve(__dirname, 'public/js'),//file path
+        path: path.resolve(__dirname, 'public/js'),
         filename: 'bundle.js',
     },
     devtool: '#sourcemap',

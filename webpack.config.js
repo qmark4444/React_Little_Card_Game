@@ -7,9 +7,7 @@ var browserConfig = {
     entry: "./src/browser/index.jsx",
     output: {
         path: __dirname + '/public/js',
-        // path: path.resolve(__dirname, 'public/js'),//file path
         filename: 'bundle.js',
-        // publicPath: '/' //not file path
     },
     devtool: '#sourcemap',
     stats: {
