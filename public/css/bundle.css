@@ -1,0 +1,328 @@
+/* layout */
+*, *::before, *::after {
+  box-sizing: border-box; }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif; }
+
+.layout {
+  min-height: 100vh;
+  /*keep app occupy whole window*/
+  display: grid;
+  grid-template-rows: 80px minmax(100px) minmax(100px, 1fr);
+  grid-gap: 10px 0;
+  margin: 0; }
+
+.layout > section {
+  position: relative;
+  top: 80px; }
+
+.layout > footer {
+  background: #20232a;
+  /* apply to itself and all decendants*/
+  top: 80px;
+  position: relative; }
+
+/* end of layout */
+.topNavbar {
+  position: relative;
+  /*needed for barContainer absolute position*/
+  width: 100%;
+  height: 80px;
+  background: black;
+  display: grid;
+  grid-template-columns: 200px, 1fr; }
+
+div.topNav-dropdown {
+  /* div.menu--dropdown{ */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  /*needed for vertical align hamburgbar icon*/ }
+
+i.topNav-dropdown-icon {
+  vertical-align: middle;
+  cursor: pointer;
+  color: white; }
+
+div.topNav-dropdown-content {
+  display: flex; }
+
+div.menu-dropdown-content {
+  position: absolute; }
+
+div.topNav-dropdown-content > div {
+  list-style: none;
+  line-height: 80px;
+  text-align: center; }
+
+div.menu-dropdown-content {
+  display: none; }
+
+div.menu-dropdown-content.showContent {
+  display: block;
+  background: black;
+  z-index: 1000; }
+
+div.topNav-dropdown-content a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 17px; }
+
+div.topNav-dropdown-icon-container i {
+  display: none; }
+
+@media screen and (max-width: 700px) {
+  div.topNav-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    z-index: 1000;
+    background: black; }
+  div.topNav-dropdown-icon-container i {
+    display: block;
+    margin-right: 20px; } }
+
+@media screen and (max-width: 900px) {
+  div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content {
+    display: block; }
+  div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content a {
+    text-align: left; } }
+
+/* end of topNavbar */
+/* snackbar */
+[id^='snackbar'] {
+  min-width: 250px;
+  /* Set a default minimum width */
+  margin-left: -125px;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  /* Sit on top of the screen */
+  z-index: 10000;
+  left: 50%;
+  /* Center the snackbar */
+  bottom: 30px;
+  font-size: 17px; }
+
+[id^='snackbar'].animate {
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  /* delay the fade out process for 2.5 seconds */ }
+
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0; }
+  to {
+    bottom: 30px;
+    opacity: 1; } }
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0; }
+  to {
+    bottom: 30px;
+    opacity: 1; } }
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1; }
+  to {
+    bottom: 0;
+    opacity: 0; } }
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1; }
+  to {
+    bottom: 0;
+    opacity: 0; } }
+
+/* end of snackbar */
+#deckPage {
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(20px, 50px) 1fr;
+  grid-gap: 10px; }
+
+#deckPage > button {
+  /*direct child of deckPage*/
+  width: 33%; }
+  @media only screen and (max-width: 600px) {
+    #deckPage > button {
+      width: 100%; } }
+
+/* media queries */
+.playTable {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  align-items: center;
+  grid-gap: 1rem; }
+
+#studyPage {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(100px, 400px) 1fr;
+  grid-gap: 10px; }
+
+#cards {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  background-color: green; }
+
+#cards > figure {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  padding: 0;
+  margin: 0;
+  background-color: lightgreen; }
+
+/* card flip animation */
+.flip-animation {
+  animation-duration: 0.2s;
+  animation-name: flip; }
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0deg); }
+  50% {
+    transform: rotateY(90deg); }
+  100% {
+    transform: rotateY(180deg); } }
+
+/* Deck Creation */
+#deckCreation {
+  display: flex;
+  flex-direction: row; }
+
+.deckContainer {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: grid;
+  grid-template-rows: minmax(100px, 200px) 1fr;
+  grid-gap: 0; }
+
+.deckContainer figure {
+  width: 150;
+  height: 150;
+  margin: 0;
+  position: relative;
+  /*absolute;*/
+  background-color: lightgreen; }
+
+.deckContainer figure figcaption {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  width: 100%; }
+
+.deckGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 10;
+  margin-bottom: 5; }
+
+.deckButton {
+  background-color: pink;
+  padding: 10;
+  margin: 0;
+  flex: 1; }
+
+.editButton {
+  width: 60;
+  background-color: #d35d90;
+  /*pink2*/
+  justify-content: "center";
+  align-items: "center";
+  align-self: "center";
+  padding: 0;
+  padding-top: 10;
+  padding-bottom: 10;
+  margin: 0;
+  flex: 0; }
+
+.createButton {
+  background-color: green; }
+
+.secondaryButton {
+  background-color: blue; }
+
+.buttonRow {
+  flex-direction: "row"; }
+
+.container {
+  background-color: blue;
+  flex: 1;
+  padding-top: 24; }
+
+.fontNormal {
+  font-size: 40; }
+  @media only screen and (max-width: 600px) {
+    .fontNormal {
+      font-size: 27; } }
+
+.fontAlternate {
+  font-size: 50;
+  color: "#FFFFFF"; }
+
+span.fontBig {
+  font-size: 45;
+  align-self: "center"; }
+
+.createDeck {
+  background-color: green; }
+
+.nameField {
+  height: 60; }
+
+.wideButton {
+  justify-content: "center";
+  padding: 10;
+  margin: 10; }
+
+button.wideButton {
+  justify-content: "center";
+  padding: 10;
+  margin: 10;
+  align-items: "center";
+  background-color: pink; }
+
+.answerOptions {
+  padding-left: 50px; }
+
+.quizView {
+  padding: 5px;
+  border-radius: 20px;
+  background: yellow; }
+
+
+/*# sourceMappingURL=bundle.css.map*/
