@@ -7,7 +7,7 @@ import LabeledInput from "../common/LabeledInput";
 import Text, {withText} from "../common/Text";
 const NormalText = withText(Text, 'normal');
 import Input from "../common/Input";
-import {inputButtonStyle} from '../../../../public/css/styles';
+import {inputButtonStyle} from '../../../browser/css/styles';
 import Snackbar from "../common/Snackbar";
 
 class NewCard extends Component {

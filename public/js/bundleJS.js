@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/browser/index.jsx");
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -51965,21 +51965,10 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./public/css/cardgame.scss":
-/*!**********************************!*\
-  !*** ./public/css/cardgame.scss ***!
-  \**********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
-/***/ "./public/css/styles.js":
-/*!******************************!*\
-  !*** ./public/css/styles.js ***!
-  \******************************/
+/***/ "./src/browser/css/styles.js":
+/*!***********************************!*\
+  !*** ./src/browser/css/styles.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -52063,8 +52052,6 @@ var _routes = __webpack_require__(/*! ../shared/routes */ "./src/shared/routes/i
 var _routes2 = _interopRequireDefault(_routes);
 
 var _reactRouterDom = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-
-__webpack_require__(/*! ../../public/css/cardgame.scss */ "./public/css/cardgame.scss");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53054,7 +53041,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles.js */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles.js */ "./src/browser/css/styles.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53171,7 +53158,7 @@ var _Input = __webpack_require__(/*! ../common/Input */ "./src/shared/components
 
 var _Input2 = _interopRequireDefault(_Input);
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles */ "./src/browser/css/styles.js");
 
 var _Snackbar = __webpack_require__(/*! ../common/Snackbar */ "./src/shared/components/common/Snackbar.jsx");
 
@@ -53480,7 +53467,7 @@ var _Text = __webpack_require__(/*! ../common/Text */ "./src/shared/components/c
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles */ "./src/browser/css/styles.js");
 
 var _md = __webpack_require__(/*! md5 */ "./node_modules/md5/md5.js");
 
@@ -53621,7 +53608,7 @@ var _Button = __webpack_require__(/*! ../common/Button */ "./src/shared/componen
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles */ "./src/browser/css/styles.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -53688,7 +53675,7 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _ReviewSummary = __webpack_require__(/*! ./ReviewSummary */ "./src/shared/components/ReviewPage/ReviewSummary.jsx");
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles */ "./src/browser/css/styles.js");
 
 var _creators = __webpack_require__(/*! ./../../actions/creators */ "./src/shared/actions/creators.jsx");
 
@@ -54546,7 +54533,7 @@ var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _styles = __webpack_require__(/*! ../../../../public/css/styles */ "./public/css/styles.js");
+var _styles = __webpack_require__(/*! ../../../browser/css/styles */ "./src/browser/css/styles.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -55473,7 +55460,19 @@ var writeDecks = exports.writeDecks = function writeDecks(decks) {
   return write(DECK_KEY, decks);
 };
 
+/***/ }),
+
+/***/ 0:
+/*!*************************************!*\
+  !*** multi ./src/browser/index.jsx ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! C:\Users\Quan Long\React\React_Little_Card_Game\src\browser\index.jsx */"./src/browser/index.jsx");
+
+
 /***/ })
 
 /******/ });
-//# sourceMappingURL=bundle.js.map
+//# sourceMappingURL=bundleJS.js.map

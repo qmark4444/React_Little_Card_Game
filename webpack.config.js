@@ -10,10 +10,18 @@ const devMode = process.env.NODE_ENV !== 'production';
 
 var browserConfig = {
     mode: "development",
-    entry: "./src/browser/index.jsx",
+    entry: {
+        bundleJS: [
+            path.resolve(__dirname, "src/browser/index.jsx")
+        ],
+        bundleCSS: [
+            path.resolve(__dirname, "src/browser/css/cardgame.scss"),
+            path.resolve(__dirname, "src/browser/css/navbar.css")
+        ]
+    },
     output: {
         path: __dirname + '/public',
-        filename: 'js/bundle.js',
+        filename: 'js/[name].js',
     },
     target: 'web', 
     devtool: '#sourcemap',
@@ -49,7 +57,7 @@ var browserConfig = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: 'css/bundle.css', 
+            filename: 'css/[name].css', 
         }),
     //     new webpack.DefinePlugin({
     //         isBrowser: "true" //added to global namespace, can be called in any React component

@@ -324,5 +324,83 @@ button.wideButton {
   border-radius: 20px;
   background: yellow; }
 
+:root {
+  --navbarHeight: 80px; }
 
-/*# sourceMappingURL=bundle.css.map*/
+.topNavbar {
+  position: relative;
+  /*needed for barContainer absolute position*/
+  width: 100%;
+  height: var(--navbarHeight);
+  background: black;
+  display: grid;
+  grid-template-columns: 200px, 1fr; }
+
+div.topNav-dropdown {
+  /* div.menu--dropdown{ */
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  /*needed for vertical align hamburgbar icon*/ }
+
+i.topNav-dropdown-icon {
+  vertical-align: middle;
+  cursor: pointer;
+  color: white; }
+
+div.topNav-dropdown-content {
+  display: flex; }
+
+div.menu-dropdown-content {
+  position: absolute; }
+
+div.topNav-dropdown-content > div {
+  list-style: none;
+  line-height: var(--navbarHeight);
+  text-align: center; }
+
+div.menu-dropdown-content {
+  display: none; }
+
+div.menu-dropdown-content.showContent {
+  display: block;
+  background: black;
+  z-index: 1000; }
+
+div.topNav-dropdown-content a {
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 16px;
+  text-decoration: none;
+  font-size: 17px; }
+
+div.topNav-dropdown-icon-container i {
+  display: none; }
+
+@media screen and (max-width: 700px) {
+  div.topNav-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    z-index: 1000;
+    background: black; }
+  div.topNav-dropdown-icon-container i {
+    display: block;
+    margin-right: 20px; } }
+
+@media screen and (max-width: 900px) {
+  div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content {
+    display: block; }
+  div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content a {
+    text-align: left; } }
+
+/* end of topNavbar */
+
+
+/*# sourceMappingURL=bundleCSS.css.map*/

@@ -9,8 +9,6 @@ let store = createStore(reducers);
 
 const BrowserRoutes = withAllRoutes(BrowserRouter, store);
 
-import '../../public/css/cardgame.scss';
-
 hydrate(
     (
        <BrowserRoutes /> 

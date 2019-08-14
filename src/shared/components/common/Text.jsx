@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {scalingFactors} from '../../../../public/css/styles';
+import {scalingFactors} from '../../../browser/css/styles';
 
 class Text extends Component {
     static displayName = "Text-Base-Component"; // displayName for debugging

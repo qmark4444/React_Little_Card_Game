@@ -4,7 +4,7 @@ import Text, {withText} from "../common/Text";
 const HeadingText = withText(Text, 'big');
 const NormalText = withText(Text, 'normal');
 import Button from "../common/Button";
-import {colors} from "../../../../public/css/styles";
+import {colors} from "../../../browser/css/styles";
 
 function mkReviewSummary(percentCorrect, quitFunc) {
   return (

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 const QuizView = require('./QuizView');
 import { mkReviewSummary } from "./ReviewSummary";
-import {colors} from "../../../../public/css/styles";
+import {colors} from "../../../browser/css/styles";
 import { nextReview, stopReview } from "./../../actions/creators";
 
 class ReviewScreen extends Component {
