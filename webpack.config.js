@@ -13,7 +13,6 @@ var browserConfig = {
     entry: "./src/browser/index.jsx",
     output: {
         path: __dirname + '/public',
-        // filename: '/js/bundle.js',//not work
         filename: 'js/bundle.js',
     },
     target: 'web', 
@@ -24,44 +23,12 @@ var browserConfig = {
     },
     module: {
         rules: [
-            // { 
-            //     test: /\.css$/, 
-            //     // loader: 'style-loader!css-loader'
-
-            //     // use: 'style-loader!css-loader' //execute order: right to left
-            //     // use: ['isomorphic-style-loader', {loader: 'style-loader!css-loader'}]
-
-            //     use: extractCSS.extract({
-            //         // use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: ['css-loader']
-            //     })
-            // },
-            // {
-            //     test: /\.scss$/,
-                
-            //     //separate css from js bundle, to avoid cache issue.
-            //     // use: [ 
-            //     //     //execute order: bottom to top
-            //     //     'style-loader', // creates style nodes from JS strings
-            //     //     'css-loader', // translates CSS into CommonJS
-            //     //     'sass-loader' // compiles Sass to CSS, using Node Sass by default
-            //     // ]
-
-            //     use: extractSASS.extract({
-            //         // use: ExtractTextPlugin.extract({
-            //         fallback: 'style-loader',
-            //         use: ['css-loader', 'sass-loader']
-            //     })
-            // },
-
             {
                 test: /\.(sa|sc|c)ss$/,
                 use: [
                 {
                     loader: MiniCssExtractPlugin.loader,
                     options: {
-                        publicPath: './public/css',//no effect
                         hmr: process.env.NODE_ENV === 'development',
                     },
                 },
@@ -81,16 +48,8 @@ var browserConfig = {
         extensions: ['.js', '.jsx', '.scss'] 
     },
     plugins: [
-        // new ExtractTextPlugin({
-        //     filename: 'css/bundle.css'
-        // })
-        // extractCSS,
-        // extractSASS
-
         new MiniCssExtractPlugin({
-            // filename: devMode ? 'css/[name].css' : '[name].[hash].css',
             filename: 'css/bundle.css', 
-            // chunkFilename: devMode ? 'css/[id].css' : '[id].[hash].css',
         }),
     //     new webpack.DefinePlugin({
     //         isBrowser: "true" //added to global namespace, can be called in any React component
