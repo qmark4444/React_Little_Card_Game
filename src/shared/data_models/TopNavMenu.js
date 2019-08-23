@@ -1,21 +1,25 @@
 let TopNavMenu = [
     {
       name: 'Home',
-      location: '#',
+      location: '/',
+      isExternal: false,
       subMenus: []
     }, 
     {
       name: 'About',
       location: null,
+      isExternal: false,
       subMenus: [
         {
           name: 'Me',
-          location: '#',
+          location: '/',
+          isExternal: false,
           subMenus: []
         },
         {
           name: 'Team',
-          location: '#',
+          location: '/',
+          isExternal: false,
           subMenus: []
         }
       ]
@@ -23,27 +27,26 @@ let TopNavMenu = [
     {
       name: 'Games',
       location: null,
+      isExternal: false,
       subMenus: [
         {
           name: 'Card Game',
-          location: '#',
+          location: '/',
+          isExternal: false,
           subMenus: []
         },
         {
           name: 'TicTacToe',
-          location: '#',
+          location: '/',
+          isExternal: false,
           subMenus: []
         }
       ]
     },
     {
-      name: 'Portfolio',
-      location: '#',
-      subMenus: []
-    },
-    {
       name: 'Contact',
-      location: '#',
+      location: 'https://github.com/qmark4444/React_Little_Card_Game',
+      isExternal: true,
       subMenus: []
     }
 ];

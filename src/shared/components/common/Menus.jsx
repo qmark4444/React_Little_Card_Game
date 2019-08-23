@@ -52,7 +52,7 @@ const Menus = ({
         return (
             <div className={containerClass}>
                 {
-                    menuList.map( ({ name, location, subMenus }) => {
+                    menuList.map( ({ name, location, isExternal, subMenus }) => {
                         // TODO: simplify the following if-conditions
                         let containerClass = name === ''? 'topNav-dropdown-content': 'menu-dropdown-content';
                         // containerClass += (name !== '') && selectedMenus[name] && ' showContent';
@@ -65,6 +65,7 @@ const Menus = ({
                                 <Menu
                                     name={name}
                                     to={location}
+                                    isExternal={isExternal}
                                     // selected={this.selectedMenus[name]?this.selectedMenus[name]:undefined}
                                     // selected={selectedMenus[name]?selectedMenus[name]: undefined}
                                     selected={selectedMenus[name]}
