@@ -43,7 +43,7 @@ class Footer extends Component {
         </div>
 
         <h1>
-          Footer Grid
+          React Little Games
         </h1>
       </footer>
     )
