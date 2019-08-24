@@ -42,7 +42,7 @@ class Footer extends Component {
           </a>
         </div>
 
-        <h1>
+        <h1 id="about">
           React Little Games
         </h1>
       </footer>
@@ -63,24 +63,121 @@ class Layout extends Component {
   }
 
   componentDidMount(){
-    window.addEventListener('click', this._handleHamburgClick, true);
+    // window.addEventListener('click', this._handleHamburgClick, true);
+    // document.getElementById('content').addEventListener('click', this._handleMenuClick, false);
+    document.addEventListener('click', this._handleClick, true);
+
+    // window.addEventListener('click', this._handleMenuClick, true);
+    // document.querySelectorAll('[class^="menu-level"]').forEach(ele => {
+    //   ele.addEventListener('click', this._handleMenuClick, true);
+    // })
   }
 
   componentWillUnmount(){
-    window.removeEventListener('click', this._handleHamburgClick);
+    // window.removeEventListener('click', this._handleHamburgClick);
+    // window.removeEventListener('click', this._handleMenuClick);
+    // document.getElementById('content').removeEventListener('click', this._handleMenuClick);
+    document.removeEventListener('click', this._handleClick.bind(document));
+
+    // document.querySelectorAll('[class^="menu-level"]').forEach(ele => {
+    //   ele.removeEventListener('click', this._handleMenuClick);
+    // })
   }
 
   _handleHamburgClick = e => {
     // console.log('click hamburgbar called');
+
     let currentMenuClass = this.state.menuClass;
     console.log(e.target);
-    (e.target.className.indexOf('menu--dropdown-icon') > 0  && currentMenuClass.indexOf('responsive') < 0) ?
+    (e.target.className.indexOf('menu-dropdown-icon') >= 0  && currentMenuClass.indexOf('responsive') < 0) ?
       this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')})
       :
       this.setState({menuClass: ''});
 
-    e.target.parentNode.classList.toggle('responsive');//Menus test
+    // e.target.parentNode.classList.toggle('responsive');//toggle not good: stay unless click again
   }
+
+  _handleMenuClick = e => {
+    let currentMenuClass = this.state.menuClass;
+    // console.log(e.currentTarget);
+    // console.log(e.currentTarget.className);
+    // console.log(e.target)
+    // if(e.currentTarget.className.indexOf('menu-level') >= 0  && currentMenuClass.indexOf('responsive') < 0){
+    //   // e.stopPropagation();
+    //   // this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')});
+    // }
+    // else if(e.currentTarget.className.indexOf('menu-level') < 0  && currentMenuClass.indexOf('responsive') >= 0){
+    //   e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // } 
+    // else if(e.currentTarget.id.indexOf('content') >= 0  && currentMenuClass.indexOf('responsive') >= 0){
+    //   // e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // } 
+    // else if(e.target.className.indexOf('menu-level') < 0){ //not work: menu clicked are <a> not <class="menu-level-">
+    //   e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // } 
+    // else if(e.target.id.indexOf('menu-') < 0){ 
+    //   e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // } 
+    // else 
+    if(e.target.className.indexOf('menu-dropdown-icon') >= 0  && currentMenuClass.indexOf('responsive') < 0){
+      e.stopPropagation();
+      this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')});
+    }
+    else if(e.target.className.indexOf('menu-dropdown-icon') >= 0  && currentMenuClass.indexOf('responsive') >= 0){
+      e.stopPropagation();
+      this.setState({menuClass: ''});
+    } 
+    // else if(e.target.className.indexOf('container-fluid') >= 0){
+    //   e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // }
+  }
+
+  _handleClick = e => {
+    let currentMenuClass = this.state.menuClass;
+    console.log(e.currentTarget);
+    console.log(e.target);
+
+    // if(e.target.tagName.indexOf('a') < 0){
+    //   // e.stopPropagation();
+    //   this.setState({menuClass: ''});
+    // }
+
+    if(e.target.id.indexOf('menu-') < 0){
+      //click elsewhere to close dropdown menu:
+      //do like jQuery, not React way to modify DOM elements
+      // document.getElementsByClassName('show-content') //doesn't support forEach
+
+      // document.querySelectorAll("[class='show-content']").forEach(
+      document.querySelectorAll(".show-content").forEach(
+        ele => {
+          console.log(ele);
+          ele.classList.remove('show-content');
+        }
+      );
+
+      if(currentMenuClass.indexOf('responsive') >= 0){
+        e.stopPropagation();
+        this.setState({menuClass: ''});
+      }
+    } 
+
+    //should use a separate hamburgbar component to achieve this????
+    if(e.target.className.indexOf('menu-dropdown-icon') >= 0  && currentMenuClass.indexOf('responsive') < 0){
+      e.stopPropagation();
+      this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')});
+    }
+    else if(e.target.className.indexOf('menu-dropdown-icon') >= 0  && currentMenuClass.indexOf('responsive') >= 0){
+      e.stopPropagation();
+      this.setState({menuClass: ''});
+    } 
+
+  }
+
 
   _updateSelectedMenus = (selectedMenus) => {
     // console.log('top level update selected menus called');
@@ -95,12 +192,15 @@ class Layout extends Component {
         <Navbar className="topNavbar">
           <Logo />
           <Menus
-            containerClass="topNav-dropdown"
-            iconContainerClass="topNav-dropdown-icon-container"
+            containerClass="menus-container"
+            // iconContainerClass={"hamburg-bar" + this.state.menuClass}
+            iconContainerClass="hamburg-bar"
             iconClass='fa fa-4x fa-bars'
+            responsiveClass={this.state.menuClass}
             menus={{
               name: '', 
-              location: '#',
+              location: null,
+              level: 0,
               subMenus: navs
             }}
             selectedMenus={this.state.selectedMenus}

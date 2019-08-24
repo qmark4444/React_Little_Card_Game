@@ -41749,7 +41749,7 @@ module.exports = hoistNonReactStatics;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -52922,8 +52922,8 @@ var Footer = function (_Component2) {
         ),
         _react2.default.createElement(
           "h1",
-          null,
-          "Footer Grid"
+          { id: "about" },
+          "React Little Games"
         )
       );
     }
@@ -52942,11 +52942,88 @@ var Layout = function (_Component3) {
 
     _this3._handleHamburgClick = function (e) {
       // console.log('click hamburgbar called');
+
       var currentMenuClass = _this3.state.menuClass;
       console.log(e.target);
-      e.target.className.indexOf('menu--dropdown-icon') > 0 && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
+      e.target.className.indexOf('menu-dropdown-icon') >= 0 && currentMenuClass.indexOf('responsive') < 0 ? _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') }) : _this3.setState({ menuClass: '' });
 
-      e.target.parentNode.classList.toggle('responsive'); //Menus test
+      // e.target.parentNode.classList.toggle('responsive');//toggle not good: stay unless click again
+    };
+
+    _this3._handleMenuClick = function (e) {
+      var currentMenuClass = _this3.state.menuClass;
+      // console.log(e.currentTarget);
+      // console.log(e.currentTarget.className);
+      // console.log(e.target)
+      // if(e.currentTarget.className.indexOf('menu-level') >= 0  && currentMenuClass.indexOf('responsive') < 0){
+      //   // e.stopPropagation();
+      //   // this.setState({menuClass: [currentMenuClass,'responsive'].join(' ')});
+      // }
+      // else if(e.currentTarget.className.indexOf('menu-level') < 0  && currentMenuClass.indexOf('responsive') >= 0){
+      //   e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // } 
+      // else if(e.currentTarget.id.indexOf('content') >= 0  && currentMenuClass.indexOf('responsive') >= 0){
+      //   // e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // } 
+      // else if(e.target.className.indexOf('menu-level') < 0){ //not work: menu clicked are <a> not <class="menu-level-">
+      //   e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // } 
+      // else if(e.target.id.indexOf('menu-') < 0){ 
+      //   e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // } 
+      // else 
+      if (e.target.className.indexOf('menu-dropdown-icon') >= 0 && currentMenuClass.indexOf('responsive') < 0) {
+        e.stopPropagation();
+        _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') });
+      } else if (e.target.className.indexOf('menu-dropdown-icon') >= 0 && currentMenuClass.indexOf('responsive') >= 0) {
+        e.stopPropagation();
+        _this3.setState({ menuClass: '' });
+      }
+      // else if(e.target.className.indexOf('container-fluid') >= 0){
+      //   e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // }
+    };
+
+    _this3._handleClick = function (e) {
+      var currentMenuClass = _this3.state.menuClass;
+      console.log(e.currentTarget);
+      console.log(e.target);
+
+      // if(e.target.tagName.indexOf('a') < 0){
+      //   // e.stopPropagation();
+      //   this.setState({menuClass: ''});
+      // }
+
+      if (e.target.id.indexOf('menu-') < 0) {
+        //click elsewhere to close dropdown menu:
+        //do like jQuery, not React way to modify DOM elements
+        // document.getElementsByClassName('show-content') //doesn't support forEach
+
+        // document.querySelectorAll("[class='show-content']").forEach(
+        document.querySelectorAll(".show-content").forEach(function (ele) {
+          console.log(ele);
+          ele.classList.remove('show-content');
+        });
+
+        if (currentMenuClass.indexOf('responsive') >= 0) {
+          e.stopPropagation();
+          _this3.setState({ menuClass: '' });
+        }
+      }
+
+      //should use a separate hamburgbar component to achieve this????
+      if (e.target.className.indexOf('menu-dropdown-icon') >= 0 && currentMenuClass.indexOf('responsive') < 0) {
+        e.stopPropagation();
+        _this3.setState({ menuClass: [currentMenuClass, 'responsive'].join(' ') });
+      } else if (e.target.className.indexOf('menu-dropdown-icon') >= 0 && currentMenuClass.indexOf('responsive') >= 0) {
+        e.stopPropagation();
+        _this3.setState({ menuClass: '' });
+      }
     };
 
     _this3._updateSelectedMenus = function (selectedMenus) {
@@ -52965,12 +53042,26 @@ var Layout = function (_Component3) {
   _createClass(Layout, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      window.addEventListener('click', this._handleHamburgClick, true);
+      // window.addEventListener('click', this._handleHamburgClick, true);
+      // document.getElementById('content').addEventListener('click', this._handleMenuClick, false);
+      document.addEventListener('click', this._handleClick, true);
+
+      // window.addEventListener('click', this._handleMenuClick, true);
+      // document.querySelectorAll('[class^="menu-level"]').forEach(ele => {
+      //   ele.addEventListener('click', this._handleMenuClick, true);
+      // })
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('click', this._handleHamburgClick);
+      // window.removeEventListener('click', this._handleHamburgClick);
+      // window.removeEventListener('click', this._handleMenuClick);
+      // document.getElementById('content').removeEventListener('click', this._handleMenuClick);
+      document.removeEventListener('click', this._handleClick.bind(document));
+
+      // document.querySelectorAll('[class^="menu-level"]').forEach(ele => {
+      //   ele.removeEventListener('click', this._handleMenuClick);
+      // })
     }
   }, {
     key: "render",
@@ -52987,12 +53078,15 @@ var Layout = function (_Component3) {
           { className: "topNavbar" },
           _react2.default.createElement(_Logo2.default, null),
           _react2.default.createElement(_Menus2.default, {
-            containerClass: "topNav-dropdown",
-            iconContainerClass: "topNav-dropdown-icon-container",
+            containerClass: "menus-container"
+            // iconContainerClass={"hamburg-bar" + this.state.menuClass}
+            , iconContainerClass: "hamburg-bar",
             iconClass: "fa fa-4x fa-bars",
+            responsiveClass: this.state.menuClass,
             menus: {
               name: '',
-              location: '#',
+              location: null,
+              level: 0,
               subMenus: navs
             },
             selectedMenus: this.state.selectedMenus,
@@ -54266,12 +54360,15 @@ var Menu = function (_Component) {
 
             var _props = this.props,
                 name = _props.name,
+                to = _props.to,
+                isExternal = _props.isExternal,
+                level = _props.level,
                 iconClass = _props.iconClass,
                 iconContainerClass = _props.iconContainerClass;
 
-            var style = this.props.selected ? { background: 'red' } : {};
+            var style = this.props.selected && level > 0 ? { background: 'red' } : {};
             // const to = this.props.to?this.props.to:'#';
-            var to = this.props.to;
+            // const to = this.props.to;
 
             return _react2.default.createElement(
                 'div',
@@ -54283,13 +54380,19 @@ var Menu = function (_Component) {
                         return _this2.props.onClick();
                     }
                 },
-                name && (to ? _react2.default.createElement(
+                name && (to && /^\//.test(to) && !isExternal ? _react2.default.createElement(
                     _reactRouterDom.NavLink,
-                    { activeStyle: { fontWeight: 'bold' }, to: to },
+                    { activeStyle: { fontWeight: 'bold' }, to: to, id: 'menu-' + name },
                     name
-                ) : _react2.default.createElement(
+                ) : isExternal ? _react2.default.createElement(
                     'a',
-                    { style: { fontWeight: 'bold' } },
+                    { style: { fontWeight: 'bold' }, href: to, target: '_blank', id: 'menu-' + name },
+                    name
+                ) :
+                // <a style={{fontWeight: 'bold'}} href={to || ''}>
+                _react2.default.createElement(
+                    'a',
+                    { style: { fontWeight: 'bold' }, href: to, id: 'menu-' + name },
                     name
                 )),
                 iconClass && _react2.default.createElement('i', { className: iconClass + ' menu-dropdown-icon' })
@@ -54340,7 +54443,8 @@ var Menus = function Menus(_ref) {
         onClick = _ref.onClick,
         containerClass = _ref.containerClass,
         iconContainerClass = _ref.iconContainerClass,
-        iconClass = _ref.iconClass;
+        iconClass = _ref.iconClass,
+        responsiveClass = _ref.responsiveClass;
 
     var _handleMenuClick = function _handleMenuClick(name) {
         // console.log('called handle menu click')
@@ -54379,53 +54483,65 @@ var Menus = function Menus(_ref) {
         menuList.map(function (_ref2) {
             var name = _ref2.name,
                 location = _ref2.location,
+                isExternal = _ref2.isExternal,
+                level = _ref2.level,
                 subMenus = _ref2.subMenus;
 
             // TODO: simplify the following if-conditions
-            var containerClass = name === '' ? 'topNav-dropdown-content' : 'menu-dropdown-content';
-            // containerClass += (name !== '') && selectedMenus[name] && ' showContent';
-            if (name !== '' && selectedMenus[name]) {
-                containerClass += ' showContent';
+            // let containerClass = name === ''? 'topNav-dropdown-content': 'menu-dropdown-content';
+            var containerClass = 'menu-level-' + level + '-content ' + responsiveClass;
+            // containerClass += (name !== '') && selectedMenus[name] && ' show-content';
+            // if(selectedMenus[name]){
+            // if((name !== '') && selectedMenus[name]){
+            if (level > 0 && selectedMenus[name]) {
+                containerClass += ' show-content';
             }
 
-            return _react2.default.createElement(
-                'div',
-                { key: name, className: iconContainerClass },
-                _react2.default.createElement(_Menu2.default, {
-                    name: name,
-                    to: location
-                    // selected={this.selectedMenus[name]?this.selectedMenus[name]:undefined}
-                    // selected={selectedMenus[name]?selectedMenus[name]: undefined}
-                    , selected: selectedMenus[name]
+            return (
+                // <div key={name} className={iconContainerClass} >
+                _react2.default.createElement(
+                    'div',
+                    { key: name, className: 'menu-level-' + level },
+                    _react2.default.createElement(_Menu2.default, {
+                        name: name,
+                        to: location,
+                        isExternal: isExternal,
+                        level: level
+                        // selected={this.selectedMenus[name]?this.selectedMenus[name]:undefined}
+                        // selected={selectedMenus[name]?selectedMenus[name]: undefined}
+                        , selected: selectedMenus[name]
 
-                    // onClick={this._handleMenuClick}
-                    , onClick: function onClick() {
-                        return _handleMenuClick(name);
-                    },
-                    iconClass: iconClass,
-                    iconContainerClass: iconContainerClass
-                }),
-                Array.isArray(subMenus) && subMenus.length > 0 && _react2.default.createElement(Menus, {
-                    key: name
-                    // containerClass={`menu-${name}-dropdown`}
-                    , containerClass: containerClass
-                    // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
-                    // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
-                    // iconContainerClass={`menu-${name}-dropdown-icon-container`} 
-                    , iconContainerClass: ''
-                    // iconClass={iconClass}
+                        // onClick={this._handleMenuClick}
+                        , onClick: function onClick() {
+                            return _handleMenuClick(name);
+                        },
+                        iconClass: iconClass,
+                        iconContainerClass: iconContainerClass
+                    }),
+                    Array.isArray(subMenus) && subMenus.length > 0 && _react2.default.createElement(Menus, {
+                        key: name
+                        // containerClass={`menu-${name}-dropdown`}
+                        , containerClass: containerClass
+                        // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'show-content':''}`}
+                        // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'show-content':''}`}
+                        // iconContainerClass={`menu-${name}-dropdown-icon-container`} 
+                        , iconContainerClass: ''
+                        // iconClass={iconClass}
 
-                    // listClass={`menu-${name}-dropdown-content`}
-                    , menus: subMenus,
-                    selectedMenus: selectedMenus[name] ? selectedMenus[name] : {}
-                    // selectedMenus={selectedMenus[name]}
+                        , responsiveClass: responsiveClass
 
-                    // onClick={this._updateSelectedMenus}
-                    // onClick={(name---WRONG) => this._updateSelectedMenus(selectedMenus, name)}
-                    , onClick: function onClick(selectedMenus) {
-                        return _updateSelectedMenus(selectedMenus, name);
-                    }
-                })
+                        // listClass={`menu-${name}-dropdown-content`}
+                        , menus: subMenus,
+                        selectedMenus: selectedMenus[name] ? selectedMenus[name] : {}
+                        // selectedMenus={selectedMenus[name]}
+
+                        // onClick={this._updateSelectedMenus}
+                        // onClick={(name---WRONG) => this._updateSelectedMenus(selectedMenus, name)}
+                        , onClick: function onClick(selectedMenus) {
+                            return _updateSelectedMenus(selectedMenus, name);
+                        }
+                    })
+                )
             );
         })
     );
@@ -54952,39 +55068,57 @@ Object.defineProperty(exports, "__esModule", {
 });
 var TopNavMenu = [{
   name: 'Home',
-  location: '#',
+  location: '/',
+  isExternal: false,
+  level: 1,
   subMenus: []
-}, {
-  name: 'About',
-  location: null,
-  subMenus: [{
-    name: 'Me',
-    location: '#',
-    subMenus: []
-  }, {
-    name: 'Team',
-    location: '#',
-    subMenus: []
-  }]
-}, {
+},
+// {
+//   name: 'About',
+//   // location: '#about',//can't use #, or ''-- they append to existing path: /study => /study#about
+//   location: null,
+//   isExternal: false,
+//   level: 1,
+//   subMenus: [
+//     // {
+//     //   name: 'Me',
+//     //   location: '/',
+//     //   isExternal: false,
+//     //   level: 2,
+//     //   subMenus: []
+//     // },
+//     // {
+//     //   name: 'Team',
+//     //   location: '/',
+//     //   isExternal: false,
+//     //   level: 2,
+//     //   subMenus: []
+//     // }
+//   ]
+// }, 
+{
   name: 'Games',
   location: null,
+  isExternal: false,
+  level: 1,
   subMenus: [{
     name: 'Card Game',
-    location: '#',
+    location: '/',
+    isExternal: false,
+    level: 2,
     subMenus: []
   }, {
-    name: 'TicTacToe',
-    location: '#',
+    name: 'MoreToCome',
+    location: '/',
+    isExternal: false,
+    level: 2,
     subMenus: []
   }]
 }, {
-  name: 'Portfolio',
-  location: '#',
-  subMenus: []
-}, {
   name: 'Contact',
-  location: '#',
+  location: 'https://github.com/qmark4444/React_Little_Card_Game',
+  isExternal: true,
+  level: 1,
   subMenus: []
 }];
 

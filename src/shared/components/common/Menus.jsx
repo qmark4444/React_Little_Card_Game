@@ -15,7 +15,8 @@ const Menus = ({
     onClick, 
     containerClass, 
     iconContainerClass, 
-    iconClass
+    iconClass,
+    responsiveClass
 }) => {
     const _handleMenuClick = (name) => {
         // console.log('called handle menu click')
@@ -52,20 +53,25 @@ const Menus = ({
         return (
             <div className={containerClass}>
                 {
-                    menuList.map( ({ name, location, isExternal, subMenus }) => {
+                    menuList.map( ({ name, location, isExternal, level, subMenus }) => {
                         // TODO: simplify the following if-conditions
-                        let containerClass = name === ''? 'topNav-dropdown-content': 'menu-dropdown-content';
-                        // containerClass += (name !== '') && selectedMenus[name] && ' showContent';
-                        if((name !== '') && selectedMenus[name]){
-                            containerClass += ' showContent'; 
+                        // let containerClass = name === ''? 'topNav-dropdown-content': 'menu-dropdown-content';
+                        let containerClass = `menu-level-${level}-content ${responsiveClass}`;
+                        // containerClass += (name !== '') && selectedMenus[name] && ' show-content';
+                        // if(selectedMenus[name]){
+                        // if((name !== '') && selectedMenus[name]){
+                        if(level > 0 && selectedMenus[name]){                        
+                            containerClass += ' show-content'; 
                         }
 
                         return (
-                            <div key={name} className={iconContainerClass} >
+                            // <div key={name} className={iconContainerClass} >
+                            <div key={name} className={`menu-level-${level}`} >
                                 <Menu
                                     name={name}
                                     to={location}
                                     isExternal={isExternal}
+                                    level={level}
                                     // selected={this.selectedMenus[name]?this.selectedMenus[name]:undefined}
                                     // selected={selectedMenus[name]?selectedMenus[name]: undefined}
                                     selected={selectedMenus[name]}
@@ -81,11 +87,13 @@ const Menus = ({
                                         key={name} 
                                         // containerClass={`menu-${name}-dropdown`}
                                         containerClass={containerClass}
-                                        // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
-                                        // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'showContent':''}`}
+                                        // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'show-content':''}`}
+                                        // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'show-content':''}`}
                                         // iconContainerClass={`menu-${name}-dropdown-icon-container`} 
                                         iconContainerClass=''
                                         // iconClass={iconClass}
+
+                                        responsiveClass={responsiveClass}
                                         
                                         // listClass={`menu-${name}-dropdown-content`}
                                         menus={subMenus}

@@ -7,12 +7,14 @@ class Menu extends Component{
             name, 
             to,
             isExternal,
+            level,
             iconClass, 
             iconContainerClass
         } = this.props;
-        const style = this.props.selected?
+        const style = this.props.selected && level > 0?
             {background: 'red'}
-            : {};
+            : 
+            {};
         // const to = this.props.to?this.props.to:'#';
         // const to = this.props.to;
 
@@ -24,17 +26,18 @@ class Menu extends Component{
                 onClick={() => this.props.onClick()}
             >
                 {
-                    name && (to && !isExternal?
-                    <NavLink activeStyle={{fontWeight: 'bold'}} to={to} >
+                    name && (to && /^\//.test(to) && !isExternal?
+                    <NavLink activeStyle={{fontWeight: 'bold'}} to={to} id={`menu-${name}`}>
                         {name}
                     </NavLink>
                     :
                     isExternal?
-                    <a style={{fontWeight: 'bold'}} href={to} target="_blank">
+                    <a style={{fontWeight: 'bold'}} href={to} target="_blank" id={`menu-${name}`}>
                        {name} 
                     </a>
                     :
-                    <a style={{fontWeight: 'bold'}}>
+                    // <a style={{fontWeight: 'bold'}} href={to || ''}>
+                    <a style={{fontWeight: 'bold'}} href={to} id={`menu-${name}`}>
                        {name} 
                     </a>)
                 }

@@ -1,5 +1,4 @@
 var path = require('path');
-var webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var browserConfig = {
@@ -9,8 +8,9 @@ var browserConfig = {
             path.resolve(__dirname, "src/browser/index.jsx")
         ],
         bundleCSS: [
-            path.resolve(__dirname, "src/browser/css/cardgame.scss"),
-            path.resolve(__dirname, "src/browser/css/navbar.css")
+            path.resolve(__dirname, "src/browser/css/cardgame.scss")
+            // ,
+            // path.resolve(__dirname, "src/browser/css/navbar.css")
         ]
     },
     output: {

@@ -97,26 +97,14 @@
 
 /***/ }),
 
-/***/ "./src/browser/css/navbar.css":
-/*!************************************!*\
-  !*** ./src/browser/css/navbar.css ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ 1:
-/*!**************************************************************************!*\
-  !*** multi ./src/browser/css/cardgame.scss ./src/browser/css/navbar.css ***!
-  \**************************************************************************/
+/*!*********************************************!*\
+  !*** multi ./src/browser/css/cardgame.scss ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Quan Long\React\React_Little_Card_Game\src\browser\css\cardgame.scss */"./src/browser/css/cardgame.scss");
-module.exports = __webpack_require__(/*! C:\Users\Quan Long\React\React_Little_Card_Game\src\browser\css\navbar.css */"./src/browser/css/navbar.css");
+module.exports = __webpack_require__(/*! C:\Users\Quan Long\React\React_Little_Card_Game\src\browser\css\cardgame.scss */"./src/browser/css/cardgame.scss");
 
 
 /***/ })

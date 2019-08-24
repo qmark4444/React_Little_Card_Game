@@ -8,10 +8,10 @@
     "build-merge": "webpack --config webpack.prod.js",
     "start-merge": "webpack --config webpack.dev.js",
     "build-dev": "./node_modules/.bin/webpack",
-    "start-dev": "concurrently \"npm run build\" \"webpack -w\"  \"nodemon server.js\"",
+    "start-dev": "concurrently \"npm run build-dev\" \"webpack -w\"  \"nodemon server.js\"",
     "build": "webpack --config webpack.production.js",
     "start": "node server.js",
-    "heroku deploy": "heroku first build, then npm start"
+    "heroku deploy": "heroku first build, then npm start... dev: use webpack.configure.js by default"
   },
   "author": "Quan Long",
   "license": "ISC",

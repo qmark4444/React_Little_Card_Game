@@ -1,12 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const ExtractTextPlugin = require('extract-text-webpack-plugin'); // replaced by mini-css-extract-plugin after webpack v4
 // const extractCSS = new ExtractTextPlugin('css/[name].css'); 
 // const extractSASS = new ExtractTextPlugin('css/sass-bundle.css');
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== 'production';
+// const devMode = process.env.NODE_ENV !== 'production';
 
 var browserConfig = {
     mode: "development",
@@ -15,8 +15,9 @@ var browserConfig = {
             path.resolve(__dirname, "src/browser/index.jsx")
         ],
         bundleCSS: [
-            path.resolve(__dirname, "src/browser/css/cardgame.scss"),
-            path.resolve(__dirname, "src/browser/css/navbar.css")
+            path.resolve(__dirname, "src/browser/css/cardgame.scss")
+            // ,
+            // path.resolve(__dirname, "src/browser/css/navbar.css")
         ]
     },
     output: {
@@ -58,7 +59,8 @@ var browserConfig = {
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'css/[name].css', 
-        }),
+        })
+    //  ,
     //     new webpack.DefinePlugin({
     //         isBrowser: "true" //added to global namespace, can be called in any React component
     //                              // I think should avoid this (in React component hard to know where it comes from???)
