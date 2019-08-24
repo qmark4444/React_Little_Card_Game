@@ -22,7 +22,7 @@ const Menus = ({
         // console.log('called handle menu click')
         //first, toggle selected
         if(selectedMenus[name]){
-            delete selectedMenus[name];//delete the key
+            delete selectedMenus[name];
         }
         else{
             selectedMenus = {};//first clear all other same-level selected menus
@@ -54,18 +54,12 @@ const Menus = ({
             <div className={containerClass}>
                 {
                     menuList.map( ({ name, location, isExternal, level, subMenus }) => {
-                        // TODO: simplify the following if-conditions
-                        // let containerClass = name === ''? 'topNav-dropdown-content': 'menu-dropdown-content';
                         let containerClass = `menu-level-${level}-content ${responsiveClass}`;
-                        // containerClass += (name !== '') && selectedMenus[name] && ' show-content';
-                        // if(selectedMenus[name]){
-                        // if((name !== '') && selectedMenus[name]){
-                        if(level > 0 && selectedMenus[name]){                        
+                        if(level > 0 && selectedMenus[name]){  // level 0 is the topNav                      
                             containerClass += ' show-content'; 
                         }
 
                         return (
-                            // <div key={name} className={iconContainerClass} >
                             <div key={name} className={`menu-level-${level}`} >
                                 <Menu
                                     name={name}
@@ -85,7 +79,6 @@ const Menus = ({
                                     (Array.isArray(subMenus) && subMenus.length > 0) &&
                                     <Menus 
                                         key={name} 
-                                        // containerClass={`menu-${name}-dropdown`}
                                         containerClass={containerClass}
                                         // containerClass={`${name===''? 'topNav': 'menu'}-dropdown-content ${selectedMenus[name]?'show-content':''}`}
                                         // containerClass={`${name===''? 'topNav': `menu-${name}`}-dropdown-content ${selectedMenus[name]?'show-content':''}`}

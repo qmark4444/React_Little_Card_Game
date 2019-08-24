@@ -11,18 +11,15 @@ class Menu extends Component{
             iconClass, 
             iconContainerClass
         } = this.props;
-        const style = this.props.selected && level > 0?
+        const style = this.props.selected && level > 0? //hamburg-bar is level 0 menu, no need to set background color
             {background: 'red'}
             : 
             {};
-        // const to = this.props.to?this.props.to:'#';
-        // const to = this.props.to;
 
         return (
             <div 
                 className={iconContainerClass} 
                 style={style}
-                // onClick={() => this.props.onClick} // wrong
                 onClick={() => this.props.onClick()}
             >
                 {
@@ -37,6 +34,7 @@ class Menu extends Component{
                     </a>
                     :
                     // <a style={{fontWeight: 'bold'}} href={to || ''}>
+                    // add id for click target identification --- React way is a separate component?
                     <a style={{fontWeight: 'bold'}} href={to} id={`menu-${name}`}>
                        {name} 
                     </a>)

@@ -57,23 +57,11 @@ i.menu-dropdown-icon {
   color: white;
 }
 
-//positioned to absolutely position content: sass regex selector?
-.menu-level-0 {
-  // position: absolute;
-  // position: relative;
-}
-.menu-level-1 {
-  // position: absolute;
-  // position: relative;
-}
-
 .menu-level-0-content { 
-  // div.topNav-dropdown-content{ 
   display: flex;
 }
 
 .menu-level-0-content a { 
-  // div.topNav-dropdown-content a { 
   display: block;
   color: #f2f2f2;
   text-align: center;
@@ -89,83 +77,54 @@ i.menu-dropdown-icon {
   display: none;
 }
 .menu-level-0-content > div{ 
-  // div.topNav-dropdown-content > div{ 
   list-style: none;
   line-height: $navbarHeight;
   text-align: center;
 
-  white-space: nowrap;
-  // padding: 10px;
-  box-sizing: border-box;
+  white-space: nowrap; // whole word in one line
+  box-sizing: border-box; //keep content inside of box (width of container = content width)
 }
 
-//---menu dropdown
 .menu-level-1-content{
-  // div.menu-dropdown-content{
   position: absolute;
   display: none;
 }
-// div.menu-dropdown-content {
-//   display: none;
-// }
+
 .menu-level-1-content.show-content {
-  // div.menu-dropdown-content.show-content {
   display: block;
   background: black;
   z-index: 1000;
-
-  // right:100%;
 }
 
 @media screen and (max-width: 700px) {
   // show hamburg bar icon
   .hamburg-bar i{
-    // div.topNav-dropdown-icon-container i{
     display: block;
     margin-right: 20px;
   }
 
-  .menu-level-0-content {   
-    // .hamburg-bar + .menu-level-0-content {   
-    // .menu-level-0-content{   
-    // div.topNav-dropdown-content{   
+  .menu-level-0-content {     
     display: none;
     position: absolute;
     top: 80px;
     right: 0;
-    // right: 100%;
     z-index: 1000;
     background: black;
   }
 
   .menu-level-0-content.responsive {
-    // .hamburg-bar.responsive + .menu-level-0-content {
-    // div.topNav-dropdown-content.responsive{
     display:block;
   }
 
-  .menu-level-0-content.responsive > div a {  
-    // .hamburg-bar.responsive + .menu-level-0-content > div a {  
-    // div.menu-level-0-content.responsive > div a{  
-    // div.topNav-dropdown-content.responsive > div a{  
+  .menu-level-0-content.responsive > div a {   
     text-align: left;
   }
 
-  .menu-level-1-content.show-content {   
-    // .menu-level-1-content.show-content.responsive {   
-    right:100%;
+  .menu-level-1-content.show-content {     
+    right: 100%; // right next to parent
   }
 }
 
-@media screen and (max-width: 700px) {
-  // div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content{
-  //     display:block;
-  // }
-  
-  // div.topNav-dropdown-icon-container.responsive div.topNav-dropdown-content a{  
-  //   text-align: left;
-  // }
-}
 /* end of topNavbar */
 
 /* snackbar */
