@@ -41749,7 +41749,7 @@ module.exports = hoistNonReactStatics;
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53075,6 +53075,379 @@ module.exports = Layout;
 
 /***/ }),
 
+/***/ "./src/shared/components/MnkGamePage/index.jsx":
+/*!*****************************************************!*\
+  !*** ./src/shared/components/MnkGamePage/index.jsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function Square(props) {
+
+  return _react2.default.createElement(
+    'button',
+    { className: props.winnerStyle + ' square', onClick: props.onClick },
+    props.value
+  );
+}
+
+var Board = function (_React$Component) {
+  _inherits(Board, _React$Component);
+
+  function Board() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Board);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Board.__proto__ || Object.getPrototypeOf(Board)).call.apply(_ref, [this].concat(args))), _this), _this.renderSquare = function (r, c) {
+      return _react2.default.createElement(Square, {
+        key: r + '-' + c,
+        winnerStyle: _this.props.winnerSquares && _this.props.winnerSquares.find(function (sq) {
+          return sq[0] === r && sq[1] === c;
+        }) ? 'winner' : '',
+        value: _this.props.squares[r][c],
+        onClick: function onClick() {
+          return _this.props.onClick(r, c);
+        }
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Board, [{
+    key: 'createBoard',
+    value: function createBoard(h, w) {
+      var board = [];
+      for (var row = 0; row < h; row++) {
+        var boardRow = [];
+        for (var col = 0; col < w; col++) {
+          boardRow.push(this.renderSquare(row, col));
+        }
+        board.push(_react2.default.createElement(
+          'div',
+          { className: 'board-row', key: row },
+          boardRow
+        ));
+      }
+      return board;
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        this.createBoard(this.props.height, this.props.width)
+      );
+    }
+  }]);
+
+  return Board;
+}(_react2.default.Component);
+
+var Game = function (_React$Component2) {
+  _inherits(Game, _React$Component2);
+
+  function Game(props) {
+    _classCallCheck(this, Game);
+
+    var _this2 = _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).call(this, props));
+
+    _this2.state = {
+      history: [{ squares: Array(props.height).fill(Array(props.width).fill(null)) }],
+      stepNumber: 0,
+      xIsNext: true
+    };
+    return _this2;
+  }
+
+  _createClass(Game, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      // console.log(this.props === nextProps) // must be different, because input is onChange()
+      var height = nextProps.height,
+          width = nextProps.width;
+      //return to start state
+
+      this.setState({
+        history: [{ squares: Array(parseInt(height)).fill(Array(parseInt(width)).fill(null)) }] //parseInt!!!
+        , stepNumber: 0,
+        xIsNext: true
+      });
+    }
+  }, {
+    key: 'winnerSquares',
+    value: function winnerSquares(squares, r, c, target, line) {
+      var winning = true;
+      var winnerSquares = [];
+      for (var i = 0; i < target; i++) {
+        var ri = r + i * line[0];
+        var ci = c + i * line[1];
+        var square = squares[ri] ? squares[ri][ci] : null;
+        if (!square) return null;
+        winning &= squares[r][c] === square;
+        if (winning) {
+          winnerSquares.push([ri, ci]);
+        } else {
+          return null;
+        }
+      }
+      return winnerSquares.length ? winnerSquares : null;
+    }
+  }, {
+    key: 'calculateWinner',
+    value: function calculateWinner(squares, target) {
+      var lines = [[1, 0], [0, 1], [1, 1], [1, -1]]; //[vertical, horizontal, right diagonal, left diagonal]
+      for (var r = 0; r < this.props.height; r++) {
+        for (var c = 0; c < this.props.width; c++) {
+          for (var n = 0; n < lines.length; n++) {
+            if (this.winnerSquares(squares, r, c, target, lines[n])) {
+              return { winner: squares[r][c], winnerSquares: this.winnerSquares(squares, r, c, target, lines[n]) };
+            }
+          }
+        }
+      }
+      return { winner: null, winnerSquares: null };
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick(r, c) {
+      // when click a square, need to start from the pointer "stepNumber" location and truncate rest
+      //need to update history and therefore the steps <li>
+      var history = this.state.history.slice(0, this.state.stepNumber + 1);
+
+      //Deep clone
+      var squares = JSON.parse(JSON.stringify(history[history.length - 1].squares));
+
+      if (this.calculateWinner(squares, this.props.target).winner || squares[r][c]) {
+        return;
+      }
+
+      squares[r][c] = this.state.xIsNext ? 'X' : 'O';
+
+      this.setState({
+        history: history.concat([{ squares: squares }]) //immuntable, history 
+        , stepNumber: history.length,
+        xIsNext: !this.state.xIsNext //toggle
+      });
+    }
+  }, {
+    key: 'jumpTo',
+    value: function jumpTo(move) {
+      //when click jumpTo, keep the history, don't truncate it. Just update the pointer "stepNumber"
+      this.setState({
+        stepNumber: move,
+
+        xIsNext: move % 2 === 0
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var winner = this.calculateWinner(this.state.history[this.state.stepNumber].squares, this.props.target);
+      var status = winner.winner ? 'Winner is: ' + winner.winner : 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+
+      var moves = this.state.history.map(function (squares, move) {
+        return _react2.default.createElement(
+          'li',
+          { key: move },
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                return _this3.jumpTo(move);
+              } },
+            'Step number #',
+            move
+          )
+        );
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'game' },
+        _react2.default.createElement(
+          'div',
+          { className: 'game-board' },
+          _react2.default.createElement(Board, {
+            winnerSquares: winner.winnerSquares,
+            squares: this.state.history[this.state.stepNumber].squares,
+            onClick: function onClick(r, c) {
+              return _this3.handleClick(r, c);
+            },
+            height: this.props.height,
+            width: this.props.width
+          })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'game-info' },
+          _react2.default.createElement(
+            'div',
+            null,
+            status
+          ),
+          _react2.default.createElement(
+            'ol',
+            null,
+            moves
+          )
+        )
+      );
+    }
+  }]);
+
+  return Game;
+}(_react2.default.Component);
+
+var MnkGame = function (_React$Component3) {
+  _inherits(MnkGame, _React$Component3);
+
+  function MnkGame(props) {
+    _classCallCheck(this, MnkGame);
+
+    var _this4 = _possibleConstructorReturn(this, (MnkGame.__proto__ || Object.getPrototypeOf(MnkGame)).call(this, props));
+
+    _this4.handleHeight = function (e) {
+      _this4.setState({ height: e.target.value }); //shallow merge
+    };
+
+    _this4.handleWidth = function (e) {
+      _this4.setState({ width: e.target.value }); //shallow merge
+    };
+
+    _this4.handleTarget = function (e) {
+      var target = e.target.value;
+      if (target > Math.max(_this4.state.height, _this4.state.width)) {
+        alert("target must not exceed the height or width, whichever is larger");
+        return;
+      }
+      _this4.setState({ target: target }); //shallow merge
+    };
+
+    _this4.state = {
+      height: 3,
+      width: 3,
+      target: 3
+    };
+    return _this4;
+  }
+
+  _createClass(MnkGame, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'mnk-game' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'm,n,k-game [ ',
+          _react2.default.createElement(
+            'a',
+            { href: 'https://en.wikipedia.org/wiki/M,n,k-game', target: '_blank' },
+            'link'
+          ),
+          ' ] '
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'game-settings' },
+          _react2.default.createElement(
+            'form',
+            null,
+            _react2.default.createElement(
+              'div',
+              { className: 'labeled-input' },
+              _react2.default.createElement(
+                'label',
+                { htmlFor: 'height' },
+                'height (m):'
+              ),
+              _react2.default.createElement('input', {
+                id: 'height',
+                type: 'text',
+                name: 'height',
+                className: 'setting-input',
+                onChange: this.handleHeight,
+                value: this.state.height
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'labeled-input' },
+              _react2.default.createElement(
+                'label',
+                { htmlFor: 'width' },
+                'width (n):'
+              ),
+              _react2.default.createElement('input', {
+                id: 'width',
+                type: 'text',
+                name: 'width',
+                className: 'setting-input',
+                onChange: this.handleWidth,
+                value: this.state.width
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'labeled-input' },
+              _react2.default.createElement(
+                'label',
+                { htmlFor: 'target' },
+                'target (k):'
+              ),
+              _react2.default.createElement('input', {
+                id: 'target',
+                type: 'text',
+                name: 'target',
+                className: 'setting-input',
+                onChange: this.handleTarget,
+                value: this.state.target
+              })
+            )
+          )
+        ),
+        _react2.default.createElement(Game, {
+          target: this.state.target,
+          height: this.state.height,
+          width: this.state.width
+        })
+      );
+    }
+  }]);
+
+  return MnkGame;
+}(_react2.default.Component);
+
+module.exports = MnkGame;
+
+/***/ }),
+
 /***/ "./src/shared/components/NewCardPage/Card.jsx":
 /*!****************************************************!*\
   !*** ./src/shared/components/NewCardPage/Card.jsx ***!
@@ -55035,8 +55408,8 @@ var TopNavMenu = [{
     level: 2,
     subMenus: []
   }, {
-    name: 'MoreToCome...',
-    location: '/',
+    name: 'Mnk Game',
+    location: '/mnkGame',
     isExternal: false,
     level: 2,
     subMenus: []
@@ -55444,6 +55817,7 @@ var DeckPage = __webpack_require__(/*! ../components/DeckPage/index.jsx */ "./sr
 var NewCardPage = __webpack_require__(/*! ../components/NewCardPage/index.jsx */ "./src/shared/components/NewCardPage/index.jsx");
 var StudyPage = __webpack_require__(/*! ../components/StudyPage/index.jsx */ "./src/shared/components/StudyPage/index.jsx");
 var ReviewPage = __webpack_require__(/*! ../components/ReviewPage/index.jsx */ "./src/shared/components/ReviewPage/index.jsx");
+var MnkGamePage = __webpack_require__(/*! ../components/MnkGamePage/index.jsx */ "./src/shared/components/MnkGamePage/index.jsx");
 
 var switchRoutes = [{
   path: '/',
@@ -55459,6 +55833,9 @@ var switchRoutes = [{
 }, {
   path: '/review',
   component: ReviewPage
+}, {
+  path: '/mnkGame',
+  component: MnkGamePage
 }];
 
 exports.default = switchRoutes;

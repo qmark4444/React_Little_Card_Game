@@ -21,8 +21,8 @@ let TopNavMenu = [
         }
         ,
         {
-          name: 'MoreToCome...',
-          location: '/',
+          name: 'Mnk Game',
+          location: '/mnkGame',
           isExternal: false,
           level: 2,
           subMenus: []

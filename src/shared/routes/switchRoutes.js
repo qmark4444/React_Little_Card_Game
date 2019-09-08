@@ -3,6 +3,7 @@ const DeckPage = require('../components/DeckPage/index.jsx');
 const NewCardPage = require('../components/NewCardPage/index.jsx');
 const StudyPage = require('../components/StudyPage/index.jsx');
 const ReviewPage = require('../components/ReviewPage/index.jsx');
+const MnkGamePage = require('../components/MnkGamePage/index.jsx');
 
 const switchRoutes =  [
   {
@@ -22,6 +23,10 @@ const switchRoutes =  [
   {
     path: '/review',
     component: ReviewPage,    
+  },
+  {
+    path: '/mnkGame',
+    component: MnkGamePage,    
   }
 ];
 
