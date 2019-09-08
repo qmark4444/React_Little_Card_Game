@@ -356,11 +356,14 @@ button.wideButton {
 .mnk-game {
   font: 24px, Futura, sans-serif;
   margin: 20px; 
-  margin-top: -200px;
+  margin-top: 0px;
 }
 
 ol, ul {
   padding-left: 30px;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(10, auto);
 }
 
 .board-row:after {

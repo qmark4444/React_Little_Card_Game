@@ -53189,13 +53189,17 @@ var Game = function (_React$Component2) {
       // console.log(this.props === nextProps) // must be different, because input is onChange()
       var height = nextProps.height,
           width = nextProps.width;
-      //return to start state
 
-      this.setState({
-        history: [{ squares: Array(parseInt(height)).fill(Array(parseInt(width)).fill(null)) }] //parseInt!!!
-        , stepNumber: 0,
-        xIsNext: true
-      });
+      height = parseInt(height);
+      width = parseInt(width);
+      //return to start state
+      if (height > 0 && width > 0) {
+        this.setState({
+          history: [{ squares: Array(height).fill(Array(width).fill(null)) }] //parseInt!!!
+          , stepNumber: 0,
+          xIsNext: true
+        });
+      }
     }
   }, {
     key: 'winnerSquares',
