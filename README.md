@@ -2,7 +2,7 @@
 
 # [About]
 
-This app has twoo games:
+This app has two games:
 
 [1] Card Game
 
