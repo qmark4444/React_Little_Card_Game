@@ -53296,6 +53296,11 @@ var Game = function (_React$Component2) {
         _react2.default.createElement(
           'div',
           { className: 'game-board' },
+          _react2.default.createElement(
+            'div',
+            null,
+            status
+          ),
           _react2.default.createElement(Board, {
             winnerSquares: winner.winnerSquares,
             squares: this.state.history[this.state.stepNumber].squares,
@@ -53304,20 +53309,15 @@ var Game = function (_React$Component2) {
             },
             height: this.props.height,
             width: this.props.width
-          })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'game-info' },
+          }),
           _react2.default.createElement(
             'div',
-            null,
-            status
-          ),
-          _react2.default.createElement(
-            'ol',
-            null,
-            moves
+            { className: 'game-info' },
+            _react2.default.createElement(
+              'ol',
+              null,
+              moves
+            )
           )
         )
       );
