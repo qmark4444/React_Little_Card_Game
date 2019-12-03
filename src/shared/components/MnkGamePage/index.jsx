@@ -145,6 +145,8 @@ class Game extends React.Component {
     return (
       <div className="game">
         <div className="game-board">
+          <div>{status}</div>
+
           <Board 
             winnerSquares={winner.winnerSquares}
             squares={this.state.history[this.state.stepNumber].squares}
@@ -152,12 +154,11 @@ class Game extends React.Component {
             height={this.props.height}
             width={this.props.width}
           />
-        </div>
-        
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
+
+          <div className="game-info">
+            <ol>{moves}</ol>
+          </div>
+        </div>  
       </div>
     );
   }
