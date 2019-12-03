@@ -53284,7 +53284,7 @@ var Game = function (_React$Component2) {
             { onClick: function onClick() {
                 return _this3.jumpTo(move);
               } },
-            'Step number #',
+            'Step #',
             move
           )
         );
